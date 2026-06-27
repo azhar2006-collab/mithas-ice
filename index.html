@@ -1,0 +1,1079 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mithas – More Than Ice Cream</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --h50:   #FFFBF0;
+    --h100:  #FFF3CC;
+    --h200:  #FFE380;
+    --h300:  #FFCA28;
+    --h400:  #aa5800;
+    --h500:  #D4870A;
+    --h600:  #B56B00;
+    --h700:  #8C4E00;
+    --h800:  #5C3000;
+    --h900:  #2E1500;
+
+    --honey:       var(--h400);
+    --honey-deep:  var(--h500);
+    --honey-rich:  var(--h600);
+    --honey-dark:  var(--h700);
+    --amber-black: var(--h900);
+    --amber-bg:    var(--h50);
+    --amber-card:  #FFF8E7;
+    --amber-warm:  #FFEFC5;
+    --amber-mid:   #FFDFA0;
+    --amber-comb:  #FFD060;
+
+    --dark-text:   var(--h900);
+    --body-text:   var(--h800);
+    --muted-text:  var(--h700);
+    --white:       #FFFFFF;
+
+    --border:       rgba(213, 135, 10, 0.20);
+    --border-light: rgba(213, 135, 10, 0.12);
+    --glow:         rgba(245, 168, 0, 0.18);
+
+    --shadow-sm: 0 1px 3px rgba(46,21,0,0.07);
+    --shadow-md: 0 4px 20px rgba(46,21,0,0.11);
+    --shadow-lg: 0 8px 36px rgba(46,21,0,0.15);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: "DM Sans", sans-serif;
+    background: var(--amber-bg);
+    color: var(--dark-text);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.6;
+  }
+
+  /* ══════════════════════
+     HEADER (replaces navbar)
+     ══════════════════════ */
+  .site-header {
+    background: var(--honey);
+    padding: 0 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 1px solid rgba(46,21,0,0.12);
+    transition: box-shadow 0.3s;
+  }
+  .site-header.scrolled { box-shadow: 0 2px 24px rgba(46,21,0,0.22); }
+
+  .header-logo {
+    display: flex;
+    align-items: center;
+    font-family: "Playfair Display", serif;
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--h900);
+    letter-spacing: -0.5px;
+    text-decoration: none;
+    gap: 9px;
+  }
+  .header-logo-mark {
+    width: 32px; height: 32px;
+    background: var(--h900);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+
+  /* ── Centre nav links ── */
+  .header-nav {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    list-style: none;
+  }
+  .header-nav a {
+    color: rgba(46,21,0,0.62);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 0.2px;
+    padding: 7px 18px;
+    border-radius: 99px;
+    transition: all 0.22s;
+  }
+  .header-nav a:hover {
+    color: var(--h900);
+    background: rgba(46,21,0,0.07);
+  }
+  .header-nav a.active {
+    color: var(--h900);
+    font-weight: 700;
+    background: rgba(46,21,0,0.10);
+  }
+
+  /* ── Hamburger + drawer — completely removed in favour of always-visible nav ── */
+  .header-hamburger { display: none; }
+  .mobile-drawer { display: none; }
+
+  /* ══════════════════════
+     HERO
+     ══════════════════════ */
+  .hero { width: 100%; overflow: hidden; position: relative; }
+  .hero img { width: 100%; display: block; max-height: 660px; object-fit: cover; object-position: center; }
+  .hero-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(
+      180deg,
+      rgba(46,21,0,0.08) 0%,
+      rgba(46,21,0,0.55) 100%
+    );
+    pointer-events: none;
+  }
+
+  /* ── Explore Flavours CTA on hero ── */
+  .hero-cta-wrap {
+    position: absolute;
+    bottom: 52px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+    z-index: 2;
+  }
+
+  .explore-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--amber-comb);
+    color: var(--h900);
+    text-decoration: none;
+    font-family: "DM Sans", sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    padding: 18px 40px;
+    border-radius: 99px;
+    border: 2.5px solid transparent;
+    box-shadow:
+      0 0 0 0 rgba(255,208,96,0),
+      0 8px 32px rgba(46,21,0,0.32);
+    transition:
+      background 0.28s,
+      box-shadow 0.28s,
+      transform 0.22s,
+      border-color 0.28s;
+    white-space: nowrap;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Shimmer sweep on hover */
+  .explore-btn::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255,255,255,0.38),
+      transparent
+    );
+    transition: left 0.55s ease;
+    pointer-events: none;
+  }
+  .explore-btn:hover::before { left: 160%; }
+
+  .explore-btn:hover {
+    background: #FFE080;
+    border-color: rgba(255,255,255,0.35);
+    transform: translateY(-3px) scale(1.03);
+    box-shadow:
+      0 0 0 6px rgba(255,208,96,0.22),
+      0 16px 40px rgba(46,21,0,0.38);
+  }
+  .explore-btn:active { transform: translateY(0) scale(0.99); }
+
+  .explore-btn-icon {
+    width: 30px; height: 30px;
+    background: var(--h900);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    flex-shrink: 0;
+    transition: transform 0.28s;
+  }
+  .explore-btn:hover .explore-btn-icon { transform: rotate(15deg) scale(1.12); }
+
+  .hero-cta-hint {
+    font-size: 0.75rem;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: rgba(255,223,160,0.62);
+    font-weight: 500;
+  }
+
+  /* ══════════════════════
+     MARQUEE
+     ══════════════════════ */
+  .marquee-strip {
+    background: linear-gradient(90deg, var(--h800) 0%, var(--h700) 50%, var(--h800) 100%);
+    padding: 15px 0;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .marquee-inner {
+    display: inline-block;
+    animation: marquee 24s linear infinite;
+    font-size: 0.78rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--amber-comb);
+  }
+  .marquee-inner span { margin: 0 44px; color: rgba(255,208,96,0.35); }
+  @keyframes marquee { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+
+  /* ══════════════════════
+     SCROLL REVEAL
+     ══════════════════════ */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s cubic-bezier(0.25,0.46,0.45,0.94), transform 0.7s cubic-bezier(0.25,0.46,0.45,0.94);
+  }
+  .reveal.is-visible { opacity: 1; transform: translateY(0); }
+
+  /* ══════════════════════
+     SHARED
+     ══════════════════════ */
+  section { padding: 110px 56px; }
+  .section-eyebrow {
+    font-size: 0.72rem;
+    letter-spacing: 3.5px;
+    text-transform: uppercase;
+    color: var(--honey-deep);
+    font-weight: 700;
+    margin-bottom: 16px;
+  }
+  .section-title {
+    font-family: "Playfair Display", serif;
+    font-size: 3rem;
+    font-weight: 700;
+    line-height: 1.15;
+    color: var(--h800);
+    max-width: 560px;
+    margin-bottom: 22px;
+  }
+  .section-body {
+    font-size: 1.02rem;
+    color: var(--body-text);
+    line-height: 1.85;
+    max-width: 520px;
+  }
+
+  /* ══════════════════════
+     OUR JOURNEY
+     ══════════════════════ */
+  .our-journey {
+    background: var(--amber-warm);
+    position: relative;
+    overflow: hidden;
+  }
+  .our-journey::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0.06;
+    background-image:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='100'%3E%3Cpolygon points='28,2 54,16 54,44 28,58 2,44 2,16' fill='none' stroke='%23B56B00' stroke-width='1.5'/%3E%3Cpolygon points='28,58 54,72 54,100 28,114 2,100 2,72' fill='none' stroke='%23B56B00' stroke-width='1.5'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+  }
+  .journey-top-line {
+    height: 4px;
+    background: linear-gradient(90deg, var(--h300), var(--honey), var(--h300));
+  }
+
+  .journey-hero {
+    padding: 80px 64px 64px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+  }
+  .journey-eyebrow {
+    font-size: 0.68rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--honey-rich);
+    font-weight: 600;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .journey-eyebrow::before {
+    content: '';
+    width: 28px; height: 1.5px;
+    background: var(--honey);
+    display: inline-block;
+    flex-shrink: 0;
+  }
+  .journey-headline {
+    font-family: "Playfair Display", serif;
+    font-size: 3.2rem;
+    font-weight: 800;
+    line-height: 1.1;
+    color: var(--h900);
+    margin-bottom: 22px;
+    letter-spacing: -0.5px;
+  }
+  .journey-headline em { font-style: italic; color: var(--honey-deep); }
+  .journey-lead {
+    font-size: 0.97rem;
+    color: var(--body-text);
+    line-height: 1.9;
+    margin-bottom: 36px;
+    max-width: 460px;
+  }
+  .journey-stats { display: flex; align-items: center; gap: 28px; }
+  .journey-stat { text-align: left; }
+  .journey-stat-num {
+    font-family: "Playfair Display", serif;
+    font-size: 2.1rem;
+    font-weight: 900;
+    color: var(--honey-deep);
+    line-height: 1;
+  }
+  .journey-stat-label {
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    color: var(--muted-text);
+    margin-top: 4px;
+    font-weight: 600;
+  }
+  .stat-divider {
+    width: 1.5px;
+    height: 40px;
+    background: rgba(213,135,10,0.35);
+    flex-shrink: 0;
+  }
+  .journey-pull {
+    background: var(--h900);
+    border-radius: 18px;
+    padding: 44px 40px;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(245,168,0,0.15);
+  }
+  .journey-pull::before {
+    content: '\201C';
+    font-family: "Playfair Display", serif;
+    font-size: 11rem;
+    color: rgba(255,208,96,0.10);
+    position: absolute;
+    top: -32px; left: 14px;
+    line-height: 1;
+    pointer-events: none;
+  }
+  .journey-pull::after {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 160px; height: 160px;
+    background: radial-gradient(circle at top right, rgba(245,168,0,0.14), transparent 70%);
+    pointer-events: none;
+  }
+  .journey-pull-text {
+    font-family: "Playfair Display", serif;
+    font-size: 1.25rem;
+    font-style: italic;
+    color: var(--amber-mid);
+    line-height: 1.65;
+    position: relative;
+    z-index: 1;
+    margin-bottom: 20px;
+  }
+  .journey-pull-text em { color: var(--amber-comb); font-style: normal; font-weight: 600; }
+  .journey-pull-attr {
+    font-size: 0.7rem;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: rgba(255,223,160,0.38);
+    position: relative;
+    z-index: 1;
+  }
+  .journey-divider {
+    margin: 0 64px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(213,135,10,0.35), transparent);
+    position: relative;
+    z-index: 2;
+  }
+
+  /* Timeline */
+  .journey-timeline-section {
+    padding: 56px 64px 48px;
+    position: relative;
+    z-index: 2;
+  }
+  .journey-tl-label {
+    font-size: 0.65rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--honey-rich);
+    font-weight: 600;
+    margin-bottom: 48px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .journey-tl-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(213,135,10,0.28);
+  }
+  .journey-timeline {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    position: relative;
+  }
+  .journey-timeline::before {
+    content: '';
+    position: absolute;
+    top: 35px;
+    left: calc(50% / 3 + 8px);
+    right: calc(50% / 3 + 8px);
+    height: 2px;
+    background: linear-gradient(90deg, var(--h300), var(--honey), var(--h300));
+    opacity: 0.5;
+    z-index: 0;
+  }
+  .tl-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 0 24px;
+    position: relative;
+    z-index: 1;
+  }
+  .tl-node {
+    width: 70px; height: 70px;
+    border-radius: 50%;
+    background: var(--amber-warm);
+    border: 2px solid var(--honey);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 22px;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+  }
+  .tl-node.active {
+    background: var(--honey);
+    box-shadow: 0 0 0 7px rgba(245,168,0,0.18), 0 0 24px rgba(245,168,0,0.28);
+  }
+  .tl-node:hover { transform: scale(1.07); }
+  .tl-year {
+    font-family: "Playfair Display", serif;
+    font-size: 0.95rem;
+    font-weight: 800;
+    color: var(--h800);
+    line-height: 1;
+  }
+  .tl-node.active .tl-year { color: var(--h900); }
+  .tl-title {
+    font-family: "Playfair Display", serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--h800);
+    margin-bottom: 10px;
+    line-height: 1.3;
+  }
+  .tl-desc {
+    font-size: 0.82rem;
+    color: var(--muted-text);
+    line-height: 1.75;
+    max-width: 200px;
+  }
+
+  /* Promise cards */
+  .journey-promise {
+    background: var(--h100);
+    padding: 64px 64px 80px;
+    position: relative;
+    z-index: 2;
+    border-top: 1px solid rgba(213,135,10,0.15);
+  }
+  .promise-header {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+  .promise-header-eyebrow {
+    font-size: 0.65rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--honey-deep);
+    font-weight: 600;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+  }
+  .promise-header-eyebrow::before,
+  .promise-header-eyebrow::after {
+    content: '';
+    width: 36px; height: 1.5px;
+    background: rgba(213,135,10,0.4);
+  }
+  .promise-hl {
+    font-family: "Playfair Display", serif;
+    font-size: 2.1rem;
+    font-weight: 700;
+    color: var(--h900);
+    line-height: 1.3;
+    margin-bottom: 14px;
+  }
+  .promise-hl em { color: var(--honey-deep); font-style: italic; }
+  .promise-sub {
+    font-size: 0.92rem;
+    color: var(--body-text);
+    line-height: 1.8;
+    max-width: 560px;
+    margin: 0 auto;
+  }
+  .promise-cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+  .promise-card {
+    background: var(--white);
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid rgba(213,135,10,0.14);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: default;
+  }
+  .promise-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-md);
+    border-color: rgba(213,135,10,0.3);
+  }
+  .pc-band { height: 5px; }
+  .pc-band-1 { background: var(--honey); }
+  .pc-band-2 { background: var(--h700); }
+  .pc-band-3 { background: var(--h600); }
+  .pc-band-4 { background: var(--amber-comb); }
+  .pc-body { padding: 28px 22px 30px; text-align: center; }
+  .pc-icon { font-size: 2rem; display: block; margin-bottom: 14px; }
+  .pc-title {
+    font-family: "Playfair Display", serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--h900);
+    margin-bottom: 9px;
+    line-height: 1.3;
+  }
+  .pc-desc { font-size: 0.78rem; color: var(--muted-text); line-height: 1.75; }
+
+  /* ══════════════════════
+     PROCESS
+     ══════════════════════ */
+  .process { background: var(--h50); }
+  .process-steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    margin-top: 56px;
+  }
+  .process-step {
+    padding: 40px 28px;
+    background: var(--white);
+    border: 1px solid rgba(213,135,10,0.12);
+    border-radius: 16px;
+    transition: all 0.35s;
+    position: relative;
+  }
+  .process-step:hover {
+    box-shadow: var(--shadow-md);
+    border-color: rgba(213,135,10,0.35);
+    transform: translateY(-4px);
+  }
+  .process-step::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 28px; right: 28px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--honey), var(--h300));
+    transform: scaleX(0);
+    transition: transform 0.35s;
+    transform-origin: left;
+    border-radius: 0 0 3px 3px;
+  }
+  .process-step:hover::after { transform: scaleX(1); }
+  .step-num {
+    font-family: "Playfair Display", serif;
+    font-size: 2.6rem;
+    font-weight: 800;
+    color: var(--honey);
+    opacity: 0.3;
+    display: block;
+    margin-bottom: 18px;
+    line-height: 1;
+  }
+  .step-title { font-size: 1.02rem; font-weight: 600; margin-bottom: 12px; color: var(--h800); }
+  .step-desc { font-size: 0.88rem; color: var(--body-text); line-height: 1.75; }
+
+  /* ══════════════════════
+     FOOTER
+     ══════════════════════ */
+  footer {
+    background: var(--h900);
+    color: rgba(255,208,96,0.45);
+    padding: 72px 56px 36px;
+    position: relative;
+    overflow: hidden;
+  }
+  footer::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0.04;
+    background-image:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='100'%3E%3Cpolygon points='28,2 54,16 54,44 28,58 2,44 2,16' fill='none' stroke='%23FFD060' stroke-width='1.5'/%3E%3Cpolygon points='28,58 54,72 54,100 28,114 2,100 2,72' fill='none' stroke='%23FFD060' stroke-width='1.5'/%3E%3C/svg%3E");
+    pointer-events: none;
+  }
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 56px; margin-bottom: 56px; position: relative; z-index: 1; }
+  .footer-brand { font-family: "Playfair Display", serif; font-size: 1.4rem; color: var(--amber-comb); margin-bottom: 10px; }
+  .footer-tagline { font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase; color: var(--honey); margin-bottom: 16px; }
+  .footer-desc { font-size: 0.85rem; line-height: 1.75; color: rgba(255,223,160,0.45); }
+  .footer-col-title { font-size: 0.68rem; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(255,208,96,0.55); font-weight: 600; margin-bottom: 20px; }
+  .footer-links { list-style: none; }
+  .footer-links li { margin-bottom: 12px; }
+  .footer-links a { color: rgba(255,208,96,0.38); text-decoration: none; font-size: 0.85rem; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--amber-comb); }
+  .footer-bottom {
+    border-top: 1px solid rgba(255,208,96,0.08);
+    padding-top: 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.78rem;
+    position: relative;
+    z-index: 1;
+  }
+  .footer-bottom-logo { color: var(--amber-comb); font-family: "Playfair Display", serif; font-size: 1.05rem; }
+
+  /* ══════════════════════
+     RESPONSIVE — Tablet
+     ══════════════════════ */
+  @media (max-width: 1024px) {
+    .site-header { padding: 0 32px; }
+    section { padding: 80px 32px; }
+    .mobile-drawer { top: 64px; }
+    .journey-hero { padding: 64px 40px 52px; gap: 40px; }
+    .journey-headline { font-size: 2.6rem; }
+    .journey-timeline-section { padding: 48px 40px 40px; }
+    .journey-promise { padding: 52px 40px 64px; }
+    .promise-cards { grid-template-columns: repeat(2, 1fr); }
+    .process-steps { grid-template-columns: repeat(2, 1fr); }
+    .section-title { font-size: 2.4rem; }
+    footer { padding: 56px 32px 28px; }
+  }
+
+  /* ══════════════════════
+     RESPONSIVE — Mobile
+     ══════════════════════ */
+  @media (max-width: 768px) {
+    /* ── Header: stack into two rows ── */
+    .site-header {
+      padding: 0 20px;
+      height: auto;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+    }
+    .header-logo {
+      font-size: 1.3rem;
+      padding: 12px 0 10px;
+      justify-content: center;
+      border-bottom: 1px solid rgba(46,21,0,0.10);
+    }
+    /* Nav row — centred below logo */
+    .header-nav {
+      position: static;
+      transform: none;
+      justify-content: center;
+      padding: 8px 0 10px;
+      gap: 2px;
+      flex-wrap: nowrap;
+    }
+    .header-nav a {
+      font-size: 0.82rem;
+      padding: 6px 14px;
+    }
+
+    section { padding: 56px 20px; }
+    .hero img { max-height: 380px; object-position: center 35%; }
+
+    .hero-cta-wrap { bottom: 32px; gap: 12px; }
+    .explore-btn { font-size: 0.9rem; padding: 15px 30px; }
+    .explore-btn-icon { width: 26px; height: 26px; font-size: 0.85rem; }
+
+    .marquee-strip { padding: 12px 0; }
+    .marquee-inner { font-size: 0.7rem; letter-spacing: 2px; }
+
+    .journey-hero { grid-template-columns: 1fr; padding: 48px 20px 36px; gap: 32px; }
+    .journey-headline { font-size: 2rem; margin-bottom: 18px; }
+    .journey-lead { font-size: 0.92rem; max-width: 100%; }
+    .journey-stats { gap: 20px; }
+    .journey-stat-num { font-size: 1.7rem; }
+    .stat-divider { height: 32px; }
+    .journey-pull { padding: 32px 28px; border-radius: 14px; }
+    .journey-pull::before { font-size: 7rem; top: -20px; }
+    .journey-pull-text { font-size: 1.1rem; margin-bottom: 14px; }
+    .journey-divider { margin: 0 20px; }
+    .journey-timeline-section { padding: 40px 20px 32px; }
+    .journey-tl-label { margin-bottom: 36px; }
+    .journey-timeline { grid-template-columns: 1fr; gap: 0; }
+    .journey-timeline::before { display: none; }
+    .tl-item { flex-direction: row; text-align: left; align-items: flex-start; padding: 0 0 28px 0; position: relative; }
+    .tl-item:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      left: 34px; top: 70px; bottom: 0;
+      width: 2px;
+      background: rgba(213,135,10,0.22);
+    }
+    .tl-node { width: 68px; height: 68px; margin-bottom: 0; margin-right: 20px; flex-shrink: 0; }
+    .tl-content { padding-top: 6px; }
+    .tl-title { font-size: 0.98rem; }
+    .tl-desc { font-size: 0.8rem; max-width: 100%; }
+    .journey-promise { padding: 44px 20px 56px; }
+    .promise-hl { font-size: 1.7rem; }
+    .promise-cards { grid-template-columns: 1fr 1fr; gap: 12px; }
+    .pc-body { padding: 22px 16px 24px; }
+    .process { padding: 56px 20px; }
+    .process-steps { grid-template-columns: 1fr; gap: 12px; margin-top: 28px; }
+    .process-step { padding: 24px 22px; }
+    .process-step::after { display: none; }
+    .step-num { font-size: 2.2rem; margin-bottom: 14px; }
+    footer { padding: 48px 20px 28px; }
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; margin-bottom: 40px; }
+    .footer-grid > div:first-child { grid-column: 1 / -1; }
+    .footer-bottom { flex-direction: column; gap: 10px; text-align: center; padding-top: 20px; }
+    .section-title { font-size: 1.85rem; }
+  }
+
+  @media (max-width: 480px) {
+    .site-header { padding: 0 16px; }
+    .header-logo { font-size: 1.2rem; padding: 10px 0 9px; }
+    .header-logo-mark { width: 26px; height: 26px; font-size: 0.85rem; border-radius: 6px; }
+    .header-nav a { font-size: 0.78rem; padding: 5px 11px; }
+    .hero img { max-height: 260px; }
+    .hero-cta-wrap { bottom: 22px; }
+    .explore-btn { font-size: 0.85rem; padding: 13px 24px; gap: 9px; }
+    .explore-btn-icon { width: 24px; height: 24px; font-size: 0.75rem; }
+    .hero-cta-hint { display: none; }
+    section { padding: 48px 16px; }
+    .journey-hero { padding: 40px 16px 28px; gap: 28px; }
+    .journey-headline { font-size: 1.75rem; }
+    .journey-stats { gap: 14px; flex-wrap: wrap; }
+    .journey-stat-num { font-size: 1.5rem; }
+    .journey-pull { padding: 28px 22px; }
+    .journey-pull-text { font-size: 1rem; }
+    .journey-divider { margin: 0 16px; }
+    .journey-timeline-section { padding: 36px 16px 28px; }
+    .tl-node { width: 60px; height: 60px; }
+    .tl-item:not(:last-child)::after { left: 30px; top: 62px; }
+    .journey-promise { padding: 40px 16px 48px; }
+    .promise-hl { font-size: 1.5rem; }
+    .promise-cards { grid-template-columns: 1fr; gap: 10px; }
+    .process { padding: 48px 16px; }
+    .process-step { padding: 22px 18px; }
+    footer { padding: 40px 16px 24px; }
+    .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+    .footer-grid > div:first-child { grid-column: auto; }
+    .section-title { font-size: 1.65rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════
+     HEADER — Home / Menu / Contact
+     ══════════════════════════════════ -->
+<header class="site-header" id="siteHeader">
+
+
+  </a>
+
+  <!-- Centre nav: Home · Menu · Contact -->
+  <ul class="header-nav">
+    <li><a href="#" class="active">Home</a></li>
+    <li><a href="index1.html">Menu</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+
+
+</header>
+
+<!-- ══════════════════════
+     HERO + CTA button
+     ══════════════════════ -->
+<div class="hero">
+  <img src="hro_banner.png" alt="Mithas ice cream – Premium traditional Indian ice cream">
+  <div class="hero-overlay"></div>
+
+  <!-- ✦ Explore Flavours CTA ✦ -->
+  <div class="hero-cta-wrap">
+   
+    <span class="hero-cta-hint">50+ flavours · Pan India delivery</span>
+  </div>
+</div>
+
+<!-- ── Marquee ── -->
+<div class="marquee-strip">
+  <div class="marquee-inner">
+    Made with Real Milk <span>✦</span> No Artificial Colours <span>✦</span> 50+ Flavours <span>✦</span> Pan India Delivery <span>✦</span> Premium Quality <span>✦</span> Cold-Pressed Ingredients <span>✦</span>
+    Made with Real Milk <span>✦</span> No Artificial Colours <span>✦</span> 50+ Flavours <span>✦</span> Pan India Delivery <span>✦</span> Premium Quality <span>✦</span> Cold-Pressed Ingredients <span>✦</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     OUR JOURNEY
+     ══════════════════════════════════════ -->
+<div id="journey">
+  <div class="our-journey">
+    <div class="journey-top-line"></div>
+
+    <div class="journey-hero">
+      <div class="reveal">
+        <p class="journey-eyebrow">Our Journey</p>
+        <h2 class="journey-headline">A passion that<br>became a <em>legacy.</em></h2>
+        <p class="journey-lead">From a single kulfi cart in 2016 to a beloved name across 40+ Indian cities — Mithas was built on one simple belief: real milk, real flavour, real happiness.</p>
+        <div class="journey-stats">
+          <div class="journey-stat">
+            <div class="journey-stat-num">2016</div>
+            <div class="journey-stat-label">Since</div>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="journey-stat">
+            <div class="journey-stat-num">50+</div>
+            <div class="journey-stat-label">Flavours</div>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="journey-stat">
+            <div class="journey-stat-num">40+</div>
+            <div class="journey-stat-label">Cities</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="journey-pull reveal">
+        <p class="journey-pull-text">Every scoop tells a story of <em>100% pure milk</em>, roasted saffron, and the kind of care that shortcuts can never replace.</p>
+        <p class="journey-pull-attr">— The Mithas Promise</p>
+      </div>
+    </div>
+
+    <div class="journey-divider"></div>
+
+    <div class="journey-timeline-section">
+      <p class="journey-tl-label">The story so far</p>
+      <div class="journey-timeline">
+        <div class="tl-item reveal">
+          <div class="tl-node"><span class="tl-year">2016</span></div>
+          <div class="tl-content">
+            <div class="tl-title">The Humble Beginning</div>
+            <div class="tl-desc">Kulfis and ice cream sticks crafted with love, one customer at a time.</div>
+          </div>
+        </div>
+        <div class="tl-item reveal">
+          <div class="tl-node active"><span class="tl-year">2020</span></div>
+          <div class="tl-content">
+            <div class="tl-title">The Premium Leap</div>
+            <div class="tl-desc">Premium traditional ice cream — richer, creamier, and truer to authentic Indian flavour.</div>
+          </div>
+        </div>
+        <div class="tl-item reveal">
+          <div class="tl-node"><span class="tl-year" style="font-size:0.78rem">Today</span></div>
+          <div class="tl-content">
+            <div class="tl-title">The Unstoppable Promise</div>
+            <div class="tl-desc">40+ cities, 50+ flavours, and a commitment to pure milk fat that will never waver.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="journey-promise">
+      <div class="promise-header reveal">
+        <p class="promise-header-eyebrow">Our Commitment</p>
+        <h3 class="promise-hl">Every single scoop,<br><em>every single time.</em></h3>
+        <p class="promise-sub">No shortcuts. No artificial colours. Just real ingredients and the craft that has defined Mithas since day one.</p>
+      </div>
+      <div class="promise-cards">
+        <div class="promise-card reveal">
+          <div class="pc-band pc-band-1"></div>
+          <div class="pc-body">
+            <span class="pc-icon">🥛</span>
+            <div class="pc-title">100% Pure Milk Fat</div>
+            <div class="pc-desc">Real, full-fat milk in every scoop — always, no exceptions, no substitutes.</div>
+          </div>
+        </div>
+        <div class="promise-card reveal">
+          <div class="pc-band pc-band-2"></div>
+          <div class="pc-body">
+            <span class="pc-icon">🌿</span>
+            <div class="pc-title">Authentic Flavour</div>
+            <div class="pc-desc">Natural ingredients steeped overnight for depth you can taste in every bite.</div>
+          </div>
+        </div>
+        <div class="promise-card reveal">
+          <div class="pc-band pc-band-3"></div>
+          <div class="pc-body">
+            <span class="pc-icon">⭐</span>
+            <div class="pc-title">Unmatched Quality</div>
+            <div class="pc-desc">Farm-fresh to flash-frozen — every step meets our highest standards.</div>
+          </div>
+        </div>
+        <div class="promise-card reveal">
+          <div class="pc-band pc-band-4"></div>
+          <div class="pc-body">
+            <span class="pc-icon">💛</span>
+            <div class="pc-title">Happiness Delivered</div>
+            <div class="pc-desc">Moments of pure joy, one bite at a time, delivered across India.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── Process ── -->
+<section class="process" id="process">
+  <p class="section-eyebrow">How We Make It</p>
+  <h2 class="section-title">Crafted Fresh, Every Morning</h2>
+  <div class="process-steps">
+    <div class="process-step reveal">
+      <span class="step-num">01</span>
+      <div class="step-title">Farm-Fresh Milk</div>
+      <div class="step-desc">We collect full-fat milk daily from partner dairies within 200km of our facility.</div>
+    </div>
+    <div class="process-step reveal">
+      <span class="step-num">02</span>
+      <div class="step-title">Natural Infusion</div>
+      <div class="step-desc">Real saffron strands, whole fruits, and roasted nuts are steeped overnight for depth.</div>
+    </div>
+    <div class="process-step reveal">
+      <span class="step-num">03</span>
+      <div class="step-title">Slow Churning</div>
+      <div class="step-desc">Our churners run at low speed to create the dense, creamy texture Mithas is known for.</div>
+    </div>
+    <div class="process-step reveal">
+      <span class="step-num">04</span>
+      <div class="step-title">Flash Frozen</div>
+      <div class="step-desc">Sealed and frozen within minutes to lock in freshness before reaching your home.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Footer / Contact ── -->
+<footer id="contact">
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand">Mithas™</div>
+      <div class="footer-tagline">More Than Ice Cream</div>
+      <div class="footer-desc">Premium Indian ice cream made with real ingredients, no artificial colours, and a whole lot of love since 2016.</div>
+    </div>
+    <div>
+      <div class="footer-col-title">Company</div>
+      <ul class="footer-links">
+        <li><a href="#">Our Journey</a></li>
+        <li><a href="#">Sustainability</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="#">Press</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Connect</div>
+      <ul class="footer-links">
+        <li><a href="#">Instagram</a></li>
+        <li><a href="#">Facebook</a></li>
+        <li><a href="#">Contact Us</a></li>
+        <li><a href="#">Distributor Enquiry</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-bottom-logo">Mithas™</div>
+    <div>&copy; 2026 Thirupura Krishnah Dairy Pvt Ltd. All rights reserved.</div>
+  </div>
+</footer>
+
+<script>
+  // ── Sticky header shadow ──
+  const headerEl = document.getElementById('siteHeader');
+  window.addEventListener('scroll', () => {
+    headerEl.classList.toggle('scrolled', window.scrollY > 10);
+  }, { passive: true });
+
+  // ── Scroll reveal ──
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+  // ── Active nav link on scroll ──
+  const sections = document.querySelectorAll('section[id], div[id], footer[id]');
+  const navLinks = document.querySelectorAll('.header-nav a');
+  const navObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(l => l.classList.remove('active'));
+        const active = document.querySelector(`.header-nav a[href="#${entry.target.id}"]`);
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-40% 0px -55% 0px' });
+  sections.forEach(s => navObserver.observe(s));
+</script>
+
+</body>
+</html>

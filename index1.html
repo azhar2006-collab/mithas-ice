@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mithas – Menu</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,800;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --h300:  #FFCA28;
+      --h400:  #aa5800;
+      --h500:  #D4870A;
+      --h600:  #B56B00;
+      --h700:  #8C4E00;
+      --h800:  #5C3000;
+      --h900:  #2E1500;
+      --amber-comb: #FFD060;
+      --amber-bg:   #FFFBF0;
+      --amber-warm: #FFEFC5;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: "DM Sans", sans-serif;
+      background: var(--h900);
+      color: var(--h900);
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ══════════════════════
+       HEADER — matches homepage style
+       ══════════════════════ */
+    .site-header {
+      background: var(--h400);
+      padding: 0 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid rgba(46,21,0,0.12);
+      transition: box-shadow 0.3s;
+    }
+    .site-header.scrolled { box-shadow: 0 2px 24px rgba(46,21,0,0.22); }
+
+    .header-logo {
+      display: flex;
+      align-items: center;
+      font-family: "Playfair Display", serif;
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--h900);
+      letter-spacing: -0.5px;
+      text-decoration: none;
+      gap: 9px;
+    }
+    .header-logo-mark {
+      width: 32px; height: 32px;
+      background: var(--h900);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    /* Centre nav */
+    .header-nav {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      list-style: none;
+    }
+    .header-nav a {
+      color: rgba(46,21,0,0.62);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.2px;
+      padding: 7px 18px;
+      border-radius: 99px;
+      transition: all 0.22s;
+    }
+    .header-nav a:hover {
+      color: var(--h900);
+      background: rgba(46,21,0,0.07);
+    }
+    .header-nav a.active {
+      color: var(--h900);
+      font-weight: 700;
+      background: rgba(46,21,0,0.10);
+    }
+
+    /* ══════════════════════
+       FULL-BLEED MENU IMAGE
+       ══════════════════════ */
+
+    /* Thin gradient bridge between header and image */
+    .menu-bridge {
+      height: 6px;
+      background: linear-gradient(180deg, var(--h400) 0%, var(--h800) 100%);
+    }
+
+    /* The image is the page — no padding, no card, no border */
+    .menu-canvas {
+      display: block;
+      width: 100%;
+      line-height: 0; /* remove inline gap */
+      background: var(--h900);
+    }
+
+    .menu-canvas img {
+      display: block;
+      width: 100%;
+      height: auto;
+      /* Seamlessly extend background if image has its own bg colour */
+      background: var(--h900);
+    }
+
+    /* Subtle shimmer accent line between header and image — feels designed, not dropped-in */
+    .menu-top-rule {
+      height: 3px;
+      background: linear-gradient(90deg,
+        var(--h800) 0%,
+        var(--amber-comb) 30%,
+        var(--h300) 50%,
+        var(--amber-comb) 70%,
+        var(--h800) 100%
+      );
+      background-size: 200% 100%;
+      animation: ruleShimmer 4s linear infinite;
+    }
+    @keyframes ruleShimmer {
+      0%   { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+
+    /* ══════════════════════
+       FOOTER NOTE
+       ══════════════════════ */
+    .menu-footer-note {
+      background: var(--h900);
+      text-align: center;
+      padding: 20px 24px 24px;
+      font-size: 0.7rem;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: rgba(255,208,96,0.35);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+    }
+    .menu-footer-note::before,
+    .menu-footer-note::after {
+      content: '';
+      width: 40px; height: 1px;
+      background: rgba(255,208,96,0.15);
+    }
+
+    /* ══════════════════════
+       FOOTER
+       ══════════════════════ */
+    footer {
+      background: var(--h900);
+      color: rgba(255,208,96,0.45);
+      padding: 56px 56px 36px;
+      position: relative;
+      overflow: hidden;
+      border-top: 1px solid rgba(255,208,96,0.07);
+    }
+    footer::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      opacity: 0.04;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='100'%3E%3Cpolygon points='28,2 54,16 54,44 28,58 2,44 2,16' fill='none' stroke='%23FFD060' stroke-width='1.5'/%3E%3Cpolygon points='28,58 54,72 54,100 28,114 2,100 2,72' fill='none' stroke='%23FFD060' stroke-width='1.5'/%3E%3C/svg%3E");
+      pointer-events: none;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 56px;
+      margin-bottom: 48px;
+      position: relative;
+      z-index: 1;
+    }
+    .footer-brand { font-family: "Playfair Display", serif; font-size: 1.4rem; color: var(--amber-comb); margin-bottom: 10px; }
+    .footer-tagline { font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase; color: var(--h400); margin-bottom: 16px; }
+    .footer-desc { font-size: 0.85rem; line-height: 1.75; color: rgba(255,223,160,0.45); }
+    .footer-col-title { font-size: 0.68rem; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(255,208,96,0.55); font-weight: 600; margin-bottom: 20px; }
+    .footer-links { list-style: none; }
+    .footer-links li { margin-bottom: 12px; }
+    .footer-links a { color: rgba(255,208,96,0.38); text-decoration: none; font-size: 0.85rem; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--amber-comb); }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,208,96,0.08);
+      padding-top: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.78rem;
+      position: relative;
+      z-index: 1;
+    }
+    .footer-bottom-logo { color: var(--amber-comb); font-family: "Playfair Display", serif; font-size: 1.05rem; }
+
+    /* ══════════════════════
+       RESPONSIVE — Tablet
+       ══════════════════════ */
+    @media (max-width: 1024px) {
+      .site-header { padding: 0 32px; }
+      footer { padding: 48px 32px 28px; }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+      .footer-grid > div:first-child { grid-column: 1 / -1; }
+    }
+
+    /* ══════════════════════
+       RESPONSIVE — Mobile
+       ══════════════════════ */
+    @media (max-width: 768px) {
+      /* Header stacks into two rows */
+      .site-header {
+        padding: 0 20px;
+        height: auto;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+      }
+      .header-logo {
+        font-size: 1.3rem;
+        padding: 12px 0 10px;
+        justify-content: center;
+        border-bottom: 1px solid rgba(46,21,0,0.10);
+      }
+      .header-nav {
+        position: static;
+        transform: none;
+        justify-content: center;
+        padding: 8px 0 10px;
+        gap: 2px;
+      }
+      .header-nav a {
+        font-size: 0.82rem;
+        padding: 6px 14px;
+      }
+
+      footer { padding: 40px 20px 24px; }
+      .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+      .footer-grid > div:first-child { grid-column: auto; }
+      .footer-bottom { flex-direction: column; gap: 10px; text-align: center; padding-top: 18px; }
+    }
+
+    @media (max-width: 480px) {
+      .site-header { padding: 0 16px; }
+      .header-logo { font-size: 1.2rem; padding: 10px 0 9px; }
+      .header-logo-mark { width: 26px; height: 26px; font-size: 0.85rem; border-radius: 6px; }
+      .header-nav a { font-size: 0.78rem; padding: 5px 11px; }
+      footer { padding: 36px 16px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════════
+     HEADER
+     ══════════════════════════ -->
+<header class="site-header" id="siteHeader">
+
+
+  <ul class="header-nav">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="index1.html" class="active">Menu</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+</header>
+
+<!-- Gradient bridge so header colour bleeds into the dark image background -->
+<div class="menu-bridge"></div>
+<div class="menu-top-rule"></div>
+
+<!-- ══════════════════════════
+     FULL-BLEED MENU IMAGE
+     ══════════════════════════ -->
+<div class="menu-canvas">
+  <img src="menu.png" alt="Mithas – Full Flavour Catalogue">
+</div>
+
+<!-- Small availability note -->
+<div class="menu-footer-note">
+  Seasonal flavours may vary &nbsp;·&nbsp; Subject to availability
+</div>
+
+<!-- ══════════════════════════
+     FOOTER
+     ══════════════════════════ -->
+<footer id="contact">
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand">Mithas™</div>
+      <div class="footer-tagline">More Than Ice Cream</div>
+      <div class="footer-desc">Premium Indian ice cream made with real ingredients, no artificial colours, and a whole lot of love since 2016.</div>
+    </div>
+    <div>
+      <div class="footer-col-title">Company</div>
+      <ul class="footer-links">
+        <li><a href="index.html#journey">Our Journey</a></li>
+        <li><a href="#">Sustainability</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="#">Press</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Connect</div>
+      <ul class="footer-links">
+        <li><a href="#">Instagram</a></li>
+        <li><a href="#">Facebook</a></li>
+        <li><a href="#">Contact Us</a></li>
+        <li><a href="#">Distributor Enquiry</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-bottom-logo">Mithas™</div>
+    <div>&copy; 2026 Thirupura Krishnah Dairy Pvt Ltd. All rights reserved.</div>
+  </div>
+</footer>
+
+<script>
+  const headerEl = document.getElementById('siteHeader');
+  window.addEventListener('scroll', () => {
+    headerEl.classList.toggle('scrolled', window.scrollY > 10);
+  }, { passive: true });
+</script>
+</body>
+</html>
