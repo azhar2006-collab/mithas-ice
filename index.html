@@ -6,7 +6,7 @@
 <title>Mithas – More Than Ice Cream</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700;1,800&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -47,64 +47,17 @@
     --shadow-lg: 0 8px 36px rgba(46,21,0,0.15);
   }
 
-  /* ══════════════════════
-     TYPOGRAPHY SYSTEM
-     ══════════════════════
-     Display:  Playfair Display  — headlines, pull numbers, brand name
-     Body:     Plus Jakarta Sans — UI text, nav, body copy, labels
-     Accent:   Cormorant Garamond — quotes, captions, artisanal detail
-     ══════════════════════ */
-  :root {
-    --font-display: "Playfair Display", Georgia, serif;
-    --font-body:    "Plus Jakarta Sans", system-ui, sans-serif;
-    --font-accent:  "Cormorant Garamond", Georgia, serif;
-
-    /* Type scale (rem) */
-    --text-2xs:  0.625rem;   /* 10px — micro labels */
-    --text-xs:   0.6875rem;  /* 11px — eyebrows, badges */
-    --text-sm:   0.8125rem;  /* 13px — captions, meta */
-    --text-base: 0.9375rem;  /* 15px — body copy */
-    --text-md:   1.0625rem;  /* 17px — lead / intro */
-    --text-lg:   1.25rem;    /* 20px — sub-headlines */
-    --text-xl:   1.5rem;     /* 24px — card titles */
-    --text-2xl:  2rem;       /* 32px — section titles */
-    --text-3xl:  2.75rem;    /* 44px — hero headlines */
-    --text-4xl:  3.5rem;     /* 56px — display */
-
-    /* Tracking */
-    --track-tight:  -0.03em;
-    --track-snug:   -0.015em;
-    --track-normal:  0;
-    --track-wide:    0.05em;
-    --track-wider:   0.12em;
-    --track-widest:  0.22em;
-
-    /* Leading */
-    --lead-tight:  1.1;
-    --lead-snug:   1.22;
-    --lead-base:   1.55;
-    --lead-relaxed: 1.72;
-    --lead-loose:  1.9;
-  }
-
   html { scroll-behavior: smooth; }
 
   body {
-    font-family: var(--font-body);
-    font-size: var(--text-base);
-    font-weight: 400;
+    font-family: "DM Sans", sans-serif;
     background: var(--amber-bg);
     color: var(--dark-text);
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-rendering: optimizeLegibility;
-    line-height: var(--lead-relaxed);
+    line-height: 1.6;
   }
 
-  /* ══════════════════════
-     HEADER
-     ══════════════════════ */
   .site-header {
     background: var(--honey);
     padding: 0 56px;
@@ -123,11 +76,11 @@
   .header-logo {
     display: flex;
     align-items: center;
-    font-family: var(--font-display);
-    font-size: 1.5rem;
+    font-family: "Playfair Display", serif;
+    font-size: 1.6rem;
     font-weight: 800;
     color: var(--h900);
-    letter-spacing: var(--track-snug);
+    letter-spacing: -0.5px;
     text-decoration: none;
     gap: 9px;
   }
@@ -154,10 +107,9 @@
   .header-nav a {
     color: var(--h900);
     text-decoration: none;
-    font-family: var(--font-body);
-    font-size: var(--text-2xs);
+    font-size: 0.88rem;
     font-weight: 700;
-    letter-spacing: var(--track-widest);
+    letter-spacing: 0.8px;
     text-transform: uppercase;
     padding: 8px 22px;
     border-radius: 99px;
@@ -193,12 +145,6 @@
     box-shadow: 0 0 0 3px rgba(255,208,96,0.30), 0 4px 16px rgba(46,21,0,0.22);
   }
 
-  .header-hamburger { display: none; }
-  .mobile-drawer { display: none; }
-
-  /* ══════════════════════
-     HERO
-     ══════════════════════ */
   .hero { width: 100%; overflow: hidden; position: relative; }
   .hero img { width: 100%; display: block; max-height: 660px; object-fit: cover; object-position: center; }
   .hero-overlay {
@@ -226,10 +172,10 @@
     background: var(--amber-comb);
     color: var(--h900);
     text-decoration: none;
-    font-family: var(--font-body);
-    font-size: var(--text-sm);
+    font-family: "DM Sans", sans-serif;
+    font-size: 1rem;
     font-weight: 700;
-    letter-spacing: var(--track-wider);
+    letter-spacing: 0.3px;
     padding: 18px 40px;
     border-radius: 99px;
     border: 2.5px solid transparent;
@@ -273,9 +219,6 @@
     font-weight: 500;
   }
 
-  /* ══════════════════════
-     MARQUEE
-     ══════════════════════ */
   .marquee-strip {
     background: linear-gradient(90deg, var(--h800) 0%, var(--h700) 50%, var(--h800) 100%);
     padding: 5px 0;
@@ -285,9 +228,8 @@
   .marquee-inner {
     display: inline-block;
     animation: marquee 24s linear infinite;
-    font-family: var(--font-body);
-    font-size: var(--text-2xs);
-    letter-spacing: var(--track-widest);
+    font-size: 0.68rem;
+    letter-spacing: 2.5px;
     text-transform: uppercase;
     font-weight: 600;
     color: var(--amber-comb);
@@ -295,9 +237,6 @@
   .marquee-inner span { margin: 0 32px; color: rgba(255,208,96,0.35); }
   @keyframes marquee { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
 
-  /* ══════════════════════
-     SCROLL REVEAL
-     ══════════════════════ */
   .reveal {
     opacity: 0;
     transform: translateY(24px);
@@ -305,9 +244,6 @@
   }
   .reveal.is-visible { opacity: 1; transform: translateY(0); }
 
-  /* ══════════════════════
-     SHARED
-     ══════════════════════ */
   .section-eyebrow {
     font-size: 0.72rem;
     letter-spacing: 3.5px;
@@ -359,7 +295,6 @@
     z-index: 1;
   }
 
-  /* Header row */
   .cp-header {
     display: flex;
     align-items: flex-end;
@@ -368,12 +303,9 @@
     margin-bottom: 48px;
   }
 
-  .cp-header-left {}
-
   .cp-eyebrow {
-    font-family: var(--font-body);
-    font-size: var(--text-2xs);
-    letter-spacing: var(--track-widest);
+    font-size: 0.68rem;
+    letter-spacing: 4px;
     text-transform: uppercase;
     color: var(--honey-deep);
     font-weight: 700;
@@ -392,30 +324,28 @@
   }
 
   .cp-headline {
-    font-family: var(--font-display);
-    font-size: var(--text-3xl);
+    font-family: "Playfair Display", serif;
+    font-size: 2.6rem;
     font-weight: 800;
-    line-height: var(--lead-tight);
+    line-height: 1.18;
     color: var(--h900);
-    letter-spacing: var(--track-tight);
+    letter-spacing: -0.4px;
   }
   .cp-headline em { font-style: italic; color: var(--honey-deep); }
 
   .cp-header-tagline {
-    font-family: var(--font-body);
-    font-size: var(--text-2xs);
-    font-weight: 500;
-    letter-spacing: var(--track-wider);
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 2px;
     text-transform: uppercase;
     color: var(--muted-text);
     border-left: 3px solid var(--h300);
     padding-left: 14px;
-    line-height: var(--lead-loose);
+    line-height: 1.6;
     max-width: 260px;
     flex-shrink: 0;
   }
 
-  /* About + Franchise grid */
   .cp-body {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -423,7 +353,6 @@
     margin-bottom: 24px;
   }
 
-  /* About card */
   .cp-about-card {
     background: var(--amber-card);
     border: 1px solid rgba(181,107,0,0.15);
@@ -476,7 +405,6 @@
     margin-bottom: 20px;
   }
 
-  /* Stat badges row */
   .cp-stat-row {
     display: flex;
     gap: 12px;
@@ -510,7 +438,6 @@
     line-height: 1.3;
   }
 
-  /* Franchise card */
   .cp-franchise-card {
     background: linear-gradient(148deg, var(--h900) 0%, var(--h800) 100%);
     border-radius: 20px;
@@ -631,7 +558,6 @@
   }
   .cp-franchise-cta:hover .cp-franchise-cta-arrow { transform: translateX(3px); }
 
-  /* Why Mithas strip */
   .cp-why-strip {
     background: linear-gradient(90deg, var(--amber-card), var(--amber-warm), var(--amber-card));
     border: 1px solid rgba(181,107,0,0.14);
@@ -700,7 +626,6 @@
     margin-top: 1px;
   }
 
-  .cp-why-text {}
   .cp-why-name {
     font-size: 0.8rem;
     font-weight: 700;
@@ -714,7 +639,6 @@
     line-height: 1.4;
   }
 
-  /* Vision strip */
   .cp-vision-strip {
     margin-top: 24px;
     text-align: center;
@@ -778,6 +702,75 @@
     z-index: 2;
   }
 
+  /* ── Section heading ── */
+  .insp-section-heading {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .insp-section-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.68rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--honey-rich);
+    font-weight: 700;
+    margin-bottom: 14px;
+  }
+  .insp-section-eyebrow::before,
+  .insp-section-eyebrow::after {
+    content: '';
+    width: 36px;
+    height: 1.5px;
+    background: linear-gradient(90deg, transparent, var(--honey-rich));
+    display: inline-block;
+    flex-shrink: 0;
+    opacity: 0.55;
+  }
+  .insp-section-eyebrow::after {
+    background: linear-gradient(90deg, var(--honey-rich), transparent);
+  }
+
+  .insp-section-title {
+    font-family: "Playfair Display", serif;
+    font-size: 2.4rem;
+    font-weight: 800;
+    color: var(--h900);
+    line-height: 1.2;
+    letter-spacing: -0.4px;
+    margin-bottom: 10px;
+  }
+  .insp-section-title em {
+    font-style: italic;
+    color: var(--honey-deep);
+  }
+
+  .insp-section-rule {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 12px;
+  }
+  .insp-section-rule-line {
+    width: 64px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(181,107,0,0.35));
+  }
+  .insp-section-rule-line.right {
+    background: linear-gradient(90deg, rgba(181,107,0,0.35), transparent);
+  }
+  .insp-section-rule-diamond {
+    width: 7px; height: 7px;
+    background: var(--amber-comb);
+    border: 1.5px solid var(--h600);
+    transform: rotate(45deg);
+    display: inline-block;
+    flex-shrink: 0;
+  }
+
   /* ── Spotlight card ── */
   .insp-card {
     background: var(--amber-card);
@@ -800,7 +793,6 @@
     background: linear-gradient(180deg, var(--h300), var(--h600));
   }
 
-  /* Corner ribbon tag */
   .insp-ribbon {
     position: absolute;
     top: 22px;
@@ -817,7 +809,6 @@
     z-index: 3;
   }
 
-  /* ── Hexagon photo ── */
   .insp-photo-col {
     flex-shrink: 0;
     display: flex;
@@ -827,7 +818,6 @@
     width: 160px;
   }
 
-  /* Gold oval frame */
   .insp-oval-frame {
     position: relative;
     width: 152px;
@@ -892,7 +882,6 @@
     line-height: 1.5;
   }
 
-  /* ── Content column ── */
   .insp-content-col { flex: 1; min-width: 0; }
 
   .insp-tag {
@@ -1127,6 +1116,7 @@
     .cp-why-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
     .cp-why-item + .cp-why-item::before { display: none; }
     .inspiration-section { padding: 56px 32px; }
+    .insp-section-title { font-size: 2rem; }
     .insp-card { padding: 36px; gap: 34px; }
     .insp-headline { font-size: 1.5rem; }
     .process { padding: 80px 32px; }
@@ -1177,6 +1167,8 @@
     .cp-stat-row { justify-content: flex-start; }
 
     .inspiration-section { padding: 48px 20px; }
+    .insp-section-title { font-size: 1.7rem; }
+    .insp-section-heading { margin-bottom: 28px; }
     .insp-card {
       flex-direction: column;
       text-align: center;
@@ -1221,6 +1213,7 @@
     .cp-stat { min-width: 70px; padding: 10px 12px; }
 
     .inspiration-section { padding: 40px 16px; }
+    .insp-section-title { font-size: 1.4rem; }
     .insp-card { padding: 26px 18px; border-radius: 20px; }
     .insp-oval-frame { width: 128px; height: 160px; }
     .insp-oval-photo { width: 128px; height: 160px; }
@@ -1240,9 +1233,6 @@
 </head>
 <body>
 
-<!-- ══════════════════════════════════
-     HEADER
-     ══════════════════════════════════ -->
 <header class="site-header" id="siteHeader">
   <ul class="header-nav">
     <li><a href="#" class="active">Home</a></li>
@@ -1251,15 +1241,11 @@
   </ul>
 </header>
 
-<!-- ══════════════════════
-     HERO
-     ══════════════════════ -->
 <div class="hero">
   <img src="hro_banner.png" alt="Mithas ice cream – Premium traditional Indian ice cream">
   <div class="hero-overlay"></div>
 </div>
 
-<!-- ── Marquee ── -->
 <div class="marquee-strip">
   <div class="marquee-inner">
     Made with Real Milk <span>✦</span> No Artificial Colours <span>✦</span> 50+ Flavours <span>✦</span> Pan India Delivery <span>✦</span> Premium Quality <span>✦</span> Cold-Pressed Ingredients <span>✦</span>
@@ -1267,13 +1253,9 @@
   </div>
 </div>
 
-<!-- ══════════════════════════════════════════════
-     COMPANY PROFILE
-     ══════════════════════════════════════════════ -->
 <section id="company" class="company-profile">
   <div class="cp-outer">
 
-    <!-- Header -->
     <div class="cp-header reveal">
       <div class="cp-header-left">
         <p class="cp-eyebrow">Company Profile</p>
@@ -1282,10 +1264,8 @@
       <p class="cp-header-tagline">Manufactured by Thirupura Krishnah Dairy Pvt. Ltd.</p>
     </div>
 
-    <!-- About + Franchise cards -->
     <div class="cp-body">
 
-      <!-- About card -->
       <div class="cp-about-card reveal">
         <div class="cp-about-icon">🏭</div>
         <p class="cp-card-label">About Mithas</p>
@@ -1312,7 +1292,6 @@
         </div>
       </div>
 
-      <!-- Franchise card -->
       <div class="cp-franchise-card reveal">
         <div class="cp-franchise-badge">
           <div class="cp-franchise-badge-dot"></div>
@@ -1337,7 +1316,6 @@
 
     </div>
 
-    <!-- Why Mithas strip -->
     <div class="cp-why-strip reveal">
       <span class="cp-why-label">Why Mithas</span>
       <div class="cp-why-divider"></div>
@@ -1373,7 +1351,6 @@
       </div>
     </div>
 
-    <!-- Vision strip -->
     <div class="cp-vision-strip reveal">
       <p class="cp-vision-text">Our vision: to become <strong>one of India's leading premium dairy ice cream brands</strong> by expanding our franchise network across the country through FY 2026–27 and beyond.</p>
       <p class="cp-vision-label">Vision · Mithas Ice Cream</p>
@@ -1388,10 +1365,20 @@
 <div id="inspiration" class="inspiration-section">
   <div class="insp-outer">
 
+    <!-- Section Heading -->
+    <div class="insp-section-heading reveal">
+      <p class="insp-section-eyebrow">Our Inspiration</p>
+      <h2 class="insp-section-title">Our Visionary <em>Role Model</em></h2>
+      <div class="insp-section-rule">
+        <span class="insp-section-rule-line"></span>
+        <span class="insp-section-rule-diamond"></span>
+        <span class="insp-section-rule-line right"></span>
+      </div>
+    </div>
+
     <div class="insp-card reveal">
       <div class="insp-ribbon">A Guiding Light</div>
 
-      <!-- Hexagon portrait -->
       <div class="insp-photo-col">
         <div class="insp-oval-frame">
           <span class="insp-oval-accent top"></span>
@@ -1404,7 +1391,6 @@
         </div>
       </div>
 
-      <!-- Compact narrative -->
       <div class="insp-content-col">
         <span class="insp-tag">Our Inspiration</span>
         <h2 class="insp-headline">He didn't just inspire us — he <em>became</em> our purpose.</h2>
@@ -1427,7 +1413,6 @@
   </div>
 </div>
 
-<!-- ── Process ── -->
 <section class="process" id="process">
   <p class="proc-eyebrow">How We Make It</p>
   <h2 class="proc-title">Crafted Fresh, <em>Every Morning</em></h2>
@@ -1455,7 +1440,6 @@
   </div>
 </section>
 
-<!-- ── Footer / Contact ── -->
 <footer id="contact">
   <div class="footer-grid">
     <div>
