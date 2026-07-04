@@ -6,7 +6,7 @@
 <title>Mithas – More Than Ice Cream</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700;1,800&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -47,15 +47,59 @@
     --shadow-lg: 0 8px 36px rgba(46,21,0,0.15);
   }
 
+  /* ══════════════════════
+     TYPOGRAPHY SYSTEM
+     ══════════════════════
+     Display:  Playfair Display  — headlines, pull numbers, brand name
+     Body:     Plus Jakarta Sans — UI text, nav, body copy, labels
+     Accent:   Cormorant Garamond — quotes, captions, artisanal detail
+     ══════════════════════ */
+  :root {
+    --font-display: "Playfair Display", Georgia, serif;
+    --font-body:    "Plus Jakarta Sans", system-ui, sans-serif;
+    --font-accent:  "Cormorant Garamond", Georgia, serif;
+
+    /* Type scale (rem) */
+    --text-2xs:  0.625rem;   /* 10px — micro labels */
+    --text-xs:   0.6875rem;  /* 11px — eyebrows, badges */
+    --text-sm:   0.8125rem;  /* 13px — captions, meta */
+    --text-base: 0.9375rem;  /* 15px — body copy */
+    --text-md:   1.0625rem;  /* 17px — lead / intro */
+    --text-lg:   1.25rem;    /* 20px — sub-headlines */
+    --text-xl:   1.5rem;     /* 24px — card titles */
+    --text-2xl:  2rem;       /* 32px — section titles */
+    --text-3xl:  2.75rem;    /* 44px — hero headlines */
+    --text-4xl:  3.5rem;     /* 56px — display */
+
+    /* Tracking */
+    --track-tight:  -0.03em;
+    --track-snug:   -0.015em;
+    --track-normal:  0;
+    --track-wide:    0.05em;
+    --track-wider:   0.12em;
+    --track-widest:  0.22em;
+
+    /* Leading */
+    --lead-tight:  1.1;
+    --lead-snug:   1.22;
+    --lead-base:   1.55;
+    --lead-relaxed: 1.72;
+    --lead-loose:  1.9;
+  }
+
   html { scroll-behavior: smooth; }
 
   body {
-    font-family: "DM Sans", sans-serif;
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    font-weight: 400;
     background: var(--amber-bg);
     color: var(--dark-text);
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
-    line-height: 1.6;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    line-height: var(--lead-relaxed);
   }
 
   /* ══════════════════════
@@ -79,11 +123,11 @@
   .header-logo {
     display: flex;
     align-items: center;
-    font-family: "Playfair Display", serif;
-    font-size: 1.6rem;
+    font-family: var(--font-display);
+    font-size: 1.5rem;
     font-weight: 800;
     color: var(--h900);
-    letter-spacing: -0.5px;
+    letter-spacing: var(--track-snug);
     text-decoration: none;
     gap: 9px;
   }
@@ -110,9 +154,10 @@
   .header-nav a {
     color: var(--h900);
     text-decoration: none;
-    font-size: 0.88rem;
+    font-family: var(--font-body);
+    font-size: var(--text-2xs);
     font-weight: 700;
-    letter-spacing: 0.8px;
+    letter-spacing: var(--track-widest);
     text-transform: uppercase;
     padding: 8px 22px;
     border-radius: 99px;
@@ -181,10 +226,10 @@
     background: var(--amber-comb);
     color: var(--h900);
     text-decoration: none;
-    font-family: "DM Sans", sans-serif;
-    font-size: 1rem;
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
     font-weight: 700;
-    letter-spacing: 0.3px;
+    letter-spacing: var(--track-wider);
     padding: 18px 40px;
     border-radius: 99px;
     border: 2.5px solid transparent;
@@ -240,8 +285,9 @@
   .marquee-inner {
     display: inline-block;
     animation: marquee 24s linear infinite;
-    font-size: 0.68rem;
-    letter-spacing: 2.5px;
+    font-family: var(--font-body);
+    font-size: var(--text-2xs);
+    letter-spacing: var(--track-widest);
     text-transform: uppercase;
     font-weight: 600;
     color: var(--amber-comb);
@@ -325,8 +371,9 @@
   .cp-header-left {}
 
   .cp-eyebrow {
-    font-size: 0.68rem;
-    letter-spacing: 4px;
+    font-family: var(--font-body);
+    font-size: var(--text-2xs);
+    letter-spacing: var(--track-widest);
     text-transform: uppercase;
     color: var(--honey-deep);
     font-weight: 700;
@@ -345,24 +392,25 @@
   }
 
   .cp-headline {
-    font-family: "Playfair Display", serif;
-    font-size: 2.6rem;
+    font-family: var(--font-display);
+    font-size: var(--text-3xl);
     font-weight: 800;
-    line-height: 1.18;
+    line-height: var(--lead-tight);
     color: var(--h900);
-    letter-spacing: -0.4px;
+    letter-spacing: var(--track-tight);
   }
   .cp-headline em { font-style: italic; color: var(--honey-deep); }
 
   .cp-header-tagline {
-    font-size: 0.82rem;
-    font-weight: 600;
-    letter-spacing: 2px;
+    font-family: var(--font-body);
+    font-size: var(--text-2xs);
+    font-weight: 500;
+    letter-spacing: var(--track-wider);
     text-transform: uppercase;
     color: var(--muted-text);
     border-left: 3px solid var(--h300);
     padding-left: 14px;
-    line-height: 1.6;
+    line-height: var(--lead-loose);
     max-width: 260px;
     flex-shrink: 0;
   }
@@ -1245,8 +1293,22 @@
         <p class="cp-card-text">Mithas Ice Cream is made with real milk, butter, and fresh cream — never frozen desserts. Every product uses carefully selected ingredients to deliver rich taste, superior quality, and authentic dairy goodness from our FSSAI-registered, state-of-the-art manufacturing facility.</p>
         <p class="cp-card-text">With modern technology ensuring hygienic production and consistent quality, Mithas reaches customers across a strong network of retail outlets spanning Chennai, Chengalpattu, Tiruvallur, and Kanchipuram.</p>
         <div class="cp-stat-row">
-     
-    
+          <div class="cp-stat">
+            <span class="cp-stat-num">300+</span>
+            <span class="cp-stat-label">Retail Outlets</span>
+          </div>
+          <div class="cp-stat">
+            <span class="cp-stat-num">50+</span>
+            <span class="cp-stat-label">Flavours</span>
+          </div>
+          <div class="cp-stat">
+            <span class="cp-stat-num">2016</span>
+            <span class="cp-stat-label">Est. Year</span>
+          </div>
+          <div class="cp-stat">
+            <span class="cp-stat-num">4+</span>
+            <span class="cp-stat-label">Districts</span>
+          </div>
         </div>
       </div>
 
