@@ -145,38 +145,54 @@
     box-shadow: 0 0 0 3px rgba(255,208,96,0.30), 0 4px 16px rgba(46,21,0,0.22);
   }
 
-  .hero { width: 100%; overflow: hidden; position: relative; }
-  .hero img { width: 100%; display: block; max-height: 660px; object-fit: cover; object-position: center; }
-  .hero-overlay {
-    position: absolute; inset: 0;
-    background: linear-gradient(180deg, rgba(46,21,0,0.08) 0%, rgba(46,21,0,0.55) 100%);
-    pointer-events: none;
+  /* ══════════════════════
+     HERO — fully responsive
+     ══════════════════════ */
+  .hero {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    /* tall on desktop, naturally shorter on mobile via aspect-ratio */
+    height: clamp(320px, 56vw, 680px);
+    background: var(--h900);          /* fallback while image loads */
   }
+  .hero img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 30%;     /* keeps focal point centred on all widths */
+    display: block;
+  }
+
 
   .hero-cta-wrap {
     position: absolute;
-    bottom: 52px;
+    bottom: clamp(20px, 5vw, 56px);
     left: 50%;
     transform: translateX(-50%);
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 18px;
+    gap: clamp(10px, 2vw, 18px);
     z-index: 2;
+    width: max-content;
+    max-width: calc(100vw - 32px);
   }
 
   .explore-btn {
     display: inline-flex;
     align-items: center;
-    gap: 12px;
+    gap: clamp(8px, 1.5vw, 12px);
     background: var(--amber-comb);
     color: var(--h900);
     text-decoration: none;
     font-family: "DM Sans", sans-serif;
-    font-size: 1rem;
+    font-size: clamp(0.82rem, 2vw, 1rem);
     font-weight: 700;
     letter-spacing: 0.3px;
-    padding: 18px 40px;
+    padding: clamp(12px, 2vw, 18px) clamp(22px, 4vw, 40px);
     border-radius: 99px;
     border: 2.5px solid transparent;
     box-shadow: 0 0 0 0 rgba(255,208,96,0), 0 8px 32px rgba(46,21,0,0.32);
@@ -203,16 +219,18 @@
   }
   .explore-btn:active { transform: translateY(0) scale(0.99); }
   .explore-btn-icon {
-    width: 30px; height: 30px;
+    width: clamp(22px, 3vw, 30px);
+    height: clamp(22px, 3vw, 30px);
     background: var(--h900);
     border-radius: 50%;
     display: flex; align-items: center; justify-content: center;
-    font-size: 1rem; flex-shrink: 0;
+    font-size: clamp(0.75rem, 1.5vw, 1rem);
+    flex-shrink: 0;
     transition: transform 0.28s;
   }
   .explore-btn:hover .explore-btn-icon { transform: rotate(15deg) scale(1.12); }
   .hero-cta-hint {
-    font-size: 0.75rem;
+    font-size: clamp(0.62rem, 1.4vw, 0.75rem);
     letter-spacing: 2.5px;
     text-transform: uppercase;
     color: rgba(255,223,160,0.62);
@@ -1149,10 +1167,7 @@
     }
     .header-nav a { font-size: 0.78rem; padding: 6px 14px; letter-spacing: 0.5px; }
 
-    .hero img { max-height: 380px; object-position: center 35%; }
-    .hero-cta-wrap { bottom: 32px; gap: 12px; }
-    .explore-btn { font-size: 0.9rem; padding: 15px 30px; }
-    .explore-btn-icon { width: 26px; height: 26px; font-size: 0.85rem; }
+    /* hero height handled by clamp() — no overrides needed */
 
     .company-profile { padding: 48px 20px; }
     .cp-header { flex-direction: column; align-items: flex-start; gap: 18px; margin-bottom: 32px; }
@@ -1198,10 +1213,7 @@
     .site-header { padding: 0 16px; }
     .header-logo { font-size: 1.2rem; padding: 10px 0 9px; }
     .header-nav a { font-size: 0.78rem; padding: 5px 11px; }
-    .hero img { max-height: 260px; }
-    .hero-cta-wrap { bottom: 22px; }
-    .explore-btn { font-size: 0.85rem; padding: 13px 24px; gap: 9px; }
-    .explore-btn-icon { width: 24px; height: 24px; font-size: 0.75rem; }
+    /* hero uses clamp() for all sizing — only hide hint text on tiny screens */
     .hero-cta-hint { display: none; }
 
     .company-profile { padding: 40px 16px; }
