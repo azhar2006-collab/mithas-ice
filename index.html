@@ -156,26 +156,66 @@
     background: var(--h900);
   }
 
-  .hero-video-container {
+  .hero-slider-container {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    width: 100%;
+    height: 100%;
+  }
+
+  .hero-slide {
     position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
-    z-index: 0;
+    opacity: 0;
+    transition: opacity 0.8s cubic-bezier(0.25,0.46,0.45,0.94);
   }
 
-  .hero-video-container video {
+  .hero-slide.active {
+    opacity: 1;
+  }
+
+  .hero-slide img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center 30%;
     display: block;
   }
 
-  .hero-overlay {
+
+  .hero-slider-dots {
     position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, rgba(46,21,0,0.45) 0%, rgba(46,21,0,0.25) 50%, rgba(46,21,0,0.35) 100%);
-    z-index: 1;
+    bottom: clamp(16px, 4vw, 32px);
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    z-index: 3;
+  }
+
+  .hero-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.35);
+    border: 1.5px solid rgba(255,255,255,0.50);
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .hero-dot.active {
+    width: 28px;
+    border-radius: 99px;
+    background: var(--amber-comb);
+    border-color: var(--amber-comb);
+  }
+
+  .hero-dot:hover {
+    background: rgba(255,255,255,0.55);
   }
 
   .hero-cta-wrap {
@@ -1485,15 +1525,30 @@
   </ul>
 </header>
 
-<!-- Hero Video Section -->
+<!-- Hero Slider Section -->
 <div class="hero">
-  <div class="hero-video-container">
-    <video autoplay muted loop playsinline poster="">
-      <source src="https://res.cloudinary.com/djmgorf8l/video/upload/v1783279812/mithas_vgmjhy.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
+  <div class="hero-slider-container">
+    <div class="hero-slide active">
+      <img src="hro_banner.png" alt="Mithas ice cream – Premium traditional Indian ice cream">
+    </div>
+    <div class="hero-slide">
+      <img src="0I9A2270.jpg (1).jpeg" alt="Mithas Orange Treat – Premium ice cream with real oranges">
+    </div>
+    <div class="hero-slide">
+      <img src="0I9A2277.jpg.jpeg" alt="Mithas Orange Popsicle – Fresh orange flavor ice cream">
+    </div>
+    <div class="hero-slide">
+      <img src="0I9A2291.jpg (1).jpeg" alt="Mithas Mango Popsicle – Real mango ice cream">
+    </div>
+    <div class="hero-slide">
+      <img src="0I9A2314.jpg.jpeg" alt="Mithas Classic Chocobar – Premium chocolate ice cream">
+    </div>
+    <div class="hero-slide">
+      <img src="0I9A2324.jpg.jpeg" alt="Mithas Nutty Chocobar – Chocolate with roasted nuts">
+    </div>
   </div>
   <div class="hero-overlay"></div>
+  <div class="hero-slider-dots" id="heroSliderDots"></div>
   <div class="hero-cta-wrap">
   
     <p class="hero-cta-hint">Scroll to discover</p>
@@ -1778,10 +1833,38 @@
 
 <script>
   // ════════════════════════════════════════
-  // HERO VIDEO HANDLING
+  // HERO IMAGE SLIDER
   // ════════════════════════════════════════
-  // The hero slider has been replaced with a background video.
-  // The video is set to autoplay, muted, and loop by default.
+  const heroSlides = document.querySelectorAll('.hero-slide');
+  const heroDotsContainer = document.getElementById('heroSliderDots');
+  let currentSlide = 0;
+  const totalSlides = heroSlides.length;
+  const slideInterval = 5000; // 5 seconds per slide
+
+  // Create dots
+  for (let i = 0; i < totalSlides; i++) {
+    const dot = document.createElement('div');
+    dot.className = `hero-dot ${i === 0 ? 'active' : ''}`;
+    dot.addEventListener('click', () => goToSlide(i));
+    heroDotsContainer.appendChild(dot);
+  }
+
+  const heroDots = document.querySelectorAll('.hero-dot');
+
+  function goToSlide(n) {
+    heroSlides[currentSlide].classList.remove('active');
+    heroDots[currentSlide].classList.remove('active');
+    currentSlide = (n + totalSlides) % totalSlides;
+    heroSlides[currentSlide].classList.add('active');
+    heroDots[currentSlide].classList.add('active');
+  }
+
+  function nextSlide() {
+    goToSlide(currentSlide + 1);
+  }
+
+  // Auto-advance slides
+  setInterval(nextSlide, slideInterval);
 
   // ════════════════════════════════════════
   // HEADER SCROLL EFFECT
