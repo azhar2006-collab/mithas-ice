@@ -146,26 +146,37 @@
   }
 
   /* ══════════════════════
-     HERO — fully responsive
+     HERO — Image Slider
      ══════════════════════ */
   .hero {
     width: 100%;
     position: relative;
     overflow: hidden;
-    /* tall on desktop, naturally shorter on mobile via aspect-ratio */
     height: clamp(320px, 56vw, 680px);
-    background: var(--h900);          /* fallback while image loads */
+    background: var(--h900);
   }
-  .hero img {
+
+  .hero-video-container {
     position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
+    z-index: 0;
+  }
+
+  .hero-video-container video {
+    width: 100%;
+    height: 100%;
     object-fit: cover;
-    object-position: center 30%;     /* keeps focal point centred on all widths */
     display: block;
   }
 
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(46,21,0,0.45) 0%, rgba(46,21,0,0.25) 50%, rgba(46,21,0,0.35) 100%);
+    z-index: 1;
+  }
 
   .hero-cta-wrap {
     position: absolute;
@@ -254,6 +265,167 @@
   }
   .marquee-inner span { margin: 0 32px; color: rgba(255,208,96,0.35); }
   @keyframes marquee { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+
+  /* ══════════════════════
+     REMAINING BANNER
+     ══════════════════════ */
+  .remaining-banner {
+    background: linear-gradient(135deg, var(--amber-warm) 0%, var(--amber-mid) 50%, var(--amber-warm) 100%);
+    padding: clamp(40px, 8vw, 72px) 56px;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid rgba(181,107,0,0.15);
+  }
+
+  .remaining-banner::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0.03;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='100'%3E%3Cpolygon points='28,2 54,16 54,44 28,58 2,44 2,16' fill='none' stroke='%23B56B00' stroke-width='1.5'/%3E%3Cpolygon points='28,58 54,72 54,100 28,114 2,100 2,72' fill='none' stroke='%23B56B00' stroke-width='1.5'/%3E%3C/svg%3E");
+    pointer-events: none;
+  }
+
+  .remaining-banner::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(181,107,0,0.25), transparent);
+  }
+
+  .banner-outer {
+    max-width: 1040px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .banner-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+  }
+
+  .banner-content h2 {
+    font-family: "Playfair Display", serif;
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--h900);
+    line-height: 1.2;
+    margin-bottom: 16px;
+    letter-spacing: -0.3px;
+  }
+
+  .banner-content h2 em {
+    font-style: italic;
+    color: var(--honey-deep);
+  }
+
+  .banner-content p {
+    font-size: 0.95rem;
+    color: var(--body-text);
+    line-height: 1.75;
+    margin-bottom: 24px;
+  }
+
+  .banner-cta-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    align-items: center;
+  }
+
+  .banner-cta-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--h900);
+    color: var(--amber-comb);
+    text-decoration: none;
+    font-size: 0.88rem;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+    padding: 14px 32px;
+    border-radius: 99px;
+    border: 2px solid var(--h900);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 16px rgba(46,21,0,0.20);
+  }
+
+  .banner-cta-primary:hover {
+    background: var(--h800);
+    border-color: var(--h800);
+    box-shadow: 0 8px 28px rgba(46,21,0,0.30);
+    transform: translateY(-2px);
+  }
+
+  .banner-cta-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    color: var(--h900);
+    text-decoration: none;
+    font-size: 0.88rem;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+    padding: 12px 28px;
+    border-radius: 99px;
+    border: 2px solid var(--h900);
+    transition: all 0.3s ease;
+  }
+
+  .banner-cta-secondary:hover {
+    background: var(--h900);
+    color: var(--amber-comb);
+    box-shadow: 0 4px 16px rgba(46,21,0,0.15);
+    transform: translateY(-2px);
+  }
+
+  .banner-highlights {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .highlight-card {
+    background: rgba(255,255,255,0.55);
+    border: 1px solid rgba(181,107,0,0.15);
+    border-radius: 16px;
+    padding: 24px 28px;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 2px 8px rgba(46,21,0,0.08);
+    transition: all 0.3s ease;
+  }
+
+  .highlight-card:hover {
+    background: rgba(255,255,255,0.75);
+    border-color: rgba(181,107,0,0.25);
+    box-shadow: 0 4px 16px rgba(46,21,0,0.12);
+    transform: translateY(-2px);
+  }
+
+  .highlight-icon {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  .highlight-title {
+    font-family: "Playfair Display", serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--h900);
+    margin-bottom: 8px;
+  }
+
+  .highlight-text {
+    font-size: 0.82rem;
+    color: var(--body-text);
+    line-height: 1.6;
+  }
 
   .reveal {
     opacity: 0;
@@ -498,7 +670,7 @@
   }
   @keyframes pulse-dot {
     0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.5; transform: scale(0.7); }
+    50% { opacity: 0.6; transform: scale(1.2); }
   }
   .cp-franchise-badge span {
     font-size: 0.6rem;
@@ -1040,8 +1212,9 @@
   .process-step {
     padding: 36px 26px 32px;
     background: rgba(255,239,197,0.06);
-    border: 1px solid rgba(255,208,96,0.14);
+    border: 1px solid rgba(255,208,96,0.12);
     border-radius: 16px;
+    box-shadow: var(--shadow-sm);
     transition: all 0.35s;
     position: relative;
     overflow: hidden;
@@ -1141,6 +1314,9 @@
     .process-steps { grid-template-columns: repeat(2, 1fr); }
     .proc-title { font-size: 2.4rem; }
     footer { padding: 56px 32px 28px; }
+    .remaining-banner { padding: 56px 32px; }
+    .banner-grid { gap: 32px; }
+    .banner-content h2 { font-size: 1.8rem; }
   }
 
   @media (max-width: 768px) {
@@ -1166,8 +1342,6 @@
       flex-wrap: nowrap;
     }
     .header-nav a { font-size: 0.78rem; padding: 6px 14px; letter-spacing: 0.5px; }
-
-    /* hero height handled by clamp() — no overrides needed */
 
     .company-profile { padding: 48px 20px; }
     .cp-header { flex-direction: column; align-items: flex-start; gap: 18px; margin-bottom: 32px; }
@@ -1203,6 +1377,11 @@
     .step-num { font-size: 2.2rem; margin-bottom: 14px; }
     .proc-title { font-size: 1.85rem; }
 
+    .remaining-banner { padding: 48px 20px; }
+    .banner-grid { grid-template-columns: 1fr; gap: 32px; }
+    .banner-content h2 { font-size: 1.6rem; }
+    .banner-highlights { grid-template-columns: 1fr; }
+
     footer { padding: 48px 20px 28px; }
     .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; margin-bottom: 40px; }
     .footer-grid > div:first-child { grid-column: 1 / -1; }
@@ -1213,7 +1392,6 @@
     .site-header { padding: 0 16px; }
     .header-logo { font-size: 1.2rem; padding: 10px 0 9px; }
     .header-nav a { font-size: 0.78rem; padding: 5px 11px; }
-    /* hero uses clamp() for all sizing — only hide hint text on tiny screens */
     .hero-cta-hint { display: none; }
 
     .company-profile { padding: 40px 16px; }
@@ -1237,9 +1415,63 @@
     .proc-title { font-size: 1.65rem; }
     .process-step { padding: 22px 18px; }
 
+    .remaining-banner { padding: 40px 16px; }
+    .banner-content h2 { font-size: 1.4rem; }
+    .banner-cta-group { flex-direction: column; width: 100%; }
+    .banner-cta-primary, .banner-cta-secondary { width: 100%; justify-content: center; }
+
     footer { padding: 40px 16px 24px; }
     .footer-grid { grid-template-columns: 1fr; gap: 28px; }
     .footer-grid > div:first-child { grid-column: auto; }
+  }
+
+  /* ══════════════════════
+     VIDEO SECTION
+     ══════════════════════ */
+  .company-video-section {
+    background: var(--h900);
+    padding: 60px 56px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .company-video-section::before {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,208,96,0.30), transparent);
+  }
+
+  .video-outer {
+    max-width: 1040px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .video-container {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    border-radius: 24px;
+    box-shadow: 0 16px 48px rgba(46,21,0,0.45);
+  }
+
+  .video-container video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  @media (max-width: 768px) {
+    .company-video-section { padding: 40px 16px; }
   }
 </style>
 </head>
@@ -1253,9 +1485,19 @@
   </ul>
 </header>
 
+<!-- Hero Video Section -->
 <div class="hero">
-  <img src="hro_banner.png" alt="Mithas ice cream – Premium traditional Indian ice cream">
+  <div class="hero-video-container">
+    <video autoplay muted loop playsinline poster="">
+      <source src="https://res.cloudinary.com/djmgorf8l/video/upload/v1783279812/mithas_vgmjhy.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </div>
   <div class="hero-overlay"></div>
+  <div class="hero-cta-wrap">
+  
+    <p class="hero-cta-hint">Scroll to discover</p>
+  </div>
 </div>
 
 <div class="marquee-strip">
@@ -1264,6 +1506,56 @@
     Made with Real Milk <span>✦</span> No Artificial Colours <span>✦</span> 50+ Flavours <span>✦</span> Pan India Delivery <span>✦</span> Premium Quality <span>✦</span> Cold-Pressed Ingredients <span>✦</span>
   </div>
 </div>
+
+<!-- Remaining Banner Section -->
+<div class="remaining-banner reveal">
+  <div class="banner-outer">
+    <div class="banner-grid">
+      <div class="banner-content">
+        <h2>Premium Ice Cream, <em>Crafted Fresh</em></h2>
+        <p>Every scoop of Mithas tells a story of real milk, fresh cream, and carefully selected ingredients. We believe in quality over quantity, tradition over shortcuts, and genuine taste over artificial flavors.</p>
+        <div class="banner-cta-group">
+          <a href="#company" class="banner-cta-primary">Learn Our Story →</a>
+          <a href="#contact" class="banner-cta-secondary">Get in Touch</a>
+        </div>
+      </div>
+      <div class="banner-highlights">
+        <div class="highlight-card">
+          <span class="highlight-icon">🥛</span>
+          <div class="highlight-title">Real Dairy</div>
+          <div class="highlight-text">Made with full-fat milk and fresh cream from trusted dairies within 200km of our facility.</div>
+        </div>
+        <div class="highlight-card">
+          <span class="highlight-icon">✨</span>
+          <div class="highlight-title">Premium Ingredients</div>
+          <div class="highlight-text">Real saffron, whole fruits, roasted nuts, and zero artificial colours or preservatives.</div>
+        </div>
+        <div class="highlight-card">
+          <span class="highlight-icon">🏭</span>
+          <div class="highlight-title">Modern Facility</div>
+          <div class="highlight-text">FSSAI-registered production with state-of-the-art technology ensuring hygienic quality.</div>
+        </div>
+        <div class="highlight-card">
+          <span class="highlight-icon">🚚</span>
+          <div class="highlight-title">Pan India Reach</div>
+          <div class="highlight-text">300+ retail outlets across Chennai, Chengalpattu, Tiruvallur, and Kanchipuram districts.</div>
+        </div>
+      </div>
+    </div>
+</div>
+</div>
+
+<!-- COMPANY VIDEO SECTION -->
+<section class="company-video-section">
+  <div class="video-outer">
+    <div class="video-container">
+      <video width="1040" height="585" controls autoplay muted loop>
+        <source src="https://res.cloudinary.com/djmgorf8l/video/upload/v1783279178/MITHAS_AD_02_FI_V1_osbjfi.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+  </div>
+</section>
 
 <section id="company" class="company-profile">
   <div class="cp-outer">
@@ -1485,11 +1777,23 @@
 </footer>
 
 <script>
+  // ════════════════════════════════════════
+  // HERO VIDEO HANDLING
+  // ════════════════════════════════════════
+  // The hero slider has been replaced with a background video.
+  // The video is set to autoplay, muted, and loop by default.
+
+  // ════════════════════════════════════════
+  // HEADER SCROLL EFFECT
+  // ════════════════════════════════════════
   const headerEl = document.getElementById('siteHeader');
   window.addEventListener('scroll', () => {
     headerEl.classList.toggle('scrolled', window.scrollY > 10);
   }, { passive: true });
 
+  // ════════════════════════════════════════
+  // REVEAL ON SCROLL
+  // ════════════════════════════════════════
   const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -1500,6 +1804,9 @@
   }, { threshold: 0.1 });
   document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
+  // ════════════════════════════════════════
+  // ACTIVE NAV LINK ON SCROLL
+  // ════════════════════════════════════════
   const sections = document.querySelectorAll('section[id], div[id], footer[id]');
   const navLinks = document.querySelectorAll('.header-nav a');
   const navObserver = new IntersectionObserver((entries) => {
