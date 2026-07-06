@@ -146,20 +146,20 @@
   }
 
   /* ══════════════════════
-     HERO — Image Slider
+     HERO — Mobile-First Responsive
      ══════════════════════ */
   .hero {
     width: 100%;
     position: relative;
     overflow: hidden;
-    height: clamp(320px, 56vw, 680px);
+    /* Mobile: taller aspect so portrait images show well */
+    height: clamp(280px, 75vw, 680px);
     background: var(--h900);
   }
 
   .hero-slider-container {
     position: absolute;
     inset: 0;
-    display: flex;
     width: 100%;
     height: 100%;
   }
@@ -181,112 +181,149 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center 30%;
+    /* Center on mobile — shows subject well in portrait crop */
+    object-position: center center;
     display: block;
   }
 
+  /* Bottom gradient overlay so dots/CTA stay legible on any image */
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to top,
+      rgba(46,21,0,0.55) 0%,
+      rgba(46,21,0,0.15) 40%,
+      transparent 70%
+    );
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  /* Prev / Next arrow buttons */
+  .hero-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 3;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.18);
+    border: 1.5px solid rgba(255,255,255,0.30);
+    backdrop-filter: blur(6px);
+    color: #fff;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.25s, transform 0.25s;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+  }
+  .hero-arrow:hover { background: rgba(255,208,96,0.35); }
+  .hero-arrow.prev { left: 12px; }
+  .hero-arrow.next { right: 12px; }
+
+  /* Hide arrows on very small phones to avoid clutter */
+  @media (max-width: 360px) {
+    .hero-arrow { display: none; }
+  }
 
   .hero-slider-dots {
     position: absolute;
-    bottom: clamp(16px, 4vw, 32px);
+    bottom: clamp(12px, 3vw, 28px);
     left: 50%;
     transform: translateX(-50%);
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 7px;
     z-index: 3;
   }
 
   .hero-dot {
-    width: 10px;
-    height: 10px;
+    width: 8px;
+    height: 8px;
     border-radius: 50%;
     background: rgba(255,255,255,0.35);
     border: 1.5px solid rgba(255,255,255,0.50);
     cursor: pointer;
     transition: all 0.3s ease;
+    -webkit-tap-highlight-color: transparent;
   }
 
   .hero-dot.active {
-    width: 28px;
+    width: 24px;
     border-radius: 99px;
     background: var(--amber-comb);
     border-color: var(--amber-comb);
   }
 
-  .hero-dot:hover {
-    background: rgba(255,255,255,0.55);
-  }
+  .hero-dot:hover { background: rgba(255,255,255,0.55); }
 
+  /* CTA hint text — centered, above dots */
   .hero-cta-wrap {
     position: absolute;
-    bottom: clamp(20px, 5vw, 56px);
+    bottom: clamp(36px, 8vw, 64px);
     left: 50%;
     transform: translateX(-50%);
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: clamp(10px, 2vw, 18px);
+    gap: 10px;
     z-index: 2;
     width: max-content;
     max-width: calc(100vw - 32px);
-  }
-
-  .explore-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: clamp(8px, 1.5vw, 12px);
-    background: var(--amber-comb);
-    color: var(--h900);
-    text-decoration: none;
-    font-family: "DM Sans", sans-serif;
-    font-size: clamp(0.82rem, 2vw, 1rem);
-    font-weight: 700;
-    letter-spacing: 0.3px;
-    padding: clamp(12px, 2vw, 18px) clamp(22px, 4vw, 40px);
-    border-radius: 99px;
-    border: 2.5px solid transparent;
-    box-shadow: 0 0 0 0 rgba(255,208,96,0), 0 8px 32px rgba(46,21,0,0.32);
-    transition: background 0.28s, box-shadow 0.28s, transform 0.22s, border-color 0.28s;
-    white-space: nowrap;
-    position: relative;
-    overflow: hidden;
-  }
-  .explore-btn::before {
-    content: '';
-    position: absolute;
-    top: 0; left: -100%;
-    width: 60%; height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.38), transparent);
-    transition: left 0.55s ease;
     pointer-events: none;
   }
-  .explore-btn:hover::before { left: 160%; }
-  .explore-btn:hover {
-    background: #FFE080;
-    border-color: rgba(255,255,255,0.35);
-    transform: translateY(-3px) scale(1.03);
-    box-shadow: 0 0 0 6px rgba(255,208,96,0.22), 0 16px 40px rgba(46,21,0,0.38);
-  }
-  .explore-btn:active { transform: translateY(0) scale(0.99); }
-  .explore-btn-icon {
-    width: clamp(22px, 3vw, 30px);
-    height: clamp(22px, 3vw, 30px);
-    background: var(--h900);
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-size: clamp(0.75rem, 1.5vw, 1rem);
-    flex-shrink: 0;
-    transition: transform 0.28s;
-  }
-  .explore-btn:hover .explore-btn-icon { transform: rotate(15deg) scale(1.12); }
+
   .hero-cta-hint {
-    font-size: clamp(0.62rem, 1.4vw, 0.75rem);
+    font-size: clamp(0.6rem, 1.8vw, 0.75rem);
     letter-spacing: 2.5px;
     text-transform: uppercase;
-    color: rgba(255,223,160,0.62);
+    color: rgba(255,223,160,0.70);
     font-weight: 500;
   }
+
+  /* Swipe indicator — shown only on touch devices */
+  .hero-swipe-hint {
+    display: none;
+    font-size: 0.62rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: rgba(255,223,160,0.55);
+    font-weight: 500;
+  }
+
+  @media (hover: none) and (pointer: coarse) {
+    .hero-swipe-hint { display: block; }
+    .hero-cta-hint { display: none; }
+  }
+
+  /* ── Hero height breakpoints ── */
+  @media (max-width: 768px) {
+    .hero {
+      /* On phones: 65vw gives a nice cinematic strip without eating too much screen */
+      height: clamp(220px, 65vw, 420px);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .hero {
+      height: clamp(200px, 68vw, 340px);
+    }
+    .hero-arrow {
+      width: 34px;
+      height: 34px;
+      font-size: 0.95rem;
+    }
+    .hero-arrow.prev { left: 8px; }
+    .hero-arrow.next { right: 8px; }
+  }
+
+  /* Touch swipe support */
+  .hero { touch-action: pan-y; }
 
   .marquee-strip {
     background: linear-gradient(90deg, var(--h800) 0%, var(--h700) 50%, var(--h800) 100%);
@@ -899,7 +936,7 @@
   }
 
   /* ══════════════════════════════════════════
-     OUR INSPIRATION — compact spotlight card
+     OUR INSPIRATION
      ══════════════════════════════════════════ */
   .inspiration-section {
     background: linear-gradient(170deg, #FFF8E8 0%, var(--amber-warm) 55%, #FFF3CC 100%);
@@ -932,7 +969,6 @@
     z-index: 2;
   }
 
-  /* ── Section heading ── */
   .insp-section-heading {
     text-align: center;
     margin-bottom: 40px;
@@ -1001,7 +1037,6 @@
     flex-shrink: 0;
   }
 
-  /* ── Spotlight card ── */
   .insp-card {
     background: var(--amber-card);
     border: 1px solid rgba(181,107,0,0.16);
@@ -1337,6 +1372,51 @@
   .footer-bottom-logo { color: var(--amber-comb); font-family: "Playfair Display", serif; font-size: 1.05rem; }
 
   /* ══════════════════════
+     VIDEO SECTION
+     ══════════════════════ */
+  .company-video-section {
+    background: var(--h900);
+    padding: 60px 56px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .company-video-section::before {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,208,96,0.30), transparent);
+  }
+
+  .video-outer {
+    max-width: 1040px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .video-container {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    border-radius: 24px;
+    box-shadow: 0 16px 48px rgba(46,21,0,0.45);
+  }
+
+  .video-container video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* ══════════════════════
      RESPONSIVE
      ══════════════════════ */
   @media (max-width: 1024px) {
@@ -1383,6 +1463,17 @@
     }
     .header-nav a { font-size: 0.78rem; padding: 6px 14px; letter-spacing: 0.5px; }
 
+    /* Hero — tablet */
+    .hero { height: clamp(220px, 65vw, 420px); }
+    .hero-overlay {
+      background: linear-gradient(
+        to top,
+        rgba(46,21,0,0.60) 0%,
+        rgba(46,21,0,0.18) 40%,
+        transparent 68%
+      );
+    }
+
     .company-profile { padding: 48px 20px; }
     .cp-header { flex-direction: column; align-items: flex-start; gap: 18px; margin-bottom: 32px; }
     .cp-header-tagline { max-width: 100%; }
@@ -1426,13 +1517,26 @@
     .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; margin-bottom: 40px; }
     .footer-grid > div:first-child { grid-column: 1 / -1; }
     .footer-bottom { flex-direction: column; gap: 10px; text-align: center; padding-top: 20px; }
+
+    .company-video-section { padding: 40px 16px; }
   }
 
   @media (max-width: 480px) {
     .site-header { padding: 0 16px; }
     .header-logo { font-size: 1.2rem; padding: 10px 0 9px; }
     .header-nav a { font-size: 0.78rem; padding: 5px 11px; }
-    .hero-cta-hint { display: none; }
+
+    /* Hero — phone */
+    .hero { height: clamp(200px, 68vw, 340px); }
+    .hero-cta-wrap { bottom: 32px; }
+    .hero-overlay {
+      background: linear-gradient(
+        to top,
+        rgba(46,21,0,0.65) 0%,
+        rgba(46,21,0,0.20) 40%,
+        transparent 65%
+      );
+    }
 
     .company-profile { padding: 40px 16px; }
     .cp-headline { font-size: 1.6rem; }
@@ -1464,55 +1568,6 @@
     .footer-grid { grid-template-columns: 1fr; gap: 28px; }
     .footer-grid > div:first-child { grid-column: auto; }
   }
-
-  /* ══════════════════════
-     VIDEO SECTION
-     ══════════════════════ */
-  .company-video-section {
-    background: var(--h900);
-    padding: 60px 56px;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .company-video-section::before {
-    content: '';
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(255,208,96,0.30), transparent);
-  }
-
-  .video-outer {
-    max-width: 1040px;
-    margin: 0 auto;
-    position: relative;
-    z-index: 1;
-  }
-
-  .video-container {
-    position: relative;
-    width: 100%;
-    padding-bottom: 56.25%;
-    height: 0;
-    overflow: hidden;
-    border-radius: 24px;
-    box-shadow: 0 16px 48px rgba(46,21,0,0.45);
-  }
-
-  .video-container video {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
-
-  @media (max-width: 768px) {
-    .company-video-section { padding: 40px 16px; }
-  }
 </style>
 </head>
 <body>
@@ -1526,7 +1581,7 @@
 </header>
 
 <!-- Hero Slider Section -->
-<div class="hero">
+<div class="hero" id="heroSlider">
   <div class="hero-slider-container">
     <div class="hero-slide active">
       <img src="hro_banner.png" alt="Mithas ice cream – Premium traditional Indian ice cream">
@@ -1547,11 +1602,21 @@
       <img src="0I9A2324.jpg.jpeg" alt="Mithas Nutty Chocobar – Chocolate with roasted nuts">
     </div>
   </div>
+
+  <!-- Gradient overlay for legibility -->
   <div class="hero-overlay"></div>
+
+  <!-- Prev / Next arrows -->
+  <button class="hero-arrow prev" id="heroPrev" aria-label="Previous slide">&#8249;</button>
+  <button class="hero-arrow next" id="heroNext" aria-label="Next slide">&#8250;</button>
+
+  <!-- Dot indicators -->
   <div class="hero-slider-dots" id="heroSliderDots"></div>
+
+  <!-- CTA / swipe hint -->
   <div class="hero-cta-wrap">
-  
     <p class="hero-cta-hint">Scroll to discover</p>
+    <p class="hero-swipe-hint">Swipe to explore</p>
   </div>
 </div>
 
@@ -1561,57 +1626,6 @@
     Made with Real Milk <span>✦</span> No Artificial Colours <span>✦</span> 50+ Flavours <span>✦</span> Pan India Delivery <span>✦</span> Premium Quality <span>✦</span> Cold-Pressed Ingredients <span>✦</span>
   </div>
 </div>
-
-<!-- Remaining Banner Section -->
-<div class="remaining-banner reveal">
-  <div class="banner-outer">
-    <div class="banner-grid">
-      <div class="banner-content">
-        <h2>Premium Ice Cream, <em>Crafted Fresh</em></h2>
-        <p>Every scoop of Mithas tells a story of real milk, fresh cream, and carefully selected ingredients. We believe in quality over quantity, tradition over shortcuts, and genuine taste over artificial flavors.</p>
-        <div class="banner-cta-group">
-          <a href="#company" class="banner-cta-primary">Learn Our Story →</a>
-          <a href="#contact" class="banner-cta-secondary">Get in Touch</a>
-        </div>
-      </div>
-      <div class="banner-highlights">
-        <div class="highlight-card">
-          <span class="highlight-icon">🥛</span>
-          <div class="highlight-title">Real Dairy</div>
-          <div class="highlight-text">Made with full-fat milk and fresh cream from trusted dairies within 200km of our facility.</div>
-        </div>
-        <div class="highlight-card">
-          <span class="highlight-icon">✨</span>
-          <div class="highlight-title">Premium Ingredients</div>
-          <div class="highlight-text">Real saffron, whole fruits, roasted nuts, and zero artificial colours or preservatives.</div>
-        </div>
-        <div class="highlight-card">
-          <span class="highlight-icon">🏭</span>
-          <div class="highlight-title">Modern Facility</div>
-          <div class="highlight-text">FSSAI-registered production with state-of-the-art technology ensuring hygienic quality.</div>
-        </div>
-        <div class="highlight-card">
-          <span class="highlight-icon">🚚</span>
-          <div class="highlight-title">Pan India Reach</div>
-          <div class="highlight-text">300+ retail outlets across Chennai, Chengalpattu, Tiruvallur, and Kanchipuram districts.</div>
-        </div>
-      </div>
-    </div>
-</div>
-</div>
-
-<!-- COMPANY VIDEO SECTION -->
-<section class="company-video-section">
-  <div class="video-outer">
-    <div class="video-container">
-      <video width="1040" height="585" controls autoplay muted loop>
-        <source src="https://res.cloudinary.com/djmgorf8l/video/upload/v1783279178/MITHAS_AD_02_FI_V1_osbjfi.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
-    </div>
-  </div>
-</section>
-
 <section id="company" class="company-profile">
   <div class="cp-outer">
 
@@ -1624,7 +1638,6 @@
     </div>
 
     <div class="cp-body">
-
       <div class="cp-about-card reveal">
         <div class="cp-about-icon">🏭</div>
         <p class="cp-card-label">About Mithas</p>
@@ -1651,6 +1664,20 @@
         </div>
       </div>
 
+<!-- COMPANY VIDEO SECTION -->
+<section class="company-video-section">
+  <div class="video-outer">
+    <div class="video-container">
+      <video width="1040" height="585" controls autoplay muted loop>
+        <source src="https://res.cloudinary.com/djmgorf8l/video/upload/v1783279178/MITHAS_AD_02_FI_V1_osbjfi.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+  </div>
+</section>
+
+
+
       <div class="cp-franchise-card reveal">
         <div class="cp-franchise-badge">
           <div class="cp-franchise-badge-dot"></div>
@@ -1672,7 +1699,6 @@
           <span class="cp-franchise-cta-arrow">→</span>
         </a>
       </div>
-
     </div>
 
     <div class="cp-why-strip reveal">
@@ -1718,13 +1744,9 @@
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════════
-     OUR INSPIRATION — compact spotlight card
-     ══════════════════════════════════════════════ -->
+<!-- OUR INSPIRATION -->
 <div id="inspiration" class="inspiration-section">
   <div class="insp-outer">
-
-    <!-- Section Heading -->
     <div class="insp-section-heading reveal">
       <p class="insp-section-eyebrow">Our Inspiration</p>
       <h2 class="insp-section-title">Our Visionary <em>Role Model</em></h2>
@@ -1737,7 +1759,6 @@
 
     <div class="insp-card reveal">
       <div class="insp-ribbon">A Guiding Light</div>
-
       <div class="insp-photo-col">
         <div class="insp-oval-frame">
           <span class="insp-oval-accent top"></span>
@@ -1755,20 +1776,16 @@
         <h2 class="insp-headline">He didn't just inspire us — he <em>became</em> our purpose.</h2>
         <p class="insp-text">We believe that God doesn't always come before us in person. Instead, He sends extraordinary individuals whose lives, values, and achievements inspire others to dream bigger and build something meaningful. To us, Mr. Rajiv Khanna is one such person.</p>
         <p class="insp-text">The journey of Mithas Ice Cream has been inspired by his dedication, humility, innovation, and commitment to excellence. His example motivates us to create products that bring happiness, trust, and sweetness into every home.</p>
-
         <div class="insp-tags-row">
           <span class="insp-pill">🌟 Dedication</span>
           <span class="insp-pill">🙏 Humility</span>
           <span class="insp-pill">💡 Innovation</span>
         </div>
-
         <div class="insp-quote-strip">
           <p>"Success is measured by the <em>inspiration we pass on</em> to others. Thank you, Sir." <span>— Founders, Mithas Ice Cream</span></p>
         </div>
       </div>
-
     </div>
-
   </div>
 </div>
 
@@ -1833,19 +1850,22 @@
 
 <script>
   // ════════════════════════════════════════
-  // HERO IMAGE SLIDER
+  // HERO IMAGE SLIDER — with touch/swipe support
   // ════════════════════════════════════════
   const heroSlides = document.querySelectorAll('.hero-slide');
   const heroDotsContainer = document.getElementById('heroSliderDots');
+  const heroPrevBtn = document.getElementById('heroPrev');
+  const heroNextBtn = document.getElementById('heroNext');
   let currentSlide = 0;
   const totalSlides = heroSlides.length;
-  const slideInterval = 5000; // 5 seconds per slide
+  const slideInterval = 5000;
+  let autoTimer;
 
   // Create dots
   for (let i = 0; i < totalSlides; i++) {
     const dot = document.createElement('div');
-    dot.className = `hero-dot ${i === 0 ? 'active' : ''}`;
-    dot.addEventListener('click', () => goToSlide(i));
+    dot.className = 'hero-dot' + (i === 0 ? ' active' : '');
+    dot.addEventListener('click', () => { goToSlide(i); resetTimer(); });
     heroDotsContainer.appendChild(dot);
   }
 
@@ -1859,12 +1879,45 @@
     heroDots[currentSlide].classList.add('active');
   }
 
-  function nextSlide() {
-    goToSlide(currentSlide + 1);
+  function resetTimer() {
+    clearInterval(autoTimer);
+    autoTimer = setInterval(() => goToSlide(currentSlide + 1), slideInterval);
   }
 
-  // Auto-advance slides
-  setInterval(nextSlide, slideInterval);
+  autoTimer = setInterval(() => goToSlide(currentSlide + 1), slideInterval);
+
+  heroPrevBtn.addEventListener('click', () => { goToSlide(currentSlide - 1); resetTimer(); });
+  heroNextBtn.addEventListener('click', () => { goToSlide(currentSlide + 1); resetTimer(); });
+
+  // Touch / swipe support
+  const heroEl = document.getElementById('heroSlider');
+  let touchStartX = 0;
+  let touchStartY = 0;
+
+  heroEl.addEventListener('touchstart', (e) => {
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+  }, { passive: true });
+
+  heroEl.addEventListener('touchend', (e) => {
+    const dx = e.changedTouches[0].clientX - touchStartX;
+    const dy = e.changedTouches[0].clientY - touchStartY;
+    // Only register horizontal swipes (dx > dy threshold)
+    if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) {
+      goToSlide(dx < 0 ? currentSlide + 1 : currentSlide - 1);
+      resetTimer();
+    }
+  }, { passive: true });
+
+  // Keyboard arrow support
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft') { goToSlide(currentSlide - 1); resetTimer(); }
+    if (e.key === 'ArrowRight') { goToSlide(currentSlide + 1); resetTimer(); }
+  });
+
+  // Pause on hover (desktop)
+  heroEl.addEventListener('mouseenter', () => clearInterval(autoTimer));
+  heroEl.addEventListener('mouseleave', resetTimer);
 
   // ════════════════════════════════════════
   // HEADER SCROLL EFFECT
