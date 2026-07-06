@@ -1417,6 +1417,337 @@
   }
 
   /* ══════════════════════
+     AD CAMPAIGNS SECTION
+     ══════════════════════ */
+  .ad-campaigns-section {
+    background: linear-gradient(160deg, var(--amber-bg) 0%, var(--amber-warm) 100%);
+    padding: 80px 56px;
+    position: relative;
+    overflow: hidden;
+  }
+  .ad-campaigns-section::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--h300), var(--honey), var(--h300), transparent);
+  }
+  .ad-campaigns-section::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0.025;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='100'%3E%3Cpolygon points='28,2 54,16 54,44 28,58 2,44 2,16' fill='none' stroke='%23B56B00' stroke-width='1.5'/%3E%3C/svg%3E");
+    pointer-events: none;
+  }
+
+  .ad-outer {
+    max-width: 1040px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .ad-section-header {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+
+  .ad-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.68rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--honey-rich);
+    font-weight: 700;
+    margin-bottom: 14px;
+  }
+  .ad-eyebrow::before, .ad-eyebrow::after {
+    content: '';
+    width: 36px;
+    height: 1.5px;
+    background: linear-gradient(90deg, transparent, var(--honey-rich));
+    display: inline-block;
+    flex-shrink: 0;
+    opacity: 0.55;
+  }
+  .ad-eyebrow::after { background: linear-gradient(90deg, var(--honey-rich), transparent); }
+
+  .ad-section-title {
+    font-family: "Playfair Display", serif;
+    font-size: 2.4rem;
+    font-weight: 800;
+    color: var(--h900);
+    line-height: 1.2;
+    letter-spacing: -0.4px;
+    margin-bottom: 12px;
+  }
+  .ad-section-title em { font-style: italic; color: var(--honey-deep); }
+
+  .ad-section-sub {
+    font-size: 0.9rem;
+    color: var(--body-text);
+    max-width: 480px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  /* Featured hero ad video (large) */
+  .ad-featured {
+    margin-bottom: 28px;
+  }
+
+  .ad-featured-wrapper {
+    position: relative;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 16px 48px rgba(46,21,0,0.22);
+    background: var(--h900);
+  }
+
+  .ad-featured-wrapper video {
+    width: 100%;
+    display: block;
+    max-height: 540px;
+    object-fit: cover;
+  }
+
+  .ad-featured-label {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 28px 32px 24px;
+    background: linear-gradient(to top, rgba(46,21,0,0.80) 0%, transparent 100%);
+  }
+
+  .ad-featured-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: rgba(255,208,96,0.20);
+    border: 1px solid rgba(255,208,96,0.35);
+    border-radius: 99px;
+    padding: 5px 14px 5px 10px;
+    margin-bottom: 8px;
+  }
+  .ad-featured-badge-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--amber-comb);
+    animation: pulse-dot 2s ease-in-out infinite;
+  }
+  .ad-featured-badge span {
+    font-size: 0.6rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--amber-comb);
+    font-weight: 700;
+  }
+
+  .ad-featured-title {
+    font-family: "Playfair Display", serif;
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--amber-warm);
+    line-height: 1.25;
+  }
+  .ad-featured-title em { font-style: italic; color: var(--amber-comb); }
+
+  /* Grid of smaller ad videos */
+  .ad-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .ad-card {
+    border-radius: 18px;
+    overflow: hidden;
+    background: var(--amber-card);
+    border: 1px solid rgba(181,107,0,0.18);
+    box-shadow: var(--shadow-md);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+  }
+  .ad-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 40px rgba(46,21,0,0.18);
+  }
+
+  .ad-card video {
+    width: 100%;
+    display: block;
+    height: 200px;
+    object-fit: cover;
+    background: var(--h900);
+  }
+
+  .ad-card-info {
+    padding: 18px 20px 16px;
+  }
+
+  .ad-card-tag {
+    font-size: 0.58rem;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--honey-rich);
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+
+  .ad-card-title {
+    font-family: "Playfair Display", serif;
+    font-size: 1rem;
+    font-weight: 800;
+    color: var(--h900);
+    line-height: 1.3;
+  }
+
+  .ad-card-desc {
+    font-size: 0.78rem;
+    color: var(--body-text);
+    margin-top: 4px;
+    line-height: 1.55;
+  }
+
+  /* ══════════════════════
+     MENU SHOWCASE SECTION
+     ══════════════════════ */
+  .menu-showcase {
+    background: var(--h900);
+    padding: 72px 56px;
+    position: relative;
+    overflow: hidden;
+  }
+  .menu-showcase::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--amber-comb), var(--h300), var(--amber-comb), transparent);
+  }
+  .menu-showcase::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0.04;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='100'%3E%3Cpolygon points='28,2 54,16 54,44 28,58 2,44 2,16' fill='none' stroke='%23FFD060' stroke-width='1.5'/%3E%3C/svg%3E");
+    pointer-events: none;
+  }
+
+  .menu-outer {
+    max-width: 1040px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .menu-header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .menu-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.68rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--amber-comb);
+    font-weight: 700;
+    margin-bottom: 14px;
+  }
+  .menu-eyebrow::before, .menu-eyebrow::after {
+    content: '';
+    width: 36px;
+    height: 1.5px;
+    background: linear-gradient(90deg, transparent, var(--amber-comb));
+    display: inline-block;
+    flex-shrink: 0;
+    opacity: 0.55;
+  }
+  .menu-eyebrow::after { background: linear-gradient(90deg, var(--amber-comb), transparent); }
+
+  .menu-title {
+    font-family: "Playfair Display", serif;
+    font-size: 2.4rem;
+    font-weight: 800;
+    color: var(--amber-warm);
+    line-height: 1.2;
+    letter-spacing: -0.4px;
+  }
+  .menu-title em { font-style: italic; color: var(--amber-comb); }
+
+  .menu-image-wrap {
+    position: relative;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.45);
+  }
+
+  .menu-image-wrap img {
+    width: 100%;
+    display: block;
+    height: 300px;
+    transition: transform 0.6s ease;
+  }
+  .menu-image-wrap:hover img { transform: scale(1.02); }
+
+  .menu-image-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(46,21,0,0.70) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  .menu-image-cta {
+    position: absolute;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--amber-comb);
+    color: var(--h900);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 800;
+    letter-spacing: 0.4px;
+    padding: 14px 36px;
+    border-radius: 99px;
+    box-shadow: 0 8px 28px rgba(46,21,0,0.35);
+    transition: all 0.3s ease;
+    white-space: nowrap;
+  }
+  .menu-image-cta:hover {
+    background: #FFE080;
+    transform: translateX(-50%) translateY(-3px);
+    box-shadow: 0 14px 36px rgba(46,21,0,0.45);
+  }
+
+  @media (max-width: 768px) {
+    .ad-campaigns-section { padding: 56px 20px; }
+    .ad-section-title { font-size: 1.8rem; }
+    .ad-grid { grid-template-columns: 1fr; }
+    .menu-showcase { padding: 56px 20px; }
+    .menu-title { font-size: 1.8rem; }
+    .menu-image-cta { font-size: 0.82rem; padding: 12px 28px; }
+  }
+  @media (max-width: 480px) {
+    .ad-campaigns-section { padding: 40px 16px; }
+    .ad-section-title { font-size: 1.5rem; }
+    .ad-featured-title { font-size: 1.2rem; }
+    .menu-showcase { padding: 40px 16px; }
+    .menu-title { font-size: 1.5rem; }
+    .menu-image-cta { bottom: 16px; font-size: 0.78rem; padding: 10px 22px; }
+  }
+
+  /* ══════════════════════
      RESPONSIVE
      ══════════════════════ */
   @media (max-width: 1024px) {
@@ -1576,6 +1907,7 @@
   <ul class="header-nav">
     <li><a href="#" class="active">Home</a></li>
     <li><a href="index1.html">Menu</a></li>
+    <li><a href="index2.html">Franchise</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
 </header>
@@ -1596,10 +1928,16 @@
       <img src="0I9A2291.jpg (1).jpeg" alt="Mithas Mango Popsicle – Real mango ice cream">
     </div>
     <div class="hero-slide">
+      <img src="0I9A2291.jpg.jpeg" alt="Mithas Strawberry Delight – Fresh strawberry ice cream">
+    </div>
+    <div class="hero-slide">
       <img src="0I9A2314.jpg.jpeg" alt="Mithas Classic Chocobar – Premium chocolate ice cream">
     </div>
     <div class="hero-slide">
-      <img src="0I9A2324.jpg.jpeg" alt="Mithas Nutty Chocobar – Chocolate with roasted nuts">
+      <img src="0I9A2324.jpg (1).jpeg" alt="Mithas Nutty Chocobar – Chocolate with roasted nuts">
+    </div>
+    <div class="hero-slide">
+      <img src="0I9A2324.jpg.jpeg" alt="Mithas Gold Edition – Premium artisan ice cream">
     </div>
   </div>
 
@@ -1668,8 +2006,8 @@
 <section class="company-video-section">
   <div class="video-outer">
     <div class="video-container">
-      <video width="1040" height="585" controls autoplay muted loop>
-        <source src="https://res.cloudinary.com/djmgorf8l/video/upload/v1783279178/MITHAS_AD_02_FI_V1_osbjfi.mp4" type="video/mp4">
+      <video controls autoplay muted loop playsinline>
+        <source src="MITHAS_AD 02_FI V1.mp4" type="video/mp4">
         Your browser does not support the video tag.
       </video>
     </div>
@@ -1741,6 +2079,82 @@
       <p class="cp-vision-label">Vision · Mithas Ice Cream</p>
     </div>
 
+  </div>
+</section>
+
+<!-- AD CAMPAIGNS SECTION -->
+<section class="ad-campaigns-section" id="campaigns">
+  <div class="ad-outer">
+    <div class="ad-section-header reveal">
+      <p class="ad-eyebrow">Our Campaigns</p>
+      <h2 class="ad-section-title">Taste the <em>Story</em> We Tell</h2>
+      <p class="ad-section-sub">Every frame of our ads is crafted with the same love we pour into our ice cream — watch how Mithas brings joy to life.</p>
+    </div>
+
+    <!-- Featured Ad: mithas.mp4 -->
+    <div class="ad-featured reveal">
+      <div class="ad-featured-wrapper">
+        <video controls muted loop playsinline preload="metadata">
+          <source src="mithas.mp4" type="video/mp4">
+        </video>
+        <div class="ad-featured-label">
+          <div class="ad-featured-badge">
+            <div class="ad-featured-badge-dot"></div>
+            <span>Brand Film · Mithas</span>
+          </div>
+          <div class="ad-featured-title">The <em>Mithas</em> Story — More Than Ice Cream</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3-column ad grid -->
+    <div class="ad-grid">
+      <div class="ad-card reveal">
+        <video controls muted loop playsinline preload="metadata">
+          <source src="MITHAS_AD 02_FI V1.mp4" type="video/mp4">
+        </video>
+        <div class="ad-card-info">
+          <p class="ad-card-tag">TV Commercial · Ad 02</p>
+          <div class="ad-card-title">Premium Parlour Experience</div>
+          <div class="ad-card-desc">Showcasing the Mithas premium parlour ambience and signature flavours.</div>
+        </div>
+      </div>
+      <div class="ad-card reveal">
+        <video controls muted loop playsinline preload="metadata">
+          <source src="MITHAS_AD 03_F UP.mp4" type="video/mp4">
+        </video>
+        <div class="ad-card-info">
+          <p class="ad-card-tag">TV Commercial · Ad 03</p>
+          <div class="ad-card-title">Fresh Up — Natural Ingredients</div>
+          <div class="ad-card-desc">Highlighting our farm-to-cone promise with real milk, fruits, and no artificial colours.</div>
+        </div>
+      </div>
+      <div class="ad-card reveal">
+        <video controls muted loop playsinline preload="metadata">
+          <source src="ice cream with voice.mp4" type="video/mp4">
+        </video>
+        <div class="ad-card-info">
+          <p class="ad-card-tag">Product Spotlight</p>
+          <div class="ad-card-title">Ice Cream With a Voice</div>
+          <div class="ad-card-desc">A fun, vibrant product showcase bringing the joy of Mithas ice cream to life.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MENU SHOWCASE -->
+<section class="menu-showcase" id="menu">
+  <div class="menu-outer">
+    <div class="menu-header reveal">
+      <p class="menu-eyebrow">Our Franchise Products Menu</p>
+      <h2 class="menu-title">50+ Flavours of <em>Pure Happiness</em></h2>
+    </div>
+    <div class="menu-image-wrap reveal">
+      <img src="franchise1.png" alt="Mithas Ice Cream Menu – 50+ Premium Flavours including kulfi, bars, cones and sundaes">
+      <div class="menu-image-overlay"></div>
+      <a href="index2.html" class="menu-image-cta">Explore Full Menu →</a>
+    </div>
   </div>
 </section>
 
