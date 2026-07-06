@@ -531,98 +531,845 @@
 
   /* ══════════════════════════════════════════
      COMPANY PROFILE SECTION
-     ═════════════════════════════════════════ */
-  .company-profile-section {
+     ══════════════════════════════════════════ */
+  .company-profile {
     background: var(--amber-bg);
-    padding: clamp(60px, 12vw, 120px) 56px;
+    padding: 80px 56px;
     position: relative;
     overflow: hidden;
   }
 
-  .company-profile-section::before {
+  .company-profile::before {
     content: '';
     position: absolute;
     top: 0; left: 0; right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(181,107,0,0.25), transparent);
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--h300), var(--honey), var(--h300), transparent);
   }
 
-  .company-profile-outer {
+  .company-profile::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(181,107,0,0.20), transparent);
+  }
+
+  .cp-outer {
     max-width: 1040px;
     margin: 0 auto;
     position: relative;
     z-index: 1;
   }
 
-  .company-profile-grid {
+  .cp-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 32px;
+    margin-bottom: 48px;
+  }
+
+  .cp-eyebrow {
+    font-size: 0.68rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--honey-deep);
+    font-weight: 700;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .cp-eyebrow::before {
+    content: '';
+    width: 24px; height: 1.5px;
+    background: var(--honey-deep);
+    display: inline-block;
+    flex-shrink: 0;
+    opacity: 0.6;
+  }
+
+  .cp-headline {
+    font-family: "Playfair Display", serif;
+    font-size: 2.6rem;
+    font-weight: 800;
+    line-height: 1.18;
+    color: var(--h900);
+    letter-spacing: -0.4px;
+  }
+  .cp-headline em { font-style: italic; color: var(--honey-deep); }
+
+  .cp-header-tagline {
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted-text);
+    border-left: 3px solid var(--h300);
+    padding-left: 14px;
+    line-height: 1.6;
+    max-width: 260px;
+    flex-shrink: 0;
+  }
+
+  .cp-body {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 80px;
-    align-items: center;
-  }
-
-  .company-profile-content h2 {
-    font-family: "Playfair Display", serif;
-    font-size: 2.8rem;
-    font-weight: 700;
-    color: var(--h800);
-    line-height: 1.2;
+    gap: 24px;
     margin-bottom: 24px;
-    letter-spacing: -0.3px;
   }
 
-  .company-profile-content h2 em {
+  .cp-about-card {
+    background: var(--amber-card);
+    border: 1px solid rgba(181,107,0,0.15);
+    border-radius: 20px;
+    padding: 36px 36px 32px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+  }
+  .cp-about-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 4px;
+    background: linear-gradient(90deg, var(--h300), var(--h600));
+  }
+
+  .cp-about-icon {
+    width: 42px; height: 42px;
+    background: linear-gradient(135deg, var(--amber-comb), var(--h300));
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem;
+    margin-bottom: 18px;
+    box-shadow: 0 4px 12px rgba(46,21,0,0.12);
+  }
+
+  .cp-card-label {
+    font-size: 0.63rem;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--honey-rich);
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .cp-card-title {
+    font-family: "Playfair Display", serif;
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: var(--h900);
+    margin-bottom: 12px;
+    line-height: 1.25;
+  }
+
+  .cp-card-text {
+    font-size: 0.84rem;
+    color: var(--body-text);
+    line-height: 1.75;
+    margin-bottom: 20px;
+  }
+
+  .cp-stat-row {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .cp-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgba(255,208,96,0.18);
+    border: 1px solid rgba(181,107,0,0.18);
+    border-radius: 12px;
+    padding: 12px 18px;
+    min-width: 80px;
+    text-align: center;
+  }
+  .cp-stat-num {
+    font-family: "Playfair Display", serif;
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--h900);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .cp-stat-label {
+    font-size: 0.58rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--muted-text);
+    font-weight: 600;
+    line-height: 1.3;
+  }
+
+  .cp-franchise-card {
+    background: linear-gradient(148deg, var(--h900) 0%, var(--h800) 100%);
+    border-radius: 20px;
+    padding: 36px 36px 32px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+  }
+  .cp-franchise-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0.06;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Ccircle cx='20' cy='20' r='1.5' fill='%23FFD060'/%3E%3C/svg%3E");
+    pointer-events: none;
+  }
+  .cp-franchise-card::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 4px;
+    background: linear-gradient(90deg, var(--amber-comb), var(--h300), var(--amber-comb));
+  }
+
+  .cp-franchise-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255,208,96,0.15);
+    border: 1px solid rgba(255,208,96,0.25);
+    border-radius: 99px;
+    padding: 5px 14px 5px 10px;
+    margin-bottom: 18px;
+  }
+  .cp-franchise-badge-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--amber-comb);
+    animation: pulse-dot 2s ease-in-out infinite;
+  }
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.6; transform: scale(1.2); }
+  }
+  .cp-franchise-badge span {
+    font-size: 0.6rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--amber-comb);
+    font-weight: 700;
+  }
+
+  .cp-franchise-title {
+    font-family: "Playfair Display", serif;
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: var(--amber-warm);
+    margin-bottom: 12px;
+    line-height: 1.25;
+  }
+  .cp-franchise-title em { font-style: italic; color: var(--amber-comb); }
+
+  .cp-franchise-text {
+    font-size: 0.84rem;
+    color: rgba(255,223,160,0.60);
+    line-height: 1.75;
+    margin-bottom: 22px;
+  }
+
+  .cp-flavour-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    margin-bottom: 22px;
+  }
+  .cp-flavour-tag {
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--h900);
+    background: var(--amber-comb);
+    border-radius: 99px;
+    padding: 5px 12px;
+    white-space: nowrap;
+  }
+  .cp-flavour-tag.light {
+    color: var(--amber-comb);
+    background: rgba(255,208,96,0.12);
+    border: 1px solid rgba(255,208,96,0.22);
+  }
+
+  .cp-franchise-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--h900);
+    background: var(--amber-comb);
+    padding: 11px 22px;
+    border-radius: 99px;
+    text-decoration: none;
+    letter-spacing: 0.3px;
+    transition: background 0.25s, transform 0.2s, box-shadow 0.25s;
+    box-shadow: 0 4px 16px rgba(46,21,0,0.25);
+  }
+  .cp-franchise-cta:hover {
+    background: #FFE080;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(46,21,0,0.35);
+  }
+  .cp-franchise-cta-arrow {
+    width: 22px; height: 22px;
+    background: var(--h900);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.75rem;
+    transition: transform 0.25s;
+  }
+  .cp-franchise-cta:hover .cp-franchise-cta-arrow { transform: translateX(3px); }
+
+  .cp-why-strip {
+    background: linear-gradient(90deg, var(--amber-card), var(--amber-warm), var(--amber-card));
+    border: 1px solid rgba(181,107,0,0.14);
+    border-radius: 20px;
+    padding: 28px 36px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+    position: relative;
+  }
+  .cp-why-strip::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 4px; height: 100%;
+    background: linear-gradient(180deg, var(--h300), var(--h600));
+  }
+
+  .cp-why-label {
+    font-size: 0.62rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--honey-rich);
+    font-weight: 700;
+    white-space: nowrap;
+    flex-shrink: 0;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    transform: rotate(180deg);
+  }
+
+  .cp-why-divider {
+    width: 1px;
+    height: 64px;
+    background: rgba(181,107,0,0.20);
+    flex-shrink: 0;
+  }
+
+  .cp-why-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    flex: 1;
+  }
+
+  .cp-why-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 0 18px;
+    position: relative;
+  }
+  .cp-why-item + .cp-why-item::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 4px;
+    width: 1px; height: calc(100% - 8px);
+    background: rgba(181,107,0,0.14);
+  }
+
+  .cp-why-icon {
+    font-size: 1.1rem;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .cp-why-name {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--h900);
+    margin-bottom: 2px;
+    line-height: 1.3;
+  }
+  .cp-why-sub {
+    font-size: 0.7rem;
+    color: var(--muted-text);
+    line-height: 1.4;
+  }
+
+  .cp-vision-strip {
+    margin-top: 24px;
+    text-align: center;
+    padding: 18px 36px;
+    border-radius: 14px;
+    background: rgba(255,208,96,0.10);
+    border: 1px dashed rgba(181,107,0,0.22);
+  }
+  .cp-vision-text {
+    font-family: "Playfair Display", serif;
+    font-size: 0.92rem;
+    font-style: italic;
+    color: var(--h800);
+    line-height: 1.65;
+  }
+  .cp-vision-text strong {
+    font-style: normal;
+    font-weight: 700;
+    color: var(--honey-deep);
+  }
+  .cp-vision-label {
+    margin-top: 6px;
+    font-size: 0.58rem;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--muted-text);
+    font-weight: 600;
+  }
+
+  /* ══════════════════════════════════════════
+     OUR INSPIRATION
+     ══════════════════════════════════════════ */
+  .inspiration-section {
+    background: linear-gradient(170deg, #FFF8E8 0%, var(--amber-warm) 55%, #FFF3CC 100%);
+    position: relative;
+    overflow: hidden;
+    padding: 64px 56px;
+  }
+
+  .inspiration-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0.05;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='100'%3E%3Cpolygon points='28,2 54,16 54,44 28,58 2,44 2,16' fill='none' stroke='%23B56B00' stroke-width='1.5'/%3E%3Cpolygon points='28,58 54,72 54,100 28,114 2,100 2,72' fill='none' stroke='%23B56B00' stroke-width='1.5'/%3E%3C/svg%3E");
+    pointer-events: none;
+  }
+
+  .inspiration-section::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, transparent, var(--h300), var(--honey), var(--h300), transparent);
+  }
+
+  .insp-outer {
+    max-width: 1040px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+  }
+
+  .insp-section-heading {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .insp-section-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.68rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--honey-rich);
+    font-weight: 700;
+    margin-bottom: 14px;
+  }
+  .insp-section-eyebrow::before,
+  .insp-section-eyebrow::after {
+    content: '';
+    width: 36px;
+    height: 1.5px;
+    background: linear-gradient(90deg, transparent, var(--honey-rich));
+    display: inline-block;
+    flex-shrink: 0;
+    opacity: 0.55;
+  }
+  .insp-section-eyebrow::after {
+    background: linear-gradient(90deg, var(--honey-rich), transparent);
+  }
+
+  .insp-section-title {
+    font-family: "Playfair Display", serif;
+    font-size: 2.4rem;
+    font-weight: 800;
+    color: var(--h900);
+    line-height: 1.2;
+    letter-spacing: -0.4px;
+    margin-bottom: 10px;
+  }
+  .insp-section-title em {
     font-style: italic;
     color: var(--honey-deep);
   }
 
-  .company-profile-content p {
-    font-size: 0.95rem;
-    color: var(--body-text);
-    line-height: 1.8;
-    margin-bottom: 20px;
-  }
-
-  .company-profile-content p:last-of-type {
-    margin-bottom: 32px;
-  }
-
-  .company-profile-cta {
-    display: inline-flex;
+  .insp-section-rule {
+    display: flex;
     align-items: center;
-    gap: 8px;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 12px;
+  }
+  .insp-section-rule-line {
+    width: 64px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(181,107,0,0.35));
+  }
+  .insp-section-rule-line.right {
+    background: linear-gradient(90deg, rgba(181,107,0,0.35), transparent);
+  }
+  .insp-section-rule-diamond {
+    width: 7px; height: 7px;
+    background: var(--amber-comb);
+    border: 1.5px solid var(--h600);
+    transform: rotate(45deg);
+    display: inline-block;
+    flex-shrink: 0;
+  }
+
+  .insp-card {
+    background: var(--amber-card);
+    border: 1px solid rgba(181,107,0,0.16);
+    border-radius: 28px;
+    box-shadow: var(--shadow-lg);
+    padding: 40px 44px;
+    display: flex;
+    align-items: center;
+    gap: 44px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .insp-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 6px; height: 100%;
+    background: linear-gradient(180deg, var(--h300), var(--h600));
+  }
+
+  .insp-ribbon {
+    position: absolute;
+    top: 22px;
+    right: -46px;
+    transform: rotate(40deg);
     background: var(--h900);
     color: var(--amber-comb);
-    text-decoration: none;
-    font-size: 0.88rem;
+    font-size: 0.6rem;
     font-weight: 700;
-    letter-spacing: 0.4px;
-    padding: 14px 32px;
-    border-radius: 99px;
-    border: 2px solid var(--h900);
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 16px rgba(46,21,0,0.20);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 5px 52px;
+    box-shadow: 0 3px 10px rgba(46,21,0,0.25);
+    z-index: 3;
   }
 
-  .company-profile-cta:hover {
-    background: var(--h800);
-    border-color: var(--h800);
-    box-shadow: 0 8px 28px rgba(46,21,0,0.30);
-    transform: translateY(-2px);
+  .insp-photo-col {
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    width: 160px;
   }
 
-  .company-profile-image {
+  .insp-oval-frame {
     position: relative;
-    border-radius: 24px;
-    overflow: hidden;
-    box-shadow: 0 16px 48px rgba(46,21,0,0.22);
+    width: 152px;
+    height: 190px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
-
-  .company-profile-image img {
-    width: 100%;
-    height: auto;
+  .insp-oval-frame::before {
+    content: '';
+    position: absolute;
+    inset: -9px;
+    border-radius: 50%;
+    border: 1.5px solid var(--h500);
+    opacity: 0.55;
+  }
+  .insp-oval-frame::after {
+    content: '';
+    position: absolute;
+    inset: -5px;
+    border-radius: 50%;
+    background: linear-gradient(150deg, var(--h300) 0%, var(--h600) 45%, var(--h300) 100%);
+    box-shadow: 0 10px 26px rgba(46,21,0,0.22);
+  }
+  .insp-oval-photo {
+    position: relative;
+    width: 152px;
+    height: 190px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center 12%;
+    border: 4px solid var(--white);
+    z-index: 1;
     display: block;
   }
+  .insp-oval-frame .insp-oval-accent {
+    position: absolute;
+    left: 50%;
+    width: 7px; height: 7px;
+    background: var(--amber-comb);
+    border: 1.5px solid var(--h700);
+    transform: translateX(-50%) rotate(45deg);
+    z-index: 2;
+  }
+  .insp-oval-frame .insp-oval-accent.top { top: -12px; }
+  .insp-oval-frame .insp-oval-accent.bottom { bottom: -12px; }
+
+  .insp-photo-name { text-align: center; }
+  .insp-name {
+    font-family: "Playfair Display", serif;
+    font-size: 1rem;
+    font-weight: 800;
+    color: var(--h900);
+    margin-bottom: 3px;
+  }
+  .insp-title {
+    font-size: 0.58rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted-text);
+    font-weight: 600;
+    line-height: 1.5;
+  }
+
+  .insp-content-col { flex: 1; min-width: 0; }
+
+  .insp-tag {
+    display: inline-block;
+    font-size: 0.62rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--honey-rich);
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+
+  .insp-headline {
+    font-family: "Playfair Display", serif;
+    font-size: 1.7rem;
+    font-weight: 800;
+    line-height: 1.22;
+    color: var(--h900);
+    margin-bottom: 12px;
+    letter-spacing: -0.3px;
+  }
+  .insp-headline em { font-style: italic; color: var(--honey-deep); }
+
+  .insp-text {
+    font-size: 0.83rem;
+    color: var(--body-text);
+    line-height: 1.7;
+    margin-bottom: 10px;
+    max-width: 580px;
+  }
+  .insp-text:last-of-type { margin-bottom: 16px; }
+
+  .insp-tags-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+  .insp-pill {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--h800);
+    background: rgba(255,208,96,0.28);
+    border: 1px solid rgba(181,107,0,0.20);
+    border-radius: 99px;
+    padding: 6px 14px;
+    white-space: nowrap;
+  }
+
+  .insp-quote-strip {
+    border-left: 3px solid var(--h600);
+    padding-left: 14px;
+  }
+  .insp-quote-strip p {
+    font-family: "Playfair Display", serif;
+    font-size: 0.85rem;
+    font-style: italic;
+    color: var(--h800);
+    line-height: 1.6;
+  }
+  .insp-quote-strip em { font-style: normal; font-weight: 700; color: var(--honey-deep); }
+  .insp-quote-strip span {
+    display: block;
+    margin-top: 4px;
+    font-family: "DM Sans", sans-serif;
+    font-size: 0.62rem;
+    font-style: normal;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted-text);
+  }
+
+  /* ══════════════════════
+     PROCESS
+     ══════════════════════ */
+  .process {
+    background: linear-gradient(160deg, var(--h900) 0%, var(--h800) 100%);
+    position: relative;
+    overflow: hidden;
+    padding: 110px 56px;
+  }
+  .process::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0.05;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='100'%3E%3Cpolygon points='28,2 54,16 54,44 28,58 2,44 2,16' fill='none' stroke='%23FFD060' stroke-width='1.5'/%3E%3Cpolygon points='28,58 54,72 54,100 28,114 2,100 2,72' fill='none' stroke='%23FFD060' stroke-width='1.5'/%3E%3C/svg%3E");
+    pointer-events: none;
+  }
+  .process::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--amber-comb), var(--h300), var(--amber-comb), transparent);
+  }
+
+  .proc-eyebrow {
+    font-size: 0.68rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--amber-comb);
+    font-weight: 700;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .proc-eyebrow::before {
+    content: '';
+    width: 28px; height: 1.5px;
+    background: var(--amber-comb);
+    display: inline-block;
+    flex-shrink: 0;
+    opacity: 0.6;
+  }
+  .proc-title {
+    font-family: "Playfair Display", serif;
+    font-size: 3rem;
+    font-weight: 800;
+    line-height: 1.15;
+    color: var(--amber-warm);
+    max-width: 560px;
+    margin-bottom: 12px;
+    position: relative;
+    z-index: 1;
+  }
+  .proc-title em { font-style: italic; color: var(--amber-comb); }
+
+  .process-steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-top: 52px;
+    position: relative;
+    z-index: 1;
+  }
+  .process-step {
+    padding: 36px 26px 32px;
+    background: rgba(255,239,197,0.06);
+    border: 1px solid rgba(255,208,96,0.12);
+    border-radius: 16px;
+    box-shadow: var(--shadow-sm);
+    transition: all 0.35s;
+    position: relative;
+    overflow: hidden;
+  }
+  .process-step::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px; height: 100%;
+    background: linear-gradient(180deg, var(--amber-comb), var(--h500));
+    border-radius: 16px 0 0 16px;
+    opacity: 0;
+    transition: opacity 0.35s;
+  }
+  .process-step:hover::before { opacity: 1; }
+  .process-step:hover {
+    background: rgba(255,239,197,0.11);
+    border-color: rgba(255,208,96,0.30);
+    transform: translateY(-5px);
+    box-shadow: 0 12px 36px rgba(0,0,0,0.30);
+  }
+  .step-num {
+    font-family: "Playfair Display", serif;
+    font-size: 2.8rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--amber-comb), var(--h300));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: block;
+    margin-bottom: 18px;
+    line-height: 1;
+  }
+  .step-title {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: var(--amber-warm);
+    letter-spacing: 0.2px;
+  }
+  .step-desc { font-size: 0.86rem; color: rgba(255,223,160,0.55); line-height: 1.78; }
+
+  /* ══════════════════════
+     FOOTER
+     ══════════════════════ */
+  footer {
+    background: var(--h900);
+    color: rgba(255,208,96,0.45);
+    padding: 72px 56px 36px;
+    position: relative;
+    overflow: hidden;
+  }
+  footer::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0.04;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='100'%3E%3Cpolygon points='28,2 54,16 54,44 28,58 2,44 2,16' fill='none' stroke='%23FFD060' stroke-width='1.5'/%3E%3Cpolygon points='28,58 54,72 54,100 28,114 2,100 2,72' fill='none' stroke='%23FFD060' stroke-width='1.5'/%3E%3C/svg%3E");
+    pointer-events: none;
+  }
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 56px; margin-bottom: 56px; position: relative; z-index: 1; }
+  .footer-brand { font-family: "Playfair Display", serif; font-size: 1.4rem; color: var(--amber-comb); margin-bottom: 10px; }
+  .footer-tagline { font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase; color: var(--honey); margin-bottom: 16px; }
+  .footer-desc { font-size: 0.85rem; line-height: 1.75; color: rgba(255,223,160,0.45); }
+  .footer-col-title { font-size: 0.68rem; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(255,208,96,0.55); font-weight: 600; margin-bottom: 20px; }
+  .footer-links { list-style: none; }
+  .footer-links li { margin-bottom: 12px; }
+  .footer-links a { color: rgba(255,208,96,0.38); text-decoration: none; font-size: 0.85rem; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--amber-comb); }
+  .footer-bottom {
+    border-top: 1px solid rgba(255,208,96,0.08);
+    padding-top: 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.78rem;
+    position: relative;
+    z-index: 1;
+  }
+  .footer-bottom-logo { color: var(--amber-comb); font-family: "Playfair Display", serif; font-size: 1.05rem; }
 
   /* ══════════════════════
      VIDEO SECTION
@@ -673,18 +1420,25 @@
      AD CAMPAIGNS SECTION
      ══════════════════════ */
   .ad-campaigns-section {
-    background: var(--amber-bg);
-    padding: clamp(60px, 12vw, 120px) 56px;
+    background: linear-gradient(160deg, var(--amber-bg) 0%, var(--amber-warm) 100%);
+    padding: 80px 56px;
     position: relative;
     overflow: hidden;
   }
-
   .ad-campaigns-section::before {
     content: '';
     position: absolute;
     top: 0; left: 0; right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(181,107,0,0.25), transparent);
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--h300), var(--honey), var(--h300), transparent);
+  }
+  .ad-campaigns-section::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0.025;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='100'%3E%3Cpolygon points='28,2 54,16 54,44 28,58 2,44 2,16' fill='none' stroke='%23B56B00' stroke-width='1.5'/%3E%3C/svg%3E");
+    pointer-events: none;
   }
 
   .ad-outer {
@@ -696,57 +1450,192 @@
 
   .ad-section-header {
     text-align: center;
-    margin-bottom: 60px;
+    margin-bottom: 48px;
   }
 
   .ad-eyebrow {
-    font-size: 0.72rem;
-    letter-spacing: 3.5px;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.68rem;
+    letter-spacing: 4px;
     text-transform: uppercase;
-    color: var(--honey-deep);
+    color: var(--honey-rich);
     font-weight: 700;
-    margin-bottom: 16px;
+    margin-bottom: 14px;
   }
+  .ad-eyebrow::before, .ad-eyebrow::after {
+    content: '';
+    width: 36px;
+    height: 1.5px;
+    background: linear-gradient(90deg, transparent, var(--honey-rich));
+    display: inline-block;
+    flex-shrink: 0;
+    opacity: 0.55;
+  }
+  .ad-eyebrow::after { background: linear-gradient(90deg, var(--honey-rich), transparent); }
 
   .ad-section-title {
     font-family: "Playfair Display", serif;
-    font-size: 2.8rem;
-    font-weight: 700;
-    color: var(--h800);
+    font-size: 2.4rem;
+    font-weight: 800;
+    color: var(--h900);
     line-height: 1.2;
-    margin-bottom: 16px;
-    letter-spacing: -0.3px;
+    letter-spacing: -0.4px;
+    margin-bottom: 12px;
   }
-
-  .ad-section-title em {
-    font-style: italic;
-    color: var(--honey-deep);
-  }
+  .ad-section-title em { font-style: italic; color: var(--honey-deep); }
 
   .ad-section-sub {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     color: var(--body-text);
-    line-height: 1.75;
-    max-width: 600px;
+    max-width: 480px;
     margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  /* Featured hero ad video (large) */
+  .ad-featured {
+    margin-bottom: 28px;
+  }
+
+  .ad-featured-wrapper {
+    position: relative;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 16px 48px rgba(46,21,0,0.22);
+    background: var(--h900);
+  }
+
+  .ad-featured-wrapper video {
+    width: 100%;
+    display: block;
+    max-height: 540px;
+    object-fit: cover;
+  }
+
+  .ad-featured-label {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 28px 32px 24px;
+    background: linear-gradient(to top, rgba(46,21,0,0.80) 0%, transparent 100%);
+  }
+
+  .ad-featured-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: rgba(255,208,96,0.20);
+    border: 1px solid rgba(255,208,96,0.35);
+    border-radius: 99px;
+    padding: 5px 14px 5px 10px;
+    margin-bottom: 8px;
+  }
+  .ad-featured-badge-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--amber-comb);
+    animation: pulse-dot 2s ease-in-out infinite;
+  }
+  .ad-featured-badge span {
+    font-size: 0.6rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--amber-comb);
+    font-weight: 700;
+  }
+
+  .ad-featured-title {
+    font-family: "Playfair Display", serif;
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--amber-warm);
+    line-height: 1.25;
+  }
+  .ad-featured-title em { font-style: italic; color: var(--amber-comb); }
+
+  /* Grid of smaller ad videos */
+  .ad-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .ad-card {
+    border-radius: 18px;
+    overflow: hidden;
+    background: var(--amber-card);
+    border: 1px solid rgba(181,107,0,0.18);
+    box-shadow: var(--shadow-md);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+  }
+  .ad-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 40px rgba(46,21,0,0.18);
+  }
+
+  .ad-card video {
+    width: 100%;
+    display: block;
+    height: 200px;
+    object-fit: cover;
+    background: var(--h900);
+  }
+
+  .ad-card-info {
+    padding: 18px 20px 16px;
+  }
+
+  .ad-card-tag {
+    font-size: 0.58rem;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--honey-rich);
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+
+  .ad-card-title {
+    font-family: "Playfair Display", serif;
+    font-size: 1rem;
+    font-weight: 800;
+    color: var(--h900);
+    line-height: 1.3;
+  }
+
+  .ad-card-desc {
+    font-size: 0.78rem;
+    color: var(--body-text);
+    margin-top: 4px;
+    line-height: 1.55;
   }
 
   /* ══════════════════════
-     MENU SHOWCASE
+     MENU SHOWCASE SECTION
      ══════════════════════ */
   .menu-showcase {
     background: var(--h900);
-    padding: clamp(60px, 12vw, 120px) 56px;
+    padding: 72px 56px;
     position: relative;
     overflow: hidden;
   }
-
   .menu-showcase::before {
     content: '';
     position: absolute;
-    bottom: 0; left: 0; right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(255,208,96,0.30), transparent);
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--amber-comb), var(--h300), var(--amber-comb), transparent);
+  }
+  .menu-showcase::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0.04;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='100'%3E%3Cpolygon points='28,2 54,16 54,44 28,58 2,44 2,16' fill='none' stroke='%23FFD060' stroke-width='1.5'/%3E%3C/svg%3E");
+    pointer-events: none;
   }
 
   .menu-outer {
@@ -758,436 +1647,205 @@
 
   .menu-header {
     text-align: center;
-    margin-bottom: 60px;
+    margin-bottom: 40px;
   }
 
   .menu-eyebrow {
-    font-size: 0.72rem;
-    letter-spacing: 3.5px;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.68rem;
+    letter-spacing: 4px;
     text-transform: uppercase;
     color: var(--amber-comb);
     font-weight: 700;
-    margin-bottom: 16px;
+    margin-bottom: 14px;
   }
+  .menu-eyebrow::before, .menu-eyebrow::after {
+    content: '';
+    width: 36px;
+    height: 1.5px;
+    background: linear-gradient(90deg, transparent, var(--amber-comb));
+    display: inline-block;
+    flex-shrink: 0;
+    opacity: 0.55;
+  }
+  .menu-eyebrow::after { background: linear-gradient(90deg, var(--amber-comb), transparent); }
 
   .menu-title {
     font-family: "Playfair Display", serif;
-    font-size: 2.8rem;
-    font-weight: 700;
-    color: var(--amber-comb);
-    line-height: 1.2;
-    margin-bottom: 16px;
-    letter-spacing: -0.3px;
-  }
-
-  .menu-title em {
-    font-style: italic;
+    font-size: 2.4rem;
+    font-weight: 800;
     color: var(--amber-warm);
-  }
-
-  .menu-sub {
-    font-size: 0.95rem;
-    color: rgba(255,223,160,0.75);
-    line-height: 1.75;
-    max-width: 600px;
-    margin: 0 auto;
-  }
-
-  .menu-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 32px;
-  }
-
-  .menu-card {
-    background: rgba(255,255,255,0.08);
-    border: 1px solid rgba(255,208,96,0.15);
-    border-radius: 20px;
-    padding: 28px;
-    backdrop-filter: blur(8px);
-    box-shadow: 0 8px 24px rgba(46,21,0,0.30);
-    transition: all 0.3s ease;
-    text-align: center;
-  }
-
-  .menu-card:hover {
-    background: rgba(255,255,255,0.12);
-    border-color: rgba(255,208,96,0.30);
-    box-shadow: 0 12px 36px rgba(46,21,0,0.40);
-    transform: translateY(-4px);
-  }
-
-  .menu-card-icon {
-    font-size: 3.2rem;
-    margin-bottom: 16px;
-    display: block;
-  }
-
-  .menu-card-title {
-    font-family: "Playfair Display", serif;
-    font-size: 1.3rem;
-    font-weight: 700;
-    color: var(--amber-comb);
-    margin-bottom: 12px;
-  }
-
-  .menu-card-desc {
-    font-size: 0.88rem;
-    color: rgba(255,223,160,0.70);
-    line-height: 1.6;
-  }
-
-  /* ══════════════════════
-     FRANCHISE SECTION
-     ══════════════════════ */
-  .franchise-section {
-    background: var(--amber-bg);
-    padding: clamp(60px, 12vw, 120px) 56px;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .franchise-section::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(181,107,0,0.25), transparent);
-  }
-
-  .franchise-outer {
-    max-width: 1040px;
-    margin: 0 auto;
-    position: relative;
-    z-index: 1;
-  }
-
-  .franchise-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 80px;
-    align-items: center;
-  }
-
-  .franchise-content h2 {
-    font-family: "Playfair Display", serif;
-    font-size: 2.8rem;
-    font-weight: 700;
-    color: var(--h800);
     line-height: 1.2;
-    margin-bottom: 24px;
-    letter-spacing: -0.3px;
+    letter-spacing: -0.4px;
   }
+  .menu-title em { font-style: italic; color: var(--amber-comb); }
 
-  .franchise-content h2 em {
-    font-style: italic;
-    color: var(--honey-deep);
-  }
-
-  .franchise-content p {
-    font-size: 0.95rem;
-    color: var(--body-text);
-    line-height: 1.8;
-    margin-bottom: 20px;
-  }
-
-  .franchise-content p:last-of-type {
-    margin-bottom: 32px;
-  }
-
-  .franchise-cta {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: var(--h900);
-    color: var(--amber-comb);
-    text-decoration: none;
-    font-size: 0.88rem;
-    font-weight: 700;
-    letter-spacing: 0.4px;
-    padding: 14px 32px;
-    border-radius: 99px;
-    border: 2px solid var(--h900);
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 16px rgba(46,21,0,0.20);
-  }
-
-  .franchise-cta:hover {
-    background: var(--h800);
-    border-color: var(--h800);
-    box-shadow: 0 8px 28px rgba(46,21,0,0.30);
-    transform: translateY(-2px);
-  }
-
-  .franchise-image {
+  .menu-image-wrap {
     position: relative;
     border-radius: 24px;
     overflow: hidden;
-    box-shadow: 0 16px 48px rgba(46,21,0,0.22);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.45);
   }
 
-  .franchise-image img {
+  .menu-image-wrap img {
     width: 100%;
-    height: auto;
     display: block;
+    height: 300px;
+    transition: transform 0.6s ease;
   }
+  .menu-image-wrap:hover img { transform: scale(1.02); }
 
-  /* ══════════════════════
-     INSPIRATION SECTION
-     ══════════════════════ */
-  .inspiration-section {
-    background: var(--h900);
-    padding: clamp(60px, 12vw, 120px) 56px;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .inspiration-section::before {
-    content: '';
+  .menu-image-overlay {
     position: absolute;
-    bottom: 0; left: 0; right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(255,208,96,0.30), transparent);
+    inset: 0;
+    background: linear-gradient(to top, rgba(46,21,0,0.70) 0%, transparent 50%);
+    pointer-events: none;
   }
 
-  .inspiration-outer {
-    max-width: 1040px;
-    margin: 0 auto;
-    position: relative;
-    z-index: 1;
-  }
-
-  .inspiration-header {
-    text-align: center;
-    margin-bottom: 60px;
-  }
-
-  .inspiration-eyebrow {
-    font-size: 0.72rem;
-    letter-spacing: 3.5px;
-    text-transform: uppercase;
-    color: var(--amber-comb);
-    font-weight: 700;
-    margin-bottom: 16px;
-  }
-
-  .inspiration-title {
-    font-family: "Playfair Display", serif;
-    font-size: 2.8rem;
-    font-weight: 700;
-    color: var(--amber-comb);
-    line-height: 1.2;
-    margin-bottom: 16px;
-    letter-spacing: -0.3px;
-  }
-
-  .inspiration-title em {
-    font-style: italic;
-    color: var(--amber-warm);
-  }
-
-  .inspiration-sub {
-    font-size: 0.95rem;
-    color: rgba(255,223,160,0.75);
-    line-height: 1.75;
-    max-width: 600px;
-    margin: 0 auto;
-  }
-
-  .inspiration-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 32px;
-  }
-
-  .inspiration-card {
-    background: rgba(255,255,255,0.08);
-    border: 1px solid rgba(255,208,96,0.15);
-    border-radius: 20px;
-    padding: 32px 28px;
-    backdrop-filter: blur(8px);
-    box-shadow: 0 8px 24px rgba(46,21,0,0.30);
-    transition: all 0.3s ease;
-    text-align: center;
-  }
-
-  .inspiration-card:hover {
-    background: rgba(255,255,255,0.12);
-    border-color: rgba(255,208,96,0.30);
-    box-shadow: 0 12px 36px rgba(46,21,0,0.40);
-    transform: translateY(-4px);
-  }
-
-  .insp-avatar {
-    width: 80px;
-    height: 80px;
-    margin: 0 auto 16px;
-    border-radius: 50%;
-    overflow: hidden;
-    border: 2px solid rgba(255,208,96,0.25);
-    display: flex;
+  .menu-image-cta {
+    position: absolute;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: inline-flex;
     align-items: center;
-    justify-content: center;
-    background: rgba(255,208,96,0.08);
-  }
-
-  .insp-oval-photo {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
-
-  .insp-name {
-    font-family: "Playfair Display", serif;
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: var(--amber-comb);
-    margin-bottom: 4px;
-  }
-
-  .insp-role {
-    font-size: 0.75rem;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    color: rgba(255,208,96,0.55);
-    font-weight: 600;
-    margin-bottom: 12px;
-  }
-
-  .insp-quote {
-    font-size: 0.88rem;
-    color: rgba(255,223,160,0.70);
-    line-height: 1.6;
-    font-style: italic;
-  }
-
-  /* ══════════════════════
-     FOOTER
-     ══════════════════════ */
-  footer {
-    background: var(--h900);
-    padding: 60px 56px 40px;
-    position: relative;
-    overflow: hidden;
-    border-top: 1px solid rgba(255,208,96,0.15);
-  }
-
-  footer::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(255,208,96,0.30), transparent);
-  }
-
-  .footer-grid {
-    max-width: 1040px;
-    margin: 0 auto 40px;
-    display: grid;
-    grid-template-columns: 1.5fr 1fr 1fr;
-    gap: 60px;
-    position: relative;
-    z-index: 1;
-  }
-
-  .footer-brand {
-    font-family: "Playfair Display", serif;
-    font-size: 1.3rem;
-    font-weight: 800;
-    color: var(--amber-comb);
-    margin-bottom: 8px;
-    letter-spacing: -0.3px;
-  }
-
-  .footer-tagline {
-    font-size: 0.88rem;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    color: rgba(255,208,96,0.60);
-    font-weight: 600;
-    margin-bottom: 16px;
-  }
-
-  .footer-desc {
-    font-size: 0.82rem;
-    color: rgba(255,223,160,0.65);
-    line-height: 1.6;
-  }
-
-  .footer-col-title {
-    font-family: "Playfair Display", serif;
-    font-size: 0.95rem;
-    font-weight: 700;
-    color: var(--amber-comb);
-    margin-bottom: 20px;
-    letter-spacing: -0.2px;
-  }
-
-  .footer-links {
-    list-style: none;
-  }
-
-  .footer-links li {
-    margin-bottom: 12px;
-  }
-
-  .footer-links a {
-    color: rgba(255,223,160,0.70);
+    gap: 10px;
+    background: var(--amber-comb);
+    color: var(--h900);
     text-decoration: none;
-    font-size: 0.82rem;
-    transition: color 0.25s ease;
+    font-size: 0.9rem;
+    font-weight: 800;
+    letter-spacing: 0.4px;
+    padding: 14px 36px;
+    border-radius: 99px;
+    box-shadow: 0 8px 28px rgba(46,21,0,0.35);
+    transition: all 0.3s ease;
+    white-space: nowrap;
+  }
+  .menu-image-cta:hover {
+    background: #FFE080;
+    transform: translateX(-50%) translateY(-3px);
+    box-shadow: 0 14px 36px rgba(46,21,0,0.45);
   }
 
-  .footer-links a:hover {
-    color: var(--amber-comb);
+  @media (max-width: 768px) {
+    .ad-campaigns-section { padding: 56px 20px; }
+    .ad-section-title { font-size: 1.8rem; }
+    .ad-grid { grid-template-columns: 1fr; }
+    .menu-showcase { padding: 56px 20px; }
+    .menu-title { font-size: 1.8rem; }
+    .menu-image-cta { font-size: 0.82rem; padding: 12px 28px; }
   }
-
-  .footer-bottom {
-    max-width: 1040px;
-    margin: 0 auto;
-    padding-top: 40px;
-    border-top: 1px solid rgba(255,208,96,0.12);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: relative;
-    z-index: 1;
-    font-size: 0.82rem;
-    color: rgba(255,223,160,0.60);
-  }
-
-  .footer-bottom-logo {
-    color: var(--amber-comb);
-    font-family: "Playfair Display", serif;
-    font-size: 1.05rem;
+  @media (max-width: 480px) {
+    .ad-campaigns-section { padding: 40px 16px; }
+    .ad-section-title { font-size: 1.5rem; }
+    .ad-featured-title { font-size: 1.2rem; }
+    .menu-showcase { padding: 40px 16px; }
+    .menu-title { font-size: 1.5rem; }
+    .menu-image-cta { bottom: 16px; font-size: 0.78rem; padding: 10px 22px; }
   }
 
   /* ══════════════════════
-     RESPONSIVE BREAKPOINTS
+     RESPONSIVE
      ══════════════════════ */
   @media (max-width: 1024px) {
     .site-header { padding: 0 32px; }
-    .banner-grid { grid-template-columns: 1fr; gap: 40px; }
-    .company-profile-grid { grid-template-columns: 1fr; gap: 40px; }
-    .franchise-grid { grid-template-columns: 1fr; gap: 40px; }
-    .section-title { font-size: 2.2rem; }
-    .company-profile-content h2 { font-size: 2.2rem; }
-    .franchise-content h2 { font-size: 2.2rem; }
-    .menu-title { font-size: 2.2rem; }
-    .inspiration-title { font-size: 2.2rem; }
-    .ad-section-title { font-size: 2.2rem; }
-    .banner-grid { grid-template-columns: 1fr; }
+    .company-profile { padding: 60px 32px; }
+    .cp-headline { font-size: 2.1rem; }
+    .cp-body { grid-template-columns: 1fr; }
+    .cp-why-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .cp-why-item + .cp-why-item::before { display: none; }
+    .inspiration-section { padding: 56px 32px; }
+    .insp-section-title { font-size: 2rem; }
+    .insp-card { padding: 36px; gap: 34px; }
+    .insp-headline { font-size: 1.5rem; }
+    .process { padding: 80px 32px; }
+    .process-steps { grid-template-columns: repeat(2, 1fr); }
+    .proc-title { font-size: 2.4rem; }
+    footer { padding: 56px 32px 28px; }
+    .remaining-banner { padding: 56px 32px; }
+    .banner-grid { gap: 32px; }
+    .banner-content h2 { font-size: 1.8rem; }
+  }
+
+  @media (max-width: 768px) {
+    .site-header {
+      padding: 0 20px;
+      height: auto;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+    }
+    .header-logo {
+      font-size: 1.3rem;
+      padding: 12px 0 10px;
+      justify-content: center;
+      border-bottom: 1px solid rgba(46,21,0,0.10);
+    }
+    .header-nav {
+      position: static;
+      transform: none;
+      justify-content: center;
+      padding: 8px 0 10px;
+      gap: 6px;
+      flex-wrap: nowrap;
+    }
+    .header-nav a { font-size: 0.78rem; padding: 6px 14px; letter-spacing: 0.5px; }
+
+    /* Hero — tablet */
+    .hero { height: clamp(220px, 65vw, 420px); }
+    .hero-overlay {
+      background: linear-gradient(
+        to top,
+        rgba(46,21,0,0.60) 0%,
+        rgba(46,21,0,0.18) 40%,
+        transparent 68%
+      );
+    }
+
+    .company-profile { padding: 48px 20px; }
+    .cp-header { flex-direction: column; align-items: flex-start; gap: 18px; margin-bottom: 32px; }
+    .cp-header-tagline { max-width: 100%; }
+    .cp-headline { font-size: 1.85rem; }
+    .cp-body { grid-template-columns: 1fr; gap: 16px; margin-bottom: 16px; }
+    .cp-about-card, .cp-franchise-card { padding: 28px 24px; }
+    .cp-why-strip { flex-direction: column; gap: 16px; padding: 24px; }
+    .cp-why-label { writing-mode: horizontal-tb; transform: none; }
+    .cp-why-divider { width: 100%; height: 1px; }
+    .cp-why-grid { grid-template-columns: 1fr 1fr; gap: 14px; }
+    .cp-stat-row { justify-content: flex-start; }
+
+    .inspiration-section { padding: 48px 20px; }
+    .insp-section-title { font-size: 1.7rem; }
+    .insp-section-heading { margin-bottom: 28px; }
+    .insp-card {
+      flex-direction: column;
+      text-align: center;
+      padding: 32px 24px;
+      gap: 22px;
+    }
+    .insp-card::before { width: 100%; height: 6px; top: 0; left: 0; }
+    .insp-ribbon { top: 16px; right: -50px; }
+    .insp-text { margin: 0 auto 16px; }
+    .insp-tags-row { justify-content: center; }
+    .insp-quote-strip { border-left: none; border-top: 3px solid var(--h600); padding-left: 0; padding-top: 12px; }
+    .insp-headline { font-size: 1.4rem; }
+
+    .process { padding: 56px 20px; }
+    .process-steps { grid-template-columns: 1fr; gap: 12px; margin-top: 28px; }
+    .process-step { padding: 24px 22px; }
+    .step-num { font-size: 2.2rem; margin-bottom: 14px; }
+    .proc-title { font-size: 1.85rem; }
+
+    .remaining-banner { padding: 48px 20px; }
+    .banner-grid { grid-template-columns: 1fr; gap: 32px; }
+    .banner-content h2 { font-size: 1.6rem; }
     .banner-highlights { grid-template-columns: 1fr; }
-    .remaining-banner { padding: 40px 32px; }
-    .company-profile-section { padding: 40px 32px; }
-    .company-video-section { padding: 40px 32px; }
-    .ad-campaigns-section { padding: 40px 32px; }
-    .menu-showcase { padding: 40px 32px; }
-    .franchise-section { padding: 40px 32px; }
-    .inspiration-section { padding: 40px 32px; }
-    footer { padding: 40px 32px 28px; }
-    .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; margin-bottom: 32px; }
+
+    footer { padding: 48px 20px 28px; }
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; margin-bottom: 40px; }
     .footer-grid > div:first-child { grid-column: 1 / -1; }
     .footer-bottom { flex-direction: column; gap: 10px; text-align: center; padding-top: 20px; }
 
@@ -1202,92 +1860,81 @@
     /* Hero — phone */
     .hero { height: clamp(200px, 68vw, 200px); }
     .hero-cta-wrap { bottom: 32px; }
+    .hero-overlay {
+      background: linear-gradient(
+        to top,
+        rgba(46,21,0,0.65) 0%,
+        rgba(46,21,0,0.20) 40%,
+        transparent 65%
+      );
+    }
 
-    /* Banner */
-    .banner-grid { grid-template-columns: 1fr; gap: 24px; }
-    .banner-content h2 { font-size: 1.6rem; }
-    .banner-content p { font-size: 0.88rem; }
-    .banner-highlights { grid-template-columns: 1fr; }
-    .remaining-banner { padding: 32px 16px; }
+    .company-profile { padding: 40px 16px; }
+    .cp-headline { font-size: 1.6rem; }
+    .cp-about-card, .cp-franchise-card { padding: 24px 18px; border-radius: 16px; }
+    .cp-why-strip { padding: 20px 18px; border-radius: 16px; }
+    .cp-why-grid { grid-template-columns: 1fr 1fr; }
+    .cp-stat-row { gap: 8px; }
+    .cp-stat { min-width: 70px; padding: 10px 12px; }
 
-    /* Company profile */
-    .company-profile-grid { grid-template-columns: 1fr; gap: 24px; }
-    .company-profile-content h2 { font-size: 1.6rem; }
-    .company-profile-section { padding: 32px 16px; }
+    .inspiration-section { padding: 40px 16px; }
+    .insp-section-title { font-size: 1.4rem; }
+    .insp-card { padding: 26px 18px; border-radius: 20px; }
+    .insp-oval-frame { width: 128px; height: 160px; }
+    .insp-oval-photo { width: 128px; height: 160px; }
+    .insp-photo-col { width: 140px; }
+    .insp-headline { font-size: 1.25rem; }
+    .insp-ribbon { font-size: 0.55rem; padding: 4px 44px; top: 12px; right: -48px; }
 
-    /* Video section */
-    .company-video-section { padding: 32px 16px; }
+    .process { padding: 48px 16px; }
+    .proc-title { font-size: 1.65rem; }
+    .process-step { padding: 22px 18px; }
 
-    /* Ad campaigns */
-    .ad-campaigns-section { padding: 32px 16px; }
-    .ad-section-header { margin-bottom: 32px; }
-    .ad-section-title { font-size: 1.6rem; }
-    .ad-section-sub { font-size: 0.88rem; }
+    .remaining-banner { padding: 40px 16px; }
+    .banner-content h2 { font-size: 1.4rem; }
+    .banner-cta-group { flex-direction: column; width: 100%; }
+    .banner-cta-primary, .banner-cta-secondary { width: 100%; justify-content: center; }
 
-    /* Menu */
-    .menu-showcase { padding: 32px 16px; }
-    .menu-header { margin-bottom: 32px; }
-    .menu-title { font-size: 1.6rem; }
-    .menu-sub { font-size: 0.88rem; }
-    .menu-grid { grid-template-columns: 1fr; gap: 20px; }
-
-    /* Franchise */
-    .franchise-grid { grid-template-columns: 1fr; gap: 24px; }
-    .franchise-content h2 { font-size: 1.6rem; }
-    .franchise-section { padding: 32px 16px; }
-
-    /* Inspiration */
-    .inspiration-section { padding: 32px 16px; }
-    .inspiration-header { margin-bottom: 32px; }
-    .inspiration-title { font-size: 1.6rem; }
-    .inspiration-sub { font-size: 0.88rem; }
-    .inspiration-grid { grid-template-columns: 1fr; gap: 20px; }
-
-    /* Footer */
-    footer { padding: 32px 16px 20px; }
-    .footer-grid { grid-template-columns: 1fr; gap: 24px; margin-bottom: 24px; }
-    .footer-grid > div:first-child { grid-column: 1; }
-    .footer-bottom { padding-top: 16px; font-size: 0.75rem; }
+    footer { padding: 40px 16px 24px; }
+    .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+    .footer-grid > div:first-child { grid-column: auto; }
   }
 </style>
 </head>
 <body>
 
-<!-- HEADER -->
 <header class="site-header" id="siteHeader">
-  <a href="#" class="header-logo">
-    <div class="header-logo-mark">🍦</div>
-    Mithas
-  </a>
-  <nav class="header-nav">
-    <a href="#about" class="active">About</a>
-    <a href="#menu">Menu</a>
-    <a href="#franchise">Franchise</a>
-    <a href="#campaigns">Campaigns</a>
-  </nav>
+  <ul class="header-nav">
+    <li><a href="#" class="active">Home</a></li>
+    <li><a href="index1.html">Menu</a></li>
+    <li><a href="index2.html">Franchise</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
 </header>
 
-<!-- HERO SLIDER -->
+<!-- Hero Slider Section -->
 <div class="hero" id="heroSlider">
   <div class="hero-slider-container">
     <div class="hero-slide active">
-      <img src="https://res.cloudinary.com/djmgorf8l/image/upload/v1783342486/hro_banner_a1b2c3.jpg" alt="Mithas ice cream – Premium traditional Indian ice cream">
+      <img src="hro_banner.png" alt="Mithas ice cream – Premium traditional Indian ice cream">
     </div>
     <div class="hero-slide">
-      <img src="https://res.cloudinary.com/djmgorf8l/image/upload/v1783270100/0I9A2270_d4e5f6.jpg" alt="Mithas Orange Treat – Premium ice cream with real oranges">
+      <img src="0I9A2270.jpg .jpeg" alt="Mithas Orange Treat – Premium ice cream with real oranges">
     </div>
     <div class="hero-slide">
-      <img src="https://res.cloudinary.com/djmgorf8l/image/upload/v1783277100/0I9A2277_g7h8i9.jpg" alt="Mithas Orange Popsicle – Fresh orange flavor ice cream">
+      <img src="0I9A2277.jpg.jpeg" alt="Mithas Orange Popsicle – Fresh orange flavor ice cream">
+    </div>
+ 
+    <div class="hero-slide">
+      <img src="0I9A2291.jpg.jpeg" alt="Mithas Strawberry Delight – Fresh strawberry ice cream">
     </div>
     <div class="hero-slide">
-      <img src="https://res.cloudinary.com/djmgorf8l/image/upload/v1783291100/0I9A2291_j0k1l2.jpg" alt="Mithas Strawberry Delight – Fresh strawberry ice cream">
+      <img src="0I9A2314.jpg.jpeg" alt="Mithas Classic Chocobar – Premium chocolate ice cream">
     </div>
     <div class="hero-slide">
-      <img src="https://res.cloudinary.com/djmgorf8l/image/upload/v1783314100/0I9A2314_m3n4o5.jpg" alt="Mithas Classic Chocobar – Premium chocolate ice cream">
+      <img src="0I9A2324.jpg .jpeg" alt="Mithas Nutty Chocobar – Chocolate with roasted nuts">
     </div>
-    <div class="hero-slide">
-      <img src="https://res.cloudinary.com/djmgorf8l/image/upload/v1783324100/0I9A2324_p6q7r8.jpg" alt="Mithas Nutty Chocobar – Chocolate with roasted nuts">
-    </div>
+  
   </div>
 
   <!-- Gradient overlay for legibility -->
@@ -1313,63 +1960,114 @@
     Made with Real Milk <span>✦</span> No Artificial Colours <span>✦</span> 50+ Flavours <span>✦</span> Pan India Delivery <span>✦</span> Premium Quality <span>✦</span> Cold-Pressed Ingredients <span>✦</span>
   </div>
 </div>
+<section id="company" class="company-profile">
+  <div class="cp-outer">
 
-<!-- REMAINING STOCK BANNER -->
-<section class="remaining-banner">
-  <div class="banner-outer">
-    <div class="banner-grid">
-      <div class="banner-content">
-        <h2>Limited <em>Seasonal</em> Flavours</h2>
-        <p>Every season brings new inspiration. Our limited-edition flavours celebrate the finest ingredients at their peak — available only while they last. Reserve yours today before they melt away.</p>
-        <div class="banner-cta-group">
-          <a href="#" class="banner-cta-primary">Order Now</a>
-          <a href="#" class="banner-cta-secondary">Learn More</a>
+    <div class="cp-header reveal">
+      <div class="cp-header-left">
+        <p class="cp-eyebrow">Company Profile</p>
+        <h2 class="cp-headline">True Milk.<br><em>True Ice Cream.</em></h2>
+      </div>
+      <p class="cp-header-tagline">Manufactured by Thirupura Krishnah Dairy Pvt. Ltd.</p>
+    </div>
+
+    <div class="cp-body">
+      <div class="cp-about-card reveal">
+        <div class="cp-about-icon">🏭</div>
+        <p class="cp-card-label">About Mithas</p>
+        <h3 class="cp-card-title">Premium dairy ice cream, crafted the honest way</h3>
+        <p class="cp-card-text">Mithas Ice Cream is made with real milk, butter, and fresh cream — never frozen desserts. Every product uses carefully selected ingredients to deliver rich taste, superior quality, and authentic dairy goodness from our FSSAI-registered, state-of-the-art manufacturing facility.</p>
+        <p class="cp-card-text">With modern technology ensuring hygienic production and consistent quality, Mithas reaches customers across a strong network of retail outlets spanning Chennai, Chengalpattu, Tiruvallur, and Kanchipuram.</p>
+        <div class="cp-stat-row">
+          <div class="cp-stat">
+            <span class="cp-stat-num">300+</span>
+            <span class="cp-stat-label">Retail Outlets</span>
+          </div>
+          <div class="cp-stat">
+            <span class="cp-stat-num">50+</span>
+            <span class="cp-stat-label">Flavours</span>
+          </div>
+          <div class="cp-stat">
+            <span class="cp-stat-num">2016</span>
+            <span class="cp-stat-label">Est. Year</span>
+          </div>
+          <div class="cp-stat">
+            <span class="cp-stat-num">4+</span>
+            <span class="cp-stat-label">Districts</span>
+          </div>
         </div>
       </div>
-      <div class="banner-highlights">
-        <div class="highlight-card reveal">
-          <span class="highlight-icon">🌟</span>
-          <div class="highlight-title">Premium Ingredients</div>
-          <div class="highlight-text">Sourced from the finest farms across India, every ingredient is handpicked for quality and taste.</div>
+
+<!-- COMPANY VIDEO SECTION -->
+
+
+      <div class="cp-franchise-card reveal">
+        <div class="cp-franchise-badge">
+          <div class="cp-franchise-badge-dot"></div>
+          <span>Now Launching · FY 2026–27</span>
         </div>
-        <div class="highlight-card reveal">
-          <span class="highlight-icon">❄️</span>
-          <div class="highlight-title">Cold-Pressed</div>
-          <div class="highlight-text">Our unique cold-pressing technique preserves natural flavours and nutrients without artificial additives.</div>
+        <h3 class="cp-franchise-title">Premium Ice Cream<br>Parlour <em>Franchise</em></h3>
+        <p class="cp-franchise-text">Partner with Mithas to open your own premium parlour. We bring international quality standards, a proven brand, and a full product range — you bring the entrepreneurial spirit.</p>
+        <div class="cp-flavour-tags">
+          <span class="cp-flavour-tag">🍬 No Sugar Added</span>
+          <span class="cp-flavour-tag">🍓 Real Fruit</span>
+          <span class="cp-flavour-tag">🌿 No Artificial Colours</span>
+          <span class="cp-flavour-tag">🥜 Premium Nut-Based</span>
+          <span class="cp-flavour-tag light">Crafted Cones</span>
+          <span class="cp-flavour-tag light">Sundaes</span>
+          <span class="cp-flavour-tag light">Thick Shakes</span>
         </div>
-        <div class="highlight-card reveal">
-          <span class="highlight-icon">🎯</span>
-          <div class="highlight-title">50+ Flavours</div>
-          <div class="highlight-text">From classic vanilla to exotic mango kulfi, explore our diverse range of traditional Indian ice cream.</div>
+        <a href="#contact" class="cp-franchise-cta">
+          Enquire About Franchise
+          <span class="cp-franchise-cta-arrow">→</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="cp-why-strip reveal">
+      <span class="cp-why-label">Why Mithas</span>
+      <div class="cp-why-divider"></div>
+      <div class="cp-why-grid">
+        <div class="cp-why-item">
+          <span class="cp-why-icon">🥛</span>
+          <div class="cp-why-text">
+            <div class="cp-why-name">Real Milk & Cream</div>
+            <div class="cp-why-sub">Never frozen desserts</div>
+          </div>
         </div>
-        <div class="highlight-card reveal">
-          <span class="highlight-icon">🚚</span>
-          <div class="highlight-title">Pan India Delivery</div>
-          <div class="highlight-text">Fast, reliable delivery across India keeps your ice cream frozen fresh, right to your doorstep.</div>
+        <div class="cp-why-item">
+          <span class="cp-why-icon">✅</span>
+          <div class="cp-why-text">
+            <div class="cp-why-name">FSSAI Registered</div>
+            <div class="cp-why-sub">Modern production facility</div>
+          </div>
+        </div>
+        <div class="cp-why-item">
+          <span class="cp-why-icon">🏪</span>
+          <div class="cp-why-text">
+            <div class="cp-why-name">Wholesale & Retail</div>
+            <div class="cp-why-sub">Strong distribution network</div>
+          </div>
+        </div>
+        <div class="cp-why-item">
+          <span class="cp-why-icon">🤝</span>
+          <div class="cp-why-text">
+            <div class="cp-why-name">Premium Franchise</div>
+            <div class="cp-why-sub">Proven business model</div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
 
-<!-- COMPANY PROFILE -->
-<section class="company-profile-section" id="about">
-  <div class="company-profile-outer">
-    <div class="company-profile-grid">
-      <div class="company-profile-content reveal">
-        <h2>Crafted with <em>Love</em> Since 2016</h2>
-        <p>Mithas was born from a simple belief: ice cream should taste like ice cream, not like chemicals. We started in a small kitchen with pure milk, real fruits, and a passion for traditional Indian flavours.</p>
-        <p>Today, we're proud to serve thousands of families across India with premium ice cream that celebrates our heritage while embracing modern taste preferences. Every scoop is a story of dedication, quality, and love.</p>
-        <a href="#" class="company-profile-cta">Explore Our Story</a>
-      </div>
-      <div class="company-profile-image reveal">
-        <img src="https://res.cloudinary.com/djmgorf8l/image/upload/v1783342486/company_profile_s9t0u1.jpg" alt="Mithas ice cream production – Handcrafted premium ice cream">
-      </div>
+    <div class="cp-vision-strip reveal">
+      <p class="cp-vision-text">Our vision: to become <strong>one of India's leading premium dairy ice cream brands</strong> by expanding our franchise network across the country through FY 2026–27 and beyond.</p>
+      <p class="cp-vision-label">Vision · Mithas Ice Cream</p>
     </div>
+
   </div>
 </section>
 
-<!-- VIDEO CAMPAIGNS -->
+<!-- AD CAMPAIGNS SECTION -->
 <section class="ad-campaigns-section" id="campaigns">
   <div class="ad-outer">
     <div class="ad-section-header reveal">
@@ -1378,143 +2076,128 @@
       <p class="ad-section-sub">Every frame of our ads is crafted with the same love we pour into our ice cream — watch how Mithas brings joy to life.</p>
     </div>
 
-    <!-- Featured Ad 1 -->
-    <section class="company-video-section">
-      <div class="video-outer">
-        <div class="video-container">
-          <video controls autoplay muted loop playsinline>
-            <source src="https://res.cloudinary.com/djmgorf8l/video/upload/v1783342486/MITHAS_AD_02_FI_V1_1_di2ueo.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-        </div>
-      </div>
-    </section>
-
-    <!-- Featured Ad 2 -->
-    <section class="company-video-section">
-      <div class="video-outer">
-        <div class="video-container">
-          <video controls autoplay muted loop playsinline>
-            <source src="https://res.cloudinary.com/djmgorf8l/video/upload/v1783280100/mithas_gittl2.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-        </div>
-      </div>
-    </section>
-
-    <!-- Featured Ad 3 -->
-    <section class="company-video-section">
-      <div class="video-outer">
-        <div class="video-container">
-          <video controls autoplay muted loop playsinline>
-            <source src="https://res.cloudinary.com/djmgorf8l/video/upload/v1783343284/MITHAS_AD_03_F_UP_vonghq.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-        </div>
-      </div>
-    </section>
+    <!-- Featured Ad: mithas.mp4 -->
+ <section class="company-video-section">
+  <div class="video-outer">
+    <div class="video-container">
+      <video controls autoplay muted loop playsinline>
+        <source src="https://res.cloudinary.com/djmgorf8l/video/upload/v1783342486/MITHAS_AD_02_FI_V1_1_di2ueo.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
   </div>
 </section>
+<section class="company-video-section">
+  <div class="video-outer">
+    <div class="video-container">
+      <video controls autoplay muted loop playsinline>
+        <source src="https://res.cloudinary.com/djmgorf8l/video/upload/v1783280100/mithas_gittl2.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+  </div>
+</section>
+<section class="company-video-section">
+  <div class="video-outer">
+    <div class="video-container">
+      <video controls autoplay muted loop playsinline>
+        <source src="https://res.cloudinary.com/djmgorf8l/video/upload/v1783343284/MITHAS_AD_03_F_UP_vonghq.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+  </div>
+</section>
+
+
 
 <!-- MENU SHOWCASE -->
 <section class="menu-showcase" id="menu">
   <div class="menu-outer">
     <div class="menu-header reveal">
-      <p class="menu-eyebrow">Our Collection</p>
-      <h2 class="menu-title">50+ Premium <em>Flavours</em></h2>
-      <p class="menu-sub">From timeless classics to innovative creations, every flavour is a celebration of taste, tradition, and quality.</p>
+      <p class="menu-eyebrow">Our Franchise Products Menu</p>
+      <h2 class="menu-title">50+ Flavours of <em>Pure Happiness</em></h2>
     </div>
-    <div class="menu-grid">
-      <div class="menu-card reveal">
-        <span class="menu-card-icon">🍦</span>
-        <div class="menu-card-title">Classic Vanilla</div>
-        <div class="menu-card-desc">Our signature vanilla, made with real vanilla pods and pure milk. Timeless elegance in every bite.</div>
-      </div>
-      <div class="menu-card reveal">
-        <span class="menu-card-icon">🥭</span>
-        <div class="menu-card-title">Mango Kulfi</div>
-        <div class="menu-card-desc">Traditional Indian kulfi with fresh Alphonso mango. A taste of summer in every freeze.</div>
-      </div>
-      <div class="menu-card reveal">
-        <span class="menu-card-icon">🍓</span>
-        <div class="menu-card-title">Strawberry Delight</div>
-        <div class="menu-card-desc">Fresh strawberries blended into creamy perfection. Sweet, tangy, and absolutely delicious.</div>
-      </div>
-      <div class="menu-card reveal">
-        <span class="menu-card-icon">🍫</span>
-        <div class="menu-card-title">Dark Chocolate</div>
-        <div class="menu-card-desc">Rich, velvety dark chocolate for the true connoisseur. Decadence in every spoonful.</div>
-      </div>
-      <div class="menu-card reveal">
-        <span class="menu-card-icon">🥜</span>
-        <div class="menu-card-title">Peanut Brittle</div>
-        <div class="menu-card-desc">Roasted peanuts and caramel swirled into creamy ice cream. Crunchy meets smooth.</div>
-      </div>
-      <div class="menu-card reveal">
-        <span class="menu-card-icon">🍵</span>
-        <div class="menu-card-title">Masala Chai</div>
-        <div class="menu-card-desc">Aromatic Indian chai spices in a frozen treat. Warm flavours, cool sensation.</div>
-      </div>
+    <div class="menu-image-wrap reveal">
+      <img src="franchise1.png" alt="Mithas Ice Cream Menu – 50+ Premium Flavours including kulfi, bars, cones and sundaes">
+      <div class="menu-image-overlay"></div>
+      <a href="index2.html" class="menu-image-cta">Explore Full Menu →</a>
     </div>
   </div>
 </section>
 
-<!-- FRANCHISE SECTION -->
-<section class="franchise-section" id="franchise">
-  <div class="franchise-outer">
-    <div class="franchise-grid">
-      <div class="franchise-content reveal">
-        <h2>Join the Mithas <em>Family</em></h2>
-        <p>We're expanding across India and looking for passionate franchise partners who share our vision of premium, authentic ice cream.</p>
-        <p>With proven business models, comprehensive training, and dedicated support, Mithas franchises are thriving in cities nationwide. Be part of a growing movement that celebrates quality and tradition.</p>
-        <a href="#" class="franchise-cta">Explore Franchise</a>
+<!-- OUR INSPIRATION -->
+<div id="inspiration" class="inspiration-section">
+  <div class="insp-outer">
+    <div class="insp-section-heading reveal">
+      <p class="insp-section-eyebrow">Our Inspiration</p>
+      <h2 class="insp-section-title">Our Visionary <em>Role Model</em></h2>
+      <div class="insp-section-rule">
+        <span class="insp-section-rule-line"></span>
+        <span class="insp-section-rule-diamond"></span>
+        <span class="insp-section-rule-line right"></span>
       </div>
-      <div class="franchise-image reveal">
-        <img src="https://res.cloudinary.com/djmgorf8l/image/upload/v1783342486/franchise1_v2w3x4.png" alt="Mithas Ice Cream Menu – 50+ Premium Flavours including kulfi, bars, cones and sundaes">
+    </div>
+
+    <div class="insp-card reveal">
+      <div class="insp-ribbon">A Guiding Light</div>
+      <div class="insp-photo-col">
+        <div class="insp-oval-frame">
+          <span class="insp-oval-accent top"></span>
+          <img class="insp-oval-photo" src="rajiv-khanna.png" alt="Mr. Rajiv Khanna">
+          <span class="insp-oval-accent bottom"></span>
+        </div>
+        <div class="insp-photo-name">
+          <div class="insp-name">Mr. Rajiv Khanna</div>
+          <div class="insp-title">Mentor · Visionary · Role Model</div>
+        </div>
       </div>
+
+      <div class="insp-content-col">
+        <span class="insp-tag">Our Inspiration</span>
+        <h2 class="insp-headline">He didn't just inspire us — he <em>became</em> our purpose.</h2>
+        <p class="insp-text">We believe that God doesn't always come before us in person. Instead, He sends extraordinary individuals whose lives, values, and achievements inspire others to dream bigger and build something meaningful. To us, Mr. Rajiv Khanna is one such person.</p>
+        <p class="insp-text">The journey of Mithas Ice Cream has been inspired by his dedication, humility, innovation, and commitment to excellence. His example motivates us to create products that bring happiness, trust, and sweetness into every home.</p>
+        <div class="insp-tags-row">
+          <span class="insp-pill">🌟 Dedication</span>
+          <span class="insp-pill">🙏 Humility</span>
+          <span class="insp-pill">💡 Innovation</span>
+        </div>
+        <div class="insp-quote-strip">
+          <p>"Success is measured by the <em>inspiration we pass on</em> to others. Thank you, Sir." <span>— Founders, Mithas Ice Cream</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="process" id="process">
+  <p class="proc-eyebrow">How We Make It</p>
+  <h2 class="proc-title">Crafted Fresh, <em>Every Morning</em></h2>
+  <div class="process-steps">
+    <div class="process-step reveal">
+      <span class="step-num">01</span>
+      <div class="step-title">Farm-Fresh Milk</div>
+      <div class="step-desc">We collect full-fat milk daily from partner dairies within 200km of our facility.</div>
+    </div>
+    <div class="process-step reveal">
+      <span class="step-num">02</span>
+      <div class="step-title">Natural Infusion</div>
+      <div class="step-desc">Real saffron strands, whole fruits, and roasted nuts are steeped overnight for depth.</div>
+    </div>
+    <div class="process-step reveal">
+      <span class="step-num">03</span>
+      <div class="step-title">Slow Churning</div>
+      <div class="step-desc">Our churners run at low speed to create the dense, creamy texture Mithas is known for.</div>
+    </div>
+    <div class="process-step reveal">
+      <span class="step-num">04</span>
+      <div class="step-title">Flash Frozen</div>
+      <div class="step-desc">Sealed and frozen within minutes to lock in freshness before reaching your home.</div>
     </div>
   </div>
 </section>
 
-<!-- INSPIRATION SECTION -->
-<section class="inspiration-section" id="inspiration">
-  <div class="inspiration-outer">
-    <div class="inspiration-header reveal">
-      <p class="inspiration-eyebrow">Meet Our Team</p>
-      <h2 class="inspiration-title">The Faces Behind the <em>Flavour</em></h2>
-      <p class="inspiration-sub">Our team is passionate about creating ice cream that brings joy to every table. Meet the people who make Mithas special.</p>
-    </div>
-    <div class="inspiration-grid">
-      <div class="inspiration-card reveal">
-        <div class="insp-avatar">
-          <img class="insp-oval-photo" src="https://res.cloudinary.com/djmgorf8l/image/upload/v1783342486/rajiv-khanna_y5z6a7.png" alt="Mr. Rajiv Khanna">
-        </div>
-        <div class="insp-name">Rajiv Khanna</div>
-        <div class="insp-role">Founder & CEO</div>
-        <div class="insp-quote">"Every scoop tells a story of passion, quality, and love for our craft."</div>
-      </div>
-      <div class="inspiration-card reveal">
-        <div class="insp-avatar">
-          <img class="insp-oval-photo" src="https://res.cloudinary.com/djmgorf8l/image/upload/v1783342486/priya-sharma_b8c9d0.png" alt="Ms. Priya Sharma">
-        </div>
-        <div class="insp-name">Priya Sharma</div>
-        <div class="insp-role">Head of Flavours</div>
-        <div class="insp-quote">"Innovation meets tradition in every flavour we create."</div>
-      </div>
-      <div class="inspiration-card reveal">
-        <div class="insp-avatar">
-          <img class="insp-oval-photo" src="https://res.cloudinary.com/djmgorf8l/image/upload/v1783342486/amit-patel_e1f2g3.png" alt="Mr. Amit Patel">
-        </div>
-        <div class="insp-name">Amit Patel</div>
-        <div class="insp-role">Operations Director</div>
-        <div class="insp-quote">"Quality is not negotiable. It's our promise to you."</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer id="footer">
+<footer id="contact">
   <div class="footer-grid">
     <div>
       <div class="footer-brand">Mithas™</div>
