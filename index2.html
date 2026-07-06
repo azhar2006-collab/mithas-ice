@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -624,7 +623,9 @@
     line-height: 1.4;
   }
 
-  /* ══════ FRANCHISE FORM SECTION ══════ */
+  /* ══════════════════════════════════════════
+     FRANCHISE FORM SECTION — DESKTOP + TABLET
+  ══════════════════════════════════════════ */
   .franchise-form-section {
     background: linear-gradient(160deg, var(--h900) 0%, var(--h800) 100%);
     padding: 90px 56px;
@@ -653,7 +654,7 @@
     align-items: start;
   }
 
-  /* Left: info column */
+  /* ── Left info column ── */
   .form-info-col .form-eyebrow {
     font-size: 0.68rem;
     letter-spacing: 4px;
@@ -725,7 +726,7 @@
     line-height: 1.5;
   }
 
-  /* Right: form */
+  /* ── Right form card ── */
   .form-card {
     background: var(--amber-card);
     border: 1px solid rgba(181,107,0,0.20);
@@ -949,7 +950,9 @@
   }
   .footer-bottom-logo { color: var(--amber-comb); font-family: "Playfair Display", serif; font-size: 1.05rem; }
 
-  /* ══════ RESPONSIVE ══════ */
+  /* ══════════════════════════════════════════
+     RESPONSIVE — 1024px
+  ══════════════════════════════════════════ */
   @media (max-width: 1024px) {
     .site-header { padding: 0 32px; }
     .franchise-hero { padding: 64px 32px 56px; }
@@ -965,6 +968,9 @@
     .form-info-title { font-size: 2rem; }
   }
 
+  /* ══════════════════════════════════════════
+     RESPONSIVE — 768px (TABLET)
+  ══════════════════════════════════════════ */
   @media (max-width: 768px) {
     .site-header { padding: 0 20px; height: auto; flex-direction: column; align-items: stretch; gap: 0; }
     .header-logo { font-size: 1.3rem; padding: 12px 0 10px; justify-content: center; border-bottom: 1px solid rgba(46,21,0,0.10); }
@@ -985,11 +991,21 @@
     .flavour-grid.two-col { grid-template-columns: 1fr; }
     .toppings-grid { grid-template-columns: repeat(2, 1fr); }
 
-    .franchise-form-section { padding: 60px 20px; }
-    .form-layout { grid-template-columns: 1fr; gap: 40px; }
-    .form-info-title { font-size: 1.8rem; }
-    .form-card { padding: 32px 24px; }
-    .form-row { grid-template-columns: 1fr; }
+    /* Franchise form — tablet: single column, tighter */
+    .franchise-form-section { padding: 52px 20px; }
+    .form-layout { grid-template-columns: 1fr; gap: 0; }
+
+    /* On tablet/mobile: hide the long info column, show compact header instead */
+    .form-info-col { display: none; }
+    .form-card { padding: 28px 24px; border-radius: 20px; }
+    .form-row { grid-template-columns: 1fr 1fr; gap: 12px; }
+
+    /* Mobile section header replaces the desktop left-column copy */
+    .form-mobile-header {
+      display: block;
+      text-align: center;
+      margin-bottom: 28px;
+    }
 
     footer { padding: 48px 20px 28px; }
     .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; margin-bottom: 36px; }
@@ -997,6 +1013,10 @@
     .footer-bottom { flex-direction: column; gap: 10px; text-align: center; }
   }
 
+  /* ══════════════════════════════════════════
+     RESPONSIVE — 480px (MOBILE)
+     Full compact treatment for the form
+  ══════════════════════════════════════════ */
   @media (max-width: 480px) {
     .site-header { padding: 0 16px; }
     .header-nav a { font-size: 0.72rem; padding: 5px 10px; }
@@ -1007,8 +1027,131 @@
     .products-section { padding: 40px 16px; }
     .product-cat { padding: 24px 16px; border-radius: 18px; }
     .cat-header { gap: 12px; }
-    .franchise-form-section { padding: 48px 16px; }
-    .form-card { padding: 28px 18px; border-radius: 18px; }
+
+    /* Compact franchise form section */
+    .franchise-form-section {
+      padding: 36px 16px 40px;
+    }
+    .franchise-form-section::after { height: 2px; }
+
+    .form-card {
+      padding: 22px 16px 24px;
+      border-radius: 18px;
+      box-shadow: 0 10px 32px rgba(0,0,0,0.28);
+    }
+    .form-card::before { height: 4px; }
+
+    /* Compact card header */
+    .form-card-title { font-size: 1.15rem; margin-bottom: 4px; }
+    .form-card-sub { font-size: 0.74rem; margin-bottom: 18px; line-height: 1.45; }
+
+    /* All rows become single-column */
+    .form-row,
+    .form-row.full { grid-template-columns: 1fr; gap: 0; }
+
+    /* Tighten groups */
+    .form-group { gap: 4px; margin-bottom: 10px; }
+    .form-label { font-size: 0.68rem; letter-spacing: 0.3px; }
+
+    /* Smaller inputs */
+    .form-input,
+    .form-select,
+    .form-textarea {
+      padding: 9px 13px;
+      font-size: 0.84rem;
+      border-radius: 10px;
+    }
+    .form-select { background-position: right 11px center; padding-right: 32px; }
+    .form-textarea { min-height: 80px; }
+
+    /* Tighter consent row */
+    .form-checkbox-row { gap: 8px; margin-bottom: 16px; }
+    .form-checkbox-row input[type="checkbox"] { width: 15px; height: 15px; }
+    .form-checkbox-row label { font-size: 0.72rem; }
+
+    /* Compact submit button */
+    .form-submit-btn {
+      padding: 13px 24px;
+      font-size: 0.86rem;
+      gap: 8px;
+    }
+    .form-submit-arrow { width: 22px; height: 22px; font-size: 0.78rem; }
+
+    /* Mobile header for the form section */
+    .form-mobile-header { margin-bottom: 20px; }
+    .form-mobile-header .form-eyebrow-mob {
+      font-size: 0.62rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--amber-comb);
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 10px;
+      opacity: 0.85;
+    }
+    .form-mobile-header .form-eyebrow-mob::before,
+    .form-mobile-header .form-eyebrow-mob::after {
+      content: '';
+      width: 28px; height: 1px;
+      background: var(--amber-comb);
+      display: inline-block;
+      opacity: 0.5;
+    }
+    .form-mobile-header .form-title-mob {
+      font-family: "Playfair Display", serif;
+      font-size: 1.55rem;
+      font-weight: 800;
+      color: var(--amber-warm);
+      line-height: 1.2;
+      letter-spacing: -0.3px;
+      margin-bottom: 8px;
+    }
+    .form-mobile-header .form-title-mob em { font-style: italic; color: var(--amber-comb); }
+    .form-mobile-header .form-subtitle-mob {
+      font-size: 0.78rem;
+      color: rgba(255,223,160,0.55);
+      line-height: 1.6;
+      max-width: 300px;
+      margin: 0 auto;
+    }
+
+    /* Compact perks strip — horizontal scrolling row of pill badges */
+    .form-perks-strip {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      padding-bottom: 4px;
+      margin-bottom: 20px;
+    }
+    .form-perks-strip::-webkit-scrollbar { display: none; }
+    .form-perk-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      white-space: nowrap;
+      background: rgba(255,208,96,0.10);
+      border: 1px solid rgba(255,208,96,0.20);
+      border-radius: 99px;
+      padding: 6px 12px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--amber-comb);
+      flex-shrink: 0;
+    }
+    .form-perk-pill-icon { font-size: 0.9rem; }
+
+    /* Divider between field groups */
+    .form-divider {
+      height: 1px;
+      background: rgba(181,107,0,0.12);
+      margin: 14px 0;
+    }
+
     footer { padding: 40px 16px 24px; }
     .footer-grid { grid-template-columns: 1fr; gap: 28px; }
     .footer-grid > div:first-child { grid-column: auto; }
@@ -1022,10 +1165,6 @@
 
 <!-- ══════ HEADER ══════ -->
 <header class="site-header" id="siteHeader">
-
-  
-
-  </a>
   <ul class="header-nav">
     <li><a href="index.html">Home</a></li>
     <li><a href="index1.html">Menu</a></li>
@@ -1095,28 +1234,18 @@
       <p class="section-sub">Everything available to franchise partners — crafted with real milk, natural ingredients, and no artificial colours.</p>
     </div>
 
-    <!-- NEW PRODUCT BANNER -->
     <div class="product-banner-wrap reveal">
       <img src="franchise1.png" alt="Mithas Franchise Outlet Product List – Signature Flavours, Premium Scoops, Kulfi, Cones, Premium Bar and Free Choice Toppings">
     </div>
-
-    <!-- EMBEDDED VIDEO SECTION -->
-    <div class="video-showcase reveal">
-      <video controls width="100%" height="auto" style="display: block;">
-        <source src="mithas.mp4" type="video/mp4">
-        Your browser does not support the video tag. Please use a modern browser to view this video.
-      </video>
-      <div class="video-label">Mithas Franchise Showcase Video</div>
-    </div>
-
-   
+  </div>
+</section>
 
 <!-- ══════ FRANCHISE ENQUIRY FORM ══════ -->
 <section class="franchise-form-section" id="franchise-form">
   <div class="section-outer">
     <div class="form-layout">
 
-      <!-- Left info column -->
+      <!-- Left info column (desktop only) -->
       <div class="form-info-col reveal">
         <p class="form-eyebrow">Open Your Parlour</p>
         <h2 class="form-info-title">Start Your <em>Mithas</em> Franchise Journey</h2>
@@ -1156,45 +1285,54 @@
 
       <!-- Right form column -->
       <div class="form-card reveal" id="franchiseFormCard">
-        <div class="form-card-title">Franchise Enquiry Form</div>
-        <p class="form-card-sub">All fields marked <span style="color:var(--honey-deep)">*</span> are required. We'll reach out within 48 hours.</p>
+
+        <!-- Mobile-only compact header (hidden on desktop via media query) -->
+        <div class="form-mobile-header">
+         
+        </div>
+
+
+        <div class="form-card-title">Franchise Enquiry</div>
+        <p class="form-card-sub">Fields marked <span style="color:var(--honey-deep)">*</span> are required. We respond within 48 hours.</p>
 
         <form id="franchiseForm" novalidate>
 
+          <!-- Name row -->
           <div class="form-row">
             <div class="form-group">
               <label class="form-label" for="f-fname">First Name <span>*</span></label>
-              <input class="form-input" type="text" id="f-fname" name="firstName" placeholder="e.g. Arjun" required>
+              <input class="form-input" type="text" id="f-fname" name="firstName" placeholder="Arjun" required>
             </div>
             <div class="form-group">
               <label class="form-label" for="f-lname">Last Name <span>*</span></label>
-              <input class="form-input" type="text" id="f-lname" name="lastName" placeholder="e.g. Sharma" required>
+              <input class="form-input" type="text" id="f-lname" name="lastName" placeholder="Sharma" required>
             </div>
           </div>
 
-          <div class="form-row full">
-            <div class="form-group">
-              <label class="form-label" for="f-email">Email Address <span>*</span></label>
-              <input class="form-input" type="email" id="f-email" name="email" placeholder="yourname@email.com" required>
-            </div>
-          </div>
-
+          <!-- Contact row -->
           <div class="form-row">
             <div class="form-group">
-              <label class="form-label" for="f-phone">Phone Number <span>*</span></label>
-              <input class="form-input" type="tel" id="f-phone" name="phone" placeholder="+91 98765 43210" required>
+              <label class="form-label" for="f-email">Email <span>*</span></label>
+              <input class="form-input" type="email" id="f-email" name="email" placeholder="name@email.com" required>
             </div>
             <div class="form-group">
-              <label class="form-label" for="f-city">City / Location <span>*</span></label>
-              <input class="form-input" type="text" id="f-city" name="city" placeholder="e.g. Chennai" required>
+              <label class="form-label" for="f-phone">Phone <span>*</span></label>
+              <input class="form-input" type="tel" id="f-phone" name="phone" placeholder="+91 98765 43210" required>
             </div>
           </div>
 
-          <div class="form-row full">
+          <div class="form-divider"></div>
+
+          <!-- Location row -->
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="f-city">City <span>*</span></label>
+              <input class="form-input" type="text" id="f-city" name="city" placeholder="Chennai" required>
+            </div>
             <div class="form-group">
               <label class="form-label" for="f-state">State <span>*</span></label>
               <select class="form-select" id="f-state" name="state" required>
-                <option value="" disabled selected>Select your state</option>
+                <option value="" disabled selected>Select state</option>
                 <option>Tamil Nadu</option>
                 <option>Andhra Pradesh</option>
                 <option>Telangana</option>
@@ -1211,57 +1349,58 @@
             </div>
           </div>
 
-          <div class="form-row full">
+          <div class="form-divider"></div>
+
+          <!-- Investment & Experience row -->
+          <div class="form-row">
             <div class="form-group">
-              <label class="form-label" for="f-investment">Investment Capacity <span>*</span></label>
+              <label class="form-label" for="f-investment">Budget <span>*</span></label>
               <select class="form-select" id="f-investment" name="investment" required>
-                <option value="" disabled selected>Select your budget range</option>
+                <option value="" disabled selected>Select range</option>
                 <option>₹5L – ₹10L</option>
                 <option>₹10L – ₹20L</option>
                 <option>₹20L – ₹50L</option>
                 <option>₹50L+</option>
               </select>
             </div>
-          </div>
-
-          <div class="form-row full">
             <div class="form-group">
-              <label class="form-label" for="f-experience">Business Experience</label>
+              <label class="form-label" for="f-experience">Experience</label>
               <select class="form-select" id="f-experience" name="experience">
-                <option value="" disabled selected>Do you have prior business experience?</option>
+                <option value="" disabled selected>Background</option>
                 <option>First-time entrepreneur</option>
                 <option>1–3 years in F&amp;B</option>
                 <option>3–5 years in F&amp;B</option>
                 <option>5+ years in business</option>
-                <option>Currently running another franchise</option>
+                <option>Running another franchise</option>
               </select>
             </div>
           </div>
 
+          <!-- Message (condensed on mobile) -->
           <div class="form-row full">
             <div class="form-group">
-              <label class="form-label" for="f-message">Your Message / Questions</label>
-              <textarea class="form-textarea" id="f-message" name="message" placeholder="Tell us about your interest in Mithas franchise..."></textarea>
+              <label class="form-label" for="f-message">Message / Questions</label>
+              <textarea class="form-textarea" id="f-message" name="message" placeholder="Tell us about your interest…"></textarea>
             </div>
           </div>
 
           <div class="form-checkbox-row">
             <input type="checkbox" id="f-consent" name="consent" required>
-            <label for="f-consent">I agree to be contacted by the Mithas franchise team. I understand this is an initial enquiry and does not constitute a formal agreement.</label>
+            <label for="f-consent">I agree to be contacted by the Mithas franchise team. This is an initial enquiry, not a formal agreement.</label>
           </div>
 
           <button type="submit" class="form-submit-btn" id="franchiseSubmitBtn">
-            Submit Franchise Enquiry
+            Submit Enquiry
             <span class="form-submit-arrow">→</span>
           </button>
 
         </form>
 
-        <!-- Success message (hidden initially) -->
+        <!-- Success message -->
         <div class="form-success" id="formSuccess">
           <div class="form-success-icon">🎉</div>
           <div class="form-success-title">Enquiry Received!</div>
-          <p class="form-success-text">Thank you for your interest in partnering with Mithas. Our franchise team will contact you within <strong>48 hours</strong> to discuss the next steps.<br><br>In the meantime, explore our full product range above or visit <strong>index1.html</strong> to see our menu.</p>
+          <p class="form-success-text">Thank you for your interest in Mithas. Our franchise team will contact you within <strong>48 hours</strong> to discuss next steps.<br><br>Explore our full product range above or visit <strong>index1.html</strong> to see our menu.</p>
         </div>
 
       </div><!-- /form-card -->
@@ -1325,6 +1464,17 @@
     card.style.transitionDelay = (i * 0.08) + 's';
   });
 
+  // ════ MOBILE HEADER: show/hide based on screen size ════
+  function syncMobileElements() {
+    const isMobile = window.innerWidth <= 480;
+    const mobileHeader = document.querySelector('.form-mobile-header');
+    const perksStrip = document.querySelector('.form-perks-strip');
+    if (mobileHeader) mobileHeader.style.display = isMobile ? 'block' : 'none';
+    if (perksStrip) perksStrip.style.display = isMobile ? 'flex' : 'none';
+  }
+  syncMobileElements();
+  window.addEventListener('resize', syncMobileElements, { passive: true });
+
   // ════ FRANCHISE FORM SUBMISSION ════
   const franchiseForm = document.getElementById('franchiseForm');
   const formSuccess = document.getElementById('formSuccess');
@@ -1333,7 +1483,6 @@
   franchiseForm.addEventListener('submit', (e) => {
     e.preventDefault();
 
-    // Basic validation
     const required = franchiseForm.querySelectorAll('[required]');
     let valid = true;
 
@@ -1359,19 +1508,16 @@
 
     if (!valid) return;
 
-    // Show loading state
     submitBtn.textContent = 'Submitting…';
     submitBtn.disabled = true;
     submitBtn.style.opacity = '0.7';
 
-    // Simulate async submission (replace with actual API call)
     setTimeout(() => {
       franchiseForm.style.display = 'none';
       formSuccess.style.display = 'block';
     }, 1400);
   });
 
-  // Clear error styles on input
   franchiseForm.querySelectorAll('.form-input, .form-select, .form-textarea').forEach(field => {
     field.addEventListener('input', () => {
       field.style.borderColor = '';
