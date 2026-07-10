@@ -1,0 +1,1533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Us – Mithas Ice Cream | Enquiries & Franchise</title>
+<meta name="description" content="Get in touch with Mithas Ice Cream for general enquiries, franchise opportunities, wholesale partnerships, or distributor enquiries. We'd love to hear from you.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --h50:   #FFFBF0;
+    --h100:  #FFF3CC;
+    --h200:  #FFE380;
+    --h300:  #FFCA28;
+    --h400:  #aa5800;
+    --h500:  #D4870A;
+    --h600:  #B56B00;
+    --h700:  #8C4E00;
+    --h800:  #5C3000;
+    --h900:  #2E1500;
+
+    --honey:       var(--h400);
+    --honey-deep:  var(--h500);
+    --honey-rich:  var(--h600);
+    --honey-dark:  var(--h700);
+    --amber-black: var(--h900);
+    --amber-bg:    var(--h50);
+    --amber-card:  #FFF8E7;
+    --amber-warm:  #FFEFC5;
+    --amber-mid:   #FFDFA0;
+    --amber-comb:  #FFD060;
+
+    --dark-text:   var(--h900);
+    --body-text:   var(--h800);
+    --muted-text:  var(--h700);
+    --white:       #FFFFFF;
+
+    --border:       rgba(213,135,10,0.20);
+    --border-light: rgba(213,135,10,0.12);
+    --glow:         rgba(245,168,0,0.18);
+
+    --shadow-sm: 0 1px 3px rgba(46,21,0,0.07);
+    --shadow-md: 0 4px 20px rgba(46,21,0,0.11);
+    --shadow-lg: 0 8px 36px rgba(46,21,0,0.15);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: "DM Sans", sans-serif;
+    background: var(--amber-bg);
+    color: var(--dark-text);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.6;
+  }
+
+  /* ══════════════════════
+     HEADER & NAV
+     ══════════════════════ */
+  .site-header {
+    background: var(--honey);
+    padding: 0 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid rgba(46,21,0,0.12);
+    transition: box-shadow 0.3s;
+  }
+  .site-header.scrolled { box-shadow: 0 2px 24px rgba(46,21,0,0.22); }
+
+  .header-logo {
+    display: flex;
+    align-items: center;
+    font-family: "Playfair Display", serif;
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--h900);
+    letter-spacing: -0.5px;
+    text-decoration: none;
+    gap: 9px;
+    flex-shrink: 0;
+  }
+  .header-logo-mark {
+    width: 32px; height: 32px;
+    background: var(--h900);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+
+  .header-nav {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    list-style: none;
+  }
+  .header-nav a {
+    color: var(--h900);
+    text-decoration: none;
+    font-size: 0.88rem;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    padding: 8px 22px;
+    border-radius: 99px;
+    border: 2px solid rgba(46,21,0,0.18);
+    background: rgba(255,255,255,0.30);
+    backdrop-filter: blur(4px);
+    transition: all 0.25s cubic-bezier(0.25,0.46,0.45,0.94);
+    position: relative;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .header-nav a::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(120deg, transparent 30%, rgba(255,255,255,0.45) 50%, transparent 70%);
+    transform: translateX(-100%);
+    transition: transform 0.4s ease;
+    pointer-events: none;
+  }
+  .header-nav a:hover::before { transform: translateX(100%); }
+  .header-nav a:hover {
+    background: var(--amber-comb);
+    border-color: var(--h700);
+    box-shadow: 0 0 0 4px rgba(255,208,96,0.28), 0 4px 14px rgba(46,21,0,0.20);
+    transform: translateY(-2px);
+  }
+  .header-nav a.active {
+    color: var(--h900);
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--amber-comb) 0%, var(--h300) 100%);
+    border-color: var(--h600);
+    box-shadow: 0 0 0 3px rgba(255,208,96,0.30), 0 4px 16px rgba(46,21,0,0.22);
+  }
+
+  /* Hamburger */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 28px;
+    height: 20px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+    z-index: 1001;
+    flex-shrink: 0;
+  }
+  .hamburger span {
+    display: block;
+    width: 100%;
+    height: 2.5px;
+    background: var(--h900);
+    border-radius: 99px;
+    transition: all 0.3s ease;
+    transform-origin: center;
+  }
+  .hamburger.open span:nth-child(1) { transform: translateY(8.75px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+  .hamburger.open span:nth-child(3) { transform: translateY(-8.75px) rotate(-45deg); }
+
+  /* Mobile nav drawer */
+  .mobile-nav-overlay {
+    display: none;
+    position: fixed;
+    inset: 64px 0 0;
+    background: rgba(46,21,0,0.45);
+    backdrop-filter: blur(4px);
+    z-index: 999;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  .mobile-nav-overlay.open { opacity: 1; }
+
+  .mobile-nav-drawer {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    background: var(--honey);
+    border-bottom: 1px solid rgba(46,21,0,0.15);
+    padding: 20px 24px 28px;
+    transform: translateY(-100%);
+    transition: transform 0.35s cubic-bezier(0.25,0.46,0.45,0.94);
+  }
+  .mobile-nav-overlay.open .mobile-nav-drawer { transform: translateY(0); }
+
+  .mobile-nav-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .mobile-nav-list a {
+    display: block;
+    color: var(--h900);
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    padding: 12px 20px;
+    border-radius: 12px;
+    border: 2px solid rgba(46,21,0,0.12);
+    background: rgba(255,255,255,0.35);
+    transition: all 0.2s ease;
+  }
+  .mobile-nav-list a:hover,
+  .mobile-nav-list a.active {
+    background: var(--amber-comb);
+    border-color: var(--h600);
+  }
+
+  /* ══════════════════════
+     PAGE HERO BANNER
+     ══════════════════════ */
+  .page-hero {
+    background: linear-gradient(148deg, var(--h900) 0%, var(--h800) 100%);
+    padding: 80px 56px 72px;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+  }
+  .page-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0.05;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='100'%3E%3Cpolygon points='28,2 54,16 54,44 28,58 2,44 2,16' fill='none' stroke='%23FFD060' stroke-width='1.5'/%3E%3Cpolygon points='28,58 54,72 54,100 28,114 2,100 2,72' fill='none' stroke='%23FFD060' stroke-width='1.5'/%3E%3C/svg%3E");
+    pointer-events: none;
+  }
+  .page-hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--amber-comb), var(--h300), var(--amber-comb), transparent);
+  }
+  .page-hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.68rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--amber-comb);
+    font-weight: 700;
+    margin-bottom: 18px;
+    position: relative;
+    z-index: 1;
+  }
+  .page-hero-eyebrow::before,
+  .page-hero-eyebrow::after {
+    content: '';
+    width: 40px; height: 1.5px;
+    background: rgba(255,208,96,0.4);
+    display: inline-block;
+  }
+  .page-hero-title {
+    font-family: "Playfair Display", serif;
+    font-size: 3.2rem;
+    font-weight: 800;
+    color: var(--amber-warm);
+    line-height: 1.15;
+    letter-spacing: -0.5px;
+    margin-bottom: 18px;
+    position: relative;
+    z-index: 1;
+  }
+  .page-hero-title em { font-style: italic; color: var(--amber-comb); }
+  .page-hero-sub {
+    font-size: 1rem;
+    color: rgba(255,223,160,0.65);
+    max-width: 500px;
+    margin: 0 auto;
+    line-height: 1.75;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ══════════════════════
+     CONTACT SECTION LAYOUT
+     ══════════════════════ */
+  .contact-section {
+    padding: 80px 56px;
+    background: var(--amber-bg);
+    position: relative;
+  }
+  .contact-outer {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.6fr;
+    gap: 48px;
+    align-items: start;
+  }
+
+  /* ══════════════════════
+     CONTACT INFO CARDS
+     ══════════════════════ */
+  .info-col { display: flex; flex-direction: column; gap: 20px; }
+
+  .info-card {
+    background: var(--amber-card);
+    border: 1px solid rgba(181,107,0,0.16);
+    border-radius: 20px;
+    padding: 28px 28px 24px;
+    box-shadow: var(--shadow-sm);
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .info-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 3px;
+    background: linear-gradient(90deg, var(--h300), var(--h600));
+  }
+  .info-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .info-card-icon {
+    width: 44px; height: 44px;
+    background: linear-gradient(135deg, var(--amber-comb), var(--h300));
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem;
+    margin-bottom: 16px;
+    box-shadow: 0 4px 12px rgba(46,21,0,0.12);
+  }
+  .info-card-label {
+    font-size: 0.62rem;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--honey-rich);
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .info-card-title {
+    font-family: "Playfair Display", serif;
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: var(--h900);
+    margin-bottom: 6px;
+  }
+  .info-card-text {
+    font-size: 0.84rem;
+    color: var(--body-text);
+    line-height: 1.65;
+  }
+  .info-card-text a {
+    color: var(--honey-deep);
+    text-decoration: none;
+    font-weight: 600;
+  }
+  .info-card-text a:hover { text-decoration: underline; }
+
+  /* Hours table */
+  .hours-table { width: 100%; border-collapse: collapse; margin-top: 8px; }
+  .hours-table td {
+    font-size: 0.82rem;
+    color: var(--body-text);
+    padding: 4px 0;
+    line-height: 1.5;
+  }
+  .hours-table td:last-child { text-align: right; font-weight: 600; color: var(--h900); }
+
+  /* Social row */
+  .social-row {
+    display: flex;
+    gap: 10px;
+    margin-top: 14px;
+  }
+  .social-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    color: var(--h900);
+    background: rgba(255,208,96,0.28);
+    border: 1px solid rgba(181,107,0,0.20);
+    border-radius: 99px;
+    padding: 7px 14px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+  .social-btn:hover {
+    background: var(--amber-comb);
+    border-color: var(--h600);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(46,21,0,0.15);
+  }
+
+  /* ══════════════════════
+     CONTACT FORM CARD
+     ══════════════════════ */
+  .form-card {
+    background: var(--white);
+    border: 1px solid rgba(181,107,0,0.14);
+    border-radius: 24px;
+    padding: 44px 44px 40px;
+    box-shadow: var(--shadow-lg);
+    position: relative;
+    overflow: hidden;
+  }
+  .form-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 5px;
+    background: linear-gradient(90deg, var(--h300), var(--honey-deep), var(--h300));
+  }
+
+  .form-header {
+    margin-bottom: 32px;
+  }
+  .form-eyebrow {
+    font-size: 0.62rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--honey-rich);
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .form-title {
+    font-family: "Playfair Display", serif;
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--h900);
+    line-height: 1.2;
+    margin-bottom: 8px;
+  }
+  .form-title em { font-style: italic; color: var(--honey-deep); }
+  .form-subtitle {
+    font-size: 0.85rem;
+    color: var(--muted-text);
+    line-height: 1.6;
+  }
+
+  /* Enquiry type selector */
+  .enquiry-type-group {
+    margin-bottom: 28px;
+  }
+  .enquiry-type-label {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: var(--h800);
+    margin-bottom: 10px;
+    text-transform: uppercase;
+  }
+  .enquiry-type-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .enquiry-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--muted-text);
+    background: var(--amber-bg);
+    border: 2px solid rgba(140,78,0,0.18);
+    border-radius: 99px;
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: all 0.22s ease;
+    white-space: nowrap;
+  }
+  .enquiry-pill:hover {
+    border-color: var(--h500);
+    color: var(--h800);
+    background: var(--amber-warm);
+  }
+  .enquiry-pill.selected {
+    background: var(--h900);
+    color: var(--amber-comb);
+    border-color: var(--h900);
+    box-shadow: 0 4px 14px rgba(46,21,0,0.22);
+  }
+
+  /* OR dropdown on smaller screens */
+  .enquiry-dropdown-wrap {
+    display: none;
+    position: relative;
+  }
+  .enquiry-dropdown-wrap select {
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    background: var(--amber-bg);
+    border: 2px solid rgba(140,78,0,0.20);
+    border-radius: 12px;
+    padding: 13px 44px 13px 16px;
+    font-family: "DM Sans", sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--h800);
+    cursor: pointer;
+    outline: none;
+    transition: border-color 0.2s ease;
+  }
+  .enquiry-dropdown-wrap select:focus { border-color: var(--h500); }
+  .enquiry-dropdown-wrap::after {
+    content: '▾';
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--h600);
+    font-size: 1rem;
+    pointer-events: none;
+  }
+
+  /* Form fields */
+  .form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    margin-bottom: 18px;
+  }
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .form-group.full { grid-column: 1 / -1; }
+
+  .form-label {
+    font-size: 0.74rem;
+    font-weight: 700;
+    color: var(--h800);
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+  }
+  .form-label .req { color: var(--h500); margin-left: 2px; }
+
+  .form-input,
+  .form-select,
+  .form-textarea {
+    width: 100%;
+    font-family: "DM Sans", sans-serif;
+    font-size: 0.9rem;
+    color: var(--h900);
+    background: var(--amber-bg);
+    border: 2px solid rgba(140,78,0,0.16);
+    border-radius: 12px;
+    padding: 12px 16px;
+    outline: none;
+    transition: border-color 0.22s ease, box-shadow 0.22s ease, background 0.22s ease;
+    appearance: none;
+    -webkit-appearance: none;
+  }
+  .form-input:focus,
+  .form-select:focus,
+  .form-textarea:focus {
+    border-color: var(--h500);
+    background: var(--white);
+    box-shadow: 0 0 0 4px rgba(212,135,10,0.12);
+  }
+  .form-input::placeholder,
+  .form-textarea::placeholder { color: rgba(92,48,0,0.35); }
+
+  .form-select-wrap {
+    position: relative;
+  }
+  .form-select-wrap::after {
+    content: '▾';
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--h600);
+    font-size: 0.9rem;
+    pointer-events: none;
+  }
+
+  .form-textarea {
+    resize: vertical;
+    min-height: 110px;
+    line-height: 1.6;
+  }
+
+  /* Franchise extra fields */
+  .franchise-fields {
+    display: none;
+    grid-column: 1 / -1;
+    border-top: 1px dashed rgba(181,107,0,0.25);
+    padding-top: 18px;
+    margin-top: 4px;
+  }
+  .franchise-fields.visible { display: contents; }
+
+  .franchise-section-label {
+    grid-column: 1 / -1;
+    font-size: 0.65rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--honey-rich);
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .franchise-section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(181,107,0,0.20);
+  }
+
+  /* Submit button */
+  .form-submit-row {
+    margin-top: 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .form-submit-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--h900);
+    color: var(--amber-comb);
+    border: none;
+    font-family: "DM Sans", sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+    padding: 15px 36px;
+    border-radius: 99px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 20px rgba(46,21,0,0.25);
+    flex-shrink: 0;
+  }
+  .form-submit-btn:hover {
+    background: var(--h800);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 28px rgba(46,21,0,0.35);
+  }
+  .form-submit-btn .btn-arrow {
+    width: 26px; height: 26px;
+    background: rgba(255,208,96,0.20);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.9rem;
+    transition: transform 0.25s ease;
+  }
+  .form-submit-btn:hover .btn-arrow { transform: translateX(4px); }
+
+  .form-privacy {
+    font-size: 0.75rem;
+    color: var(--muted-text);
+    line-height: 1.55;
+  }
+
+  /* ── Success State ── */
+  .form-success {
+    display: none;
+    text-align: center;
+    padding: 48px 32px;
+    animation: fadeInUp 0.5s ease forwards;
+  }
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .success-icon {
+    width: 72px; height: 72px;
+    background: linear-gradient(135deg, var(--amber-comb), var(--h300));
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 2rem;
+    margin: 0 auto 24px;
+    box-shadow: 0 8px 24px rgba(46,21,0,0.20);
+    animation: popIn 0.5s 0.2s cubic-bezier(0.34,1.56,0.64,1) both;
+  }
+  @keyframes popIn {
+    from { transform: scale(0); opacity: 0; }
+    to   { transform: scale(1); opacity: 1; }
+  }
+  .success-title {
+    font-family: "Playfair Display", serif;
+    font-size: 1.7rem;
+    font-weight: 800;
+    color: var(--h900);
+    margin-bottom: 12px;
+  }
+  .success-text {
+    font-size: 0.9rem;
+    color: var(--muted-text);
+    line-height: 1.7;
+    max-width: 380px;
+    margin: 0 auto 28px;
+  }
+  .success-back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--h900);
+    background: var(--amber-comb);
+    border: none;
+    border-radius: 99px;
+    padding: 12px 28px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    box-shadow: 0 4px 14px rgba(46,21,0,0.18);
+    font-family: "DM Sans", sans-serif;
+  }
+  .success-back-btn:hover { background: #FFE080; transform: translateY(-2px); }
+
+  /* ══════════════════════
+     MAP / FIND US SECTION
+     ══════════════════════ */
+  .find-us-section {
+    background: linear-gradient(135deg, var(--amber-warm) 0%, var(--amber-mid) 50%, var(--amber-warm) 100%);
+    padding: 72px 56px;
+    position: relative;
+    overflow: hidden;
+  }
+  .find-us-section::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--h300), var(--honey), var(--h300), transparent);
+  }
+  .find-us-section::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0.03;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='100'%3E%3Cpolygon points='28,2 54,16 54,44 28,58 2,44 2,16' fill='none' stroke='%23B56B00' stroke-width='1.5'/%3E%3C/svg%3E");
+    pointer-events: none;
+  }
+
+  .find-us-outer {
+    max-width: 1100px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+  .find-us-header {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+  .find-us-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.68rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--honey-rich);
+    font-weight: 700;
+    margin-bottom: 14px;
+  }
+  .find-us-eyebrow::before,
+  .find-us-eyebrow::after {
+    content: '';
+    width: 36px; height: 1.5px;
+    background: rgba(181,107,0,0.4);
+    display: inline-block;
+  }
+  .find-us-title {
+    font-family: "Playfair Display", serif;
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--h900);
+    line-height: 1.2;
+  }
+  .find-us-title em { font-style: italic; color: var(--honey-deep); }
+
+  .find-us-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 40px;
+    align-items: center;
+  }
+
+  .address-card {
+    background: var(--white);
+    border: 1px solid rgba(181,107,0,0.14);
+    border-radius: 24px;
+    padding: 36px 36px 32px;
+    box-shadow: var(--shadow-md);
+    position: relative;
+    overflow: hidden;
+  }
+  .address-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 4px;
+    background: linear-gradient(90deg, var(--h300), var(--h600));
+  }
+  .address-logo {
+    font-family: "Playfair Display", serif;
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--h900);
+    margin-bottom: 6px;
+  }
+  .address-tagline {
+    font-size: 0.65rem;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--muted-text);
+    font-weight: 600;
+    margin-bottom: 24px;
+  }
+  .address-divider {
+    height: 1px;
+    background: rgba(181,107,0,0.15);
+    margin-bottom: 22px;
+  }
+  .address-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    margin-bottom: 18px;
+  }
+  .address-item:last-child { margin-bottom: 0; }
+  .address-item-icon {
+    width: 36px; height: 36px;
+    background: rgba(255,208,96,0.22);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+  .address-item-text { flex: 1; }
+  .address-item-label {
+    font-size: 0.62rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--honey-rich);
+    font-weight: 700;
+    margin-bottom: 3px;
+  }
+  .address-item-value {
+    font-size: 0.85rem;
+    color: var(--h900);
+    font-weight: 600;
+    line-height: 1.5;
+  }
+  .address-item-value a {
+    color: var(--honey-deep);
+    text-decoration: none;
+  }
+  .address-item-value a:hover { text-decoration: underline; }
+
+  .map-embed {
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+    height: 340px;
+    background: var(--h900);
+    position: relative;
+  }
+  .map-embed iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
+  }
+
+  /* ══════════════════════
+     MARQUEE STRIP
+     ══════════════════════ */
+  .marquee-strip {
+    background: linear-gradient(90deg, var(--h800) 0%, var(--h700) 50%, var(--h800) 100%);
+    padding: 5px 0;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .marquee-inner {
+    display: inline-block;
+    animation: marquee 24s linear infinite;
+    font-size: 0.68rem;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--amber-comb);
+  }
+  .marquee-inner span { margin: 0 32px; color: rgba(255,208,96,0.35); }
+  @keyframes marquee { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+
+  /* ══════════════════════
+     FOOTER
+     ══════════════════════ */
+  footer {
+    background: var(--h900);
+    color: rgba(255,208,96,0.45);
+    padding: 72px 56px 36px;
+    position: relative;
+    overflow: hidden;
+  }
+  footer::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0.04;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='100'%3E%3Cpolygon points='28,2 54,16 54,44 28,58 2,44 2,16' fill='none' stroke='%23FFD060' stroke-width='1.5'/%3E%3Cpolygon points='28,58 54,72 54,100 28,114 2,100 2,72' fill='none' stroke='%23FFD060' stroke-width='1.5'/%3E%3C/svg%3E");
+    pointer-events: none;
+  }
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 56px; margin-bottom: 56px; position: relative; z-index: 1; }
+  .footer-brand { font-family: "Playfair Display", serif; font-size: 1.4rem; color: var(--amber-comb); margin-bottom: 10px; }
+  .footer-tagline { font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase; color: var(--honey); margin-bottom: 16px; }
+  .footer-desc { font-size: 0.85rem; line-height: 1.75; color: rgba(255,223,160,0.45); }
+  .footer-col-title { font-size: 0.68rem; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(255,208,96,0.55); font-weight: 600; margin-bottom: 20px; }
+  .footer-links { list-style: none; }
+  .footer-links li { margin-bottom: 12px; }
+  .footer-links a { color: rgba(255,208,96,0.38); text-decoration: none; font-size: 0.85rem; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--amber-comb); }
+  .footer-bottom {
+    border-top: 1px solid rgba(255,208,96,0.08);
+    padding-top: 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.78rem;
+    position: relative;
+    z-index: 1;
+  }
+  .footer-bottom-logo { color: var(--amber-comb); font-family: "Playfair Display", serif; font-size: 1.05rem; }
+
+  /* ══════════════════════
+     REVEAL ANIMATION
+     ══════════════════════ */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s cubic-bezier(0.25,0.46,0.45,0.94), transform 0.7s cubic-bezier(0.25,0.46,0.45,0.94);
+  }
+  .reveal.is-visible { opacity: 1; transform: translateY(0); }
+
+  /* ══════════════════════
+     RESPONSIVE
+     ══════════════════════ */
+  @media (max-width: 1024px) {
+    .site-header { padding: 0 32px; }
+    .page-hero { padding: 64px 32px 60px; }
+    .contact-section { padding: 60px 32px; }
+    .contact-grid { gap: 36px; }
+    .find-us-section { padding: 60px 32px; }
+    .find-us-grid { gap: 28px; }
+    footer { padding: 56px 32px 28px; }
+  }
+
+  @media (max-width: 900px) {
+    .contact-grid { grid-template-columns: 1fr; }
+    .find-us-grid { grid-template-columns: 1fr; }
+    .map-embed { height: 280px; }
+    .form-grid { grid-template-columns: 1fr; }
+    .form-group.full { grid-column: auto; }
+    .franchise-fields.visible { display: flex; flex-direction: column; gap: 18px; }
+    .franchise-section-label::after { display: none; }
+  }
+
+  @media (max-width: 768px) {
+    .site-header {
+      padding: 0 20px;
+      height: 60px;
+    }
+    .header-nav { display: none; }
+    .hamburger { display: flex; }
+
+    .page-hero { padding: 56px 20px 48px; }
+    .page-hero-title { font-size: 2.2rem; }
+    .page-hero-sub { font-size: 0.9rem; }
+
+    .contact-section { padding: 48px 20px; }
+    .form-card { padding: 32px 24px 28px; }
+    .form-title { font-size: 1.5rem; }
+    .enquiry-type-pills { display: none; }
+    .enquiry-dropdown-wrap { display: block; }
+
+    .find-us-section { padding: 48px 20px; }
+    .find-us-title { font-size: 1.8rem; }
+    .address-card { padding: 28px 24px; }
+
+    footer { padding: 48px 20px 28px; }
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; margin-bottom: 40px; }
+    .footer-grid > div:first-child { grid-column: 1 / -1; }
+    .footer-bottom { flex-direction: column; gap: 10px; text-align: center; padding-top: 20px; }
+
+    .mobile-nav-overlay { display: block; pointer-events: none; }
+    .mobile-nav-overlay.open { pointer-events: auto; }
+  }
+
+  @media (max-width: 480px) {
+    .site-header { padding: 0 16px; }
+    .header-logo { font-size: 1.2rem; }
+
+    .page-hero { padding: 44px 16px 40px; }
+    .page-hero-title { font-size: 1.85rem; }
+
+    .contact-section { padding: 40px 16px; }
+    .form-card { padding: 26px 18px 24px; border-radius: 18px; }
+    .form-title { font-size: 1.35rem; }
+    .form-submit-row { flex-direction: column; align-items: stretch; }
+    .form-submit-btn { justify-content: center; }
+    .enquiry-pill { font-size: 0.72rem; padding: 6px 12px; }
+
+    .find-us-section { padding: 40px 16px; }
+    .find-us-title { font-size: 1.5rem; }
+
+    footer { padding: 40px 16px 24px; }
+    .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+    .footer-grid > div:first-child { grid-column: auto; }
+  }
+
+  /* ════════════════════════════════════════
+     MOBILE NAVIGATION OVERRIDE (NO HAMBURGER)
+     ════════════════════════════════════════ */
+  @media (max-width: 768px) {
+    .site-header {
+      padding: 10px 16px !important;
+      height: auto !important;
+      flex-direction: column !important;
+      gap: 10px !important;
+      justify-content: center !important;
+      align-items: center !important;
+    }
+    .header-logo {
+      font-size: 1.4rem !important;
+    }
+    .header-nav {
+      position: static !important;
+      transform: none !important;
+      display: flex !important;
+      flex-direction: row !important;
+      flex-wrap: nowrap !important;
+      justify-content: center !important;
+      align-items: center !important;
+      gap: 6px !important;
+      width: 100% !important;
+      padding: 0 !important;
+    }
+    .header-nav a {
+      font-size: 0.78rem !important;
+      padding: 6px 14px !important;
+      border-width: 1.5px !important;
+    }
+    .hamburger {
+      display: none !important;
+    }
+    .mobile-nav-overlay {
+      display: none !important;
+    }
+  }
+
+  /* ════════════════════════════════════════
+     COMPACT FORM OVERRIDES FOR MOBILE
+     ════════════════════════════════════════ */
+  @media (max-width: 768px) {
+    .form-card {
+      padding: 18px 16px !important;
+      border-radius: 14px !important;
+    }
+    .form-header {
+      margin-bottom: 16px !important;
+    }
+    .form-title {
+      font-size: 1.2rem !important;
+    }
+    .form-subtitle {
+      font-size: 0.74rem !important;
+      margin-top: 3px !important;
+      margin-bottom: 14px !important;
+      line-height: 1.45 !important;
+    }
+    .form-grid {
+      grid-template-columns: 1fr !important;
+      gap: 10px !important;
+      margin-bottom: 10px !important;
+    }
+    .form-group {
+      gap: 4px !important;
+      margin-bottom: 10px !important;
+    }
+    .form-label {
+      font-size: 0.68rem !important;
+      letter-spacing: 0.3px !important;
+    }
+    .form-input,
+    .form-select,
+    .form-textarea {
+      padding: 8px 12px !important;
+      font-size: 0.82rem !important;
+      border-radius: 8px !important;
+      border-width: 1.5px !important;
+    }
+    .form-textarea {
+      min-height: 70px !important;
+    }
+    .form-submit-row {
+      margin-top: 12px !important;
+      gap: 10px !important;
+      flex-direction: column !important;
+      align-items: stretch !important;
+    }
+    .form-submit-btn {
+      width: 100% !important;
+      justify-content: center !important;
+      padding: 11px 18px !important;
+      font-size: 0.84rem !important;
+    }
+    .enquiry-type-pills {
+      margin-bottom: 12px !important;
+      gap: 6px !important;
+    }
+    .enquiry-pill {
+      font-size: 0.7rem !important;
+      padding: 5px 10px !important;
+    }
+    .franchise-fields.visible {
+      gap: 10px !important;
+      margin-top: 10px !important;
+    }
+    .franchise-section-label {
+      font-size: 0.8rem !important;
+      margin: 8px 0 4px !important;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══ HEADER ══ -->
+<header class="site-header" id="siteHeader">
+  
+  <ul class="header-nav">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="index1.html">Menu</a></li>
+    <li><a href="index2.html">Franchise</a></li>
+    <li><a href="contact.html" class="active">Contact</a></li>
+  </ul>
+</header>
+
+
+
+      <!-- RIGHT: Contact Form -->
+      <div class="form-card reveal" id="formCard">
+
+        <!-- Form content (shown by default) -->
+        <div id="formContent">
+          <div class="form-header">
+            <p class="form-eyebrow">Send Us a Message</p>
+            <h2 class="form-title">Let's Start a <em>Conversation</em></h2>
+            <p class="form-subtitle">Fill in the form below and our team will respond within 24–48 business hours.</p>
+          </div>
+
+          <!-- Enquiry Type — Pills (Desktop) -->
+          <div class="enquiry-type-group">
+            <span class="enquiry-type-label">Select Enquiry Type</span>
+            <div class="enquiry-type-pills" id="enquiryPills">
+              <button class="enquiry-pill selected" data-type="general" type="button">💬 General Enquiry</button>
+              <button class="enquiry-pill" data-type="franchise" type="button">🏪 Franchise Enquiry</button>
+              <button class="enquiry-pill" data-type="wholesale" type="button">📦 Wholesale</button>
+              <button class="enquiry-pill" data-type="distributor" type="button">🚚 Distributor</button>
+              <button class="enquiry-pill" data-type="other" type="button">✉️ Other</button>
+            </div>
+
+            <!-- Enquiry Dropdown — Mobile -->
+            <div class="enquiry-dropdown-wrap">
+              <select id="enquiryDropdown" aria-label="Select enquiry type">
+                <option value="general">💬 General Enquiry</option>
+                <option value="franchise">🏪 Franchise Enquiry</option>
+                <option value="wholesale">📦 Wholesale Enquiry</option>
+                <option value="distributor">🚚 Distributor Enquiry</option>
+                <option value="other">✉️ Other</option>
+              </select>
+            </div>
+          </div>
+
+          <form id="contactForm" novalidate>
+            <input type="hidden" id="enquiryTypeHidden" name="enquiry_type" value="general">
+
+            <div class="form-grid">
+              <!-- Common fields -->
+              <div class="form-group">
+                <label class="form-label" for="fname">First Name <span class="req">*</span></label>
+                <input class="form-input" type="text" id="fname" name="first_name" placeholder="e.g. Arjun" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="lname">Last Name <span class="req">*</span></label>
+                <input class="form-input" type="text" id="lname" name="last_name" placeholder="e.g. Sharma" required>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="email">Email Address <span class="req">*</span></label>
+                <input class="form-input" type="email" id="email" name="email" placeholder="your@email.com" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="phone">Phone Number <span class="req">*</span></label>
+                <input class="form-input" type="tel" id="phone" name="phone" placeholder="+91 98765 43210" required>
+              </div>
+
+              <div class="form-group full">
+                <label class="form-label" for="subject">Subject <span class="req">*</span></label>
+                <input class="form-input" type="text" id="subject" name="subject" placeholder="Brief subject of your enquiry" required>
+              </div>
+
+              <!-- ── FRANCHISE EXTRA FIELDS ── -->
+              <div class="franchise-fields" id="franchiseFields">
+                <div class="franchise-section-label">Franchise Details</div>
+
+                <div class="form-group">
+                  <label class="form-label" for="city">City / Location <span class="req">*</span></label>
+                  <input class="form-input" type="text" id="city" name="city" placeholder="e.g. Chennai, Coimbatore…">
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="investment">Investment Range</label>
+                  <div class="form-select-wrap">
+                    <select class="form-select" id="investment" name="investment_range">
+                      <option value="">Select range…</option>
+                      <option value="1.5-3.5L">₹1.5 Lakhs – ₹3.5 Lakhs</option>
+                      <option value="3.5-6.5L">₹3.5 Lakhs – ₹6.5 Lakhs</option>
+                      <option value="6.5L+">₹6.5 Lakhs+</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="experience">F&B Experience</label>
+                  <div class="form-select-wrap">
+                    <select class="form-select" id="experience" name="fnb_experience">
+                      <option value="">Select experience…</option>
+                      <option value="none">No prior experience</option>
+                      <option value="1-2y">1–2 years</option>
+                      <option value="3-5y">3–5 years</option>
+                      <option value="5y+">5+ years</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="outletType">Preferred Outlet Type</label>
+                  <div class="form-select-wrap">
+                    <select class="form-select" id="outletType" name="outlet_type">
+                      <option value="">Select outlet type…</option>
+                      <option value="parlour">Ice Cream Parlour</option>
+                      <option value="kiosk">AC Kiosk</option>
+                      <option value="cart">Mobile Cart</option>
+                      <option value="shop-in-shop">Shop-in-Shop</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <!-- /franchise fields -->
+
+              <div class="form-group full">
+                <label class="form-label" for="message">Your Message <span class="req">*</span></label>
+                <textarea class="form-textarea" id="message" name="message" placeholder="Tell us more about your enquiry…" required></textarea>
+              </div>
+            </div>
+
+            <div class="form-submit-row">
+              <button type="submit" class="form-submit-btn" id="submitBtn">
+                Send Message
+                <span class="btn-arrow">→</span>
+              </button>
+              <p class="form-privacy">🔒 Your details are safe with us and will never be shared with third parties.</p>
+            </div>
+          </form>
+        </div><!-- /formContent -->
+
+        <!-- Success State (hidden initially) -->
+        <div class="form-success" id="formSuccess">
+          <div class="success-icon">✓</div>
+          <h3 class="success-title">Message Sent!</h3>
+          <p class="success-text">Thank you for reaching out to Mithas. Our team will review your enquiry and get back to you within 24–48 business hours.</p>
+          <button class="success-back-btn" id="successBackBtn">← Send Another Message</button>
+        </div>
+
+      </div><!-- /form-card -->
+
+    </div><!-- /contact-grid -->
+  </div><!-- /contact-outer -->
+</section>
+
+<!-- ══ FIND US SECTION ══ -->
+<section class="find-us-section" id="findus">
+  <div class="find-us-outer">
+    <div class="find-us-header reveal">
+      <p class="find-us-eyebrow">Visit Us</p>
+      <h2 class="find-us-title">Find <em>Mithas</em> on the Map</h2>
+    </div>
+
+    <div class="find-us-grid">
+      <div class="address-card reveal">
+        <div class="address-logo">Mithas™</div>
+        <div class="address-tagline">True Milk · True Ice Cream</div>
+        <div class="address-divider"></div>
+
+        <div class="address-item">
+          <div class="address-item-icon">🏭</div>
+          <div class="address-item-text">
+            <div class="address-item-label">Registered Address</div>
+            <div class="address-item-value">
+              Thirupura Krishnah Dairy Pvt. Ltd.<br>
+              No: 2/172, N.S.R. Street, Vellavedu<br>
+              Thiruvallur – 600 124, Tamil Nadu
+            </div>
+          </div>
+        </div>
+
+        <div class="address-item">
+          <div class="address-item-icon">📞</div>
+          <div class="address-item-text">
+            <div class="address-item-label">Phone</div>
+            <div class="address-item-value">
+              <a href="tel:+919876543210">+91 98765 43210</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="address-item">
+          <div class="address-item-icon">✉️</div>
+          <div class="address-item-text">
+            <div class="address-item-label">Email</div>
+            <div class="address-item-value">
+              <a href="mailto:info@mithasicecream.in">info@mithasicecream.in</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="address-item">
+          <div class="address-item-icon">🏪</div>
+          <div class="address-item-text">
+            <div class="address-item-label">Service Areas</div>
+            <div class="address-item-value">Chennai · Chengalpattu · Thiruvallur · Kanchipuram</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Map -->
+      <div class="map-embed reveal">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3882.406!2d79.9730!3d13.1625!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a52904000000001%3A0x1!2sVellavedu%2C+Thiruvallur%2C+Tamil+Nadu+600124!5e0!3m2!1sen!2sin!4v1625000000000!5m2!1sen!2sin"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Mithas Ice Cream location map">
+        </iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand">Mithas™</div>
+      <div class="footer-tagline">More Than Ice Cream</div>
+      <div class="footer-desc">Premium Indian ice cream made with real ingredients, no artificial colours, and a whole lot of love since 2016.</div>
+    </div>
+    <div>
+      <div class="footer-col-title">Company</div>
+      <ul class="footer-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index1.html">Menu</a></li>
+        <li><a href="index2.html">Franchise</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Connect</div>
+      <ul class="footer-links">
+        <li><a href="#">Instagram</a></li>
+        <li><a href="#">Facebook</a></li>
+        <li><a href="#">YouTube</a></li>
+        <li><a href="contact.html">Franchise Enquiry</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-bottom-logo">Mithas™</div>
+    <div>© 2026 Thirupura Krishnah Dairy Pvt Ltd. All rights reserved.</div>
+  </div>
+</footer>
+
+<script>
+
+  // ════════════════════════════════════════
+  // ENQUIRY TYPE SELECTOR
+  // ════════════════════════════════════════
+  const enquiryPills = document.querySelectorAll('.enquiry-pill');
+  const enquiryDropdown = document.getElementById('enquiryDropdown');
+  const enquiryTypeHidden = document.getElementById('enquiryTypeHidden');
+  const franchiseFields = document.getElementById('franchiseFields');
+
+  function setEnquiryType(type) {
+    enquiryTypeHidden.value = type;
+    // Show/hide franchise fields
+    if (type === 'franchise') {
+      franchiseFields.classList.add('visible');
+    } else {
+      franchiseFields.classList.remove('visible');
+    }
+  }
+
+  // Pills (desktop)
+  enquiryPills.forEach(pill => {
+    pill.addEventListener('click', () => {
+      enquiryPills.forEach(p => p.classList.remove('selected'));
+      pill.classList.add('selected');
+      const type = pill.dataset.type;
+      enquiryDropdown.value = type;
+      setEnquiryType(type);
+    });
+  });
+
+  // Dropdown (mobile)
+  enquiryDropdown.addEventListener('change', () => {
+    const type = enquiryDropdown.value;
+    enquiryPills.forEach(p => {
+      p.classList.toggle('selected', p.dataset.type === type);
+    });
+    setEnquiryType(type);
+  });
+
+  // Pre-select franchise if URL has ?franchise
+  if (window.location.search.includes('franchise')) {
+    const franchisePill = document.querySelector('[data-type="franchise"]');
+    if (franchisePill) franchisePill.click();
+    enquiryDropdown.value = 'franchise';
+    setEnquiryType('franchise');
+  }
+
+  // ════════════════════════════════════════
+  // FORM SUBMISSION
+  // ════════════════════════════════════════
+  const contactForm = document.getElementById('contactForm');
+  const formContent = document.getElementById('formContent');
+  const formSuccess = document.getElementById('formSuccess');
+  const submitBtn = document.getElementById('submitBtn');
+
+  contactForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    // Basic validation
+    let valid = true;
+    const requiredFields = contactForm.querySelectorAll('[required]');
+    requiredFields.forEach(field => {
+      if (!field.value.trim()) {
+        field.style.borderColor = '#c0392b';
+        valid = false;
+        field.addEventListener('input', () => { field.style.borderColor = ''; }, { once: true });
+      }
+    });
+
+    if (!valid) {
+      contactForm.querySelector('[required]:invalid, [required][style]').scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
+
+    // Simulate submission
+    submitBtn.textContent = 'Sending…';
+    submitBtn.disabled = true;
+
+    setTimeout(() => {
+      formContent.style.display = 'none';
+      formSuccess.style.display = 'block';
+      submitBtn.disabled = false;
+    }, 1400);
+  });
+
+  // Back button
+  document.getElementById('successBackBtn').addEventListener('click', () => {
+    contactForm.reset();
+    setEnquiryType('general');
+    enquiryPills.forEach(p => p.classList.toggle('selected', p.dataset.type === 'general'));
+    enquiryDropdown.value = 'general';
+    formSuccess.style.display = 'none';
+    formContent.style.display = '';
+  });
+
+  // ════════════════════════════════════════
+  // HEADER SCROLL EFFECT
+  // ════════════════════════════════════════
+  const headerEl = document.getElementById('siteHeader');
+  window.addEventListener('scroll', () => {
+    headerEl.classList.toggle('scrolled', window.scrollY > 10);
+  }, { passive: true });
+
+  // ════════════════════════════════════════
+  // REVEAL ON SCROLL
+  // ════════════════════════════════════════
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+</script>
+</body>
+</html>
