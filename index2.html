@@ -574,7 +574,7 @@
 
   .model-type-badge {
     position: absolute;
-    top: 24px; left: 24px;
+    top: 4px; left: 14px;
     font-size: 0.65rem;
     letter-spacing: 3px;
     text-transform: uppercase;
@@ -1075,15 +1075,41 @@
     </div>
     <div class="hero-media-col">
       <div class="hero-video-card">
-        <video autoplay muted loop playsinline poster="hro_banner.png">
-          <source src="https://res.cloudinary.com/djmgorf8l/video/upload/v1783342486/MITHAS_AD_02_FI_V1_1_di2ueo.mp4" type="video/mp4">
-          <source src="MITHAS_AD 02_FI V1.mp4" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
-        <div class="video-overlay-badge">
-          <span class="pulse-dot"></span> Live Parlour Promo
-        </div>
-      </div>
+  <video id="heroVideo" autoplay muted loop playsinline poster="hro_banner.png">
+    <source src="https://res.cloudinary.com/djmgorf8l/video/upload/v1783342486/MITHAS_AD_02_FI_V1_1_di2ueo.mp4" type="video/mp4">
+    <source src="MITHAS_AD 02_FI V1.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+
+  <div class="video-overlay-badge">
+    <span class="pulse-dot"></span> Live Parlour Promo
+  </div>
+
+  <!-- Sound toggle button -->
+  <button id="soundToggle" onclick="toggleSound()" style="
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: rgba(46,21,0,0.75);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,208,96,0.3);
+    color: #FFD060;
+    padding: 7px 14px;
+    border-radius: 99px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    transition: background 0.2s;
+    z-index: 10;
+  ">
+    🔇 Tap for Sound
+  </button>
+</div>
     </div>
   </div>
 </section>
@@ -1187,6 +1213,7 @@
       <div class="model-card model-kiosk reveal">
         <div class="model-img-col">
           <span class="model-type-badge">Model 3</span>
+        
           <img src="outdoor_ac_kiosk_real.png" alt="Mithas Outdoor A/C Kiosk">
         </div>
         <div class="model-details-col">
@@ -1241,7 +1268,7 @@
     </div>
     <div class="product-banner-wrap reveal">
       <picture>
-        <source media="(max-width: 768px)" srcset="products.png">
+        <source media="(max-width: 768px)" srcset="menu.png">
         <img src="products.png" alt="Mithas Franchise Outlet Product List - Signature Flavours, Premium Scoops, Kulfi, Cones, Premium Bar and Free Choice Toppings">
       </picture>
     </div>
@@ -1484,6 +1511,17 @@
       field.style.boxShadow = '';
     });
   });
+  function toggleSound() {
+  const video = document.getElementById('heroVideo');
+  const btn = document.getElementById('soundToggle');
+  if (video.muted) {
+    video.muted = false;
+    btn.textContent = '🔊 Sound On';
+  } else {
+    video.muted = true;
+    btn.textContent = '🔇 Tap for Sound';
+  }
+}
 </script>
 </body>
 </html>
