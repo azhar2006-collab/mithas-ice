@@ -67,7 +67,7 @@
     height: 64px;
     position: sticky;
     top: 0;
-    z-index: 100;
+    z-index: 1000;
     border-bottom: 1px solid rgba(46,21,0,0.12);
     transition: box-shadow 0.3s;
   }
@@ -83,6 +83,7 @@
     letter-spacing: -0.5px;
     text-decoration: none;
     gap: 9px;
+    flex-shrink: 0;
   }
   .header-logo-mark {
     width: 32px; height: 32px;
@@ -119,6 +120,7 @@
     transition: all 0.25s cubic-bezier(0.25,0.46,0.45,0.94);
     position: relative;
     overflow: hidden;
+    white-space: nowrap;
   }
   .header-nav a::before {
     content: '';
@@ -143,6 +145,84 @@
     background: linear-gradient(135deg, var(--amber-comb) 0%, var(--h300) 100%);
     border-color: var(--h600);
     box-shadow: 0 0 0 3px rgba(255,208,96,0.30), 0 4px 16px rgba(46,21,0,0.22);
+  }
+
+  /* ── Hamburger Button ── */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 28px;
+    height: 20px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+    z-index: 1001;
+    flex-shrink: 0;
+  }
+  .hamburger span {
+    display: block;
+    width: 100%;
+    height: 2.5px;
+    background: var(--h900);
+    border-radius: 99px;
+    transition: all 0.3s ease;
+    transform-origin: center;
+  }
+  .hamburger.open span:nth-child(1) { transform: translateY(8.75px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+  .hamburger.open span:nth-child(3) { transform: translateY(-8.75px) rotate(-45deg); }
+
+  /* ── Mobile Nav Overlay ── */
+  .mobile-nav-overlay {
+    display: none;
+    position: fixed;
+    inset: 64px 0 0;
+    background: rgba(46,21,0,0.45);
+    backdrop-filter: blur(4px);
+    z-index: 999;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
+  .mobile-nav-overlay.open { opacity: 1; pointer-events: auto; }
+
+  .mobile-nav-drawer {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    background: var(--honey);
+    border-bottom: 1px solid rgba(46,21,0,0.15);
+    padding: 20px 24px 28px;
+    transform: translateY(-100%);
+    transition: transform 0.35s cubic-bezier(0.25,0.46,0.45,0.94);
+  }
+  .mobile-nav-overlay.open .mobile-nav-drawer { transform: translateY(0); }
+
+  .mobile-nav-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .mobile-nav-list a {
+    display: block;
+    color: var(--h900);
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    padding: 12px 20px;
+    border-radius: 12px;
+    border: 2px solid rgba(46,21,0,0.12);
+    background: rgba(255,255,255,0.35);
+    transition: all 0.2s ease;
+  }
+  .mobile-nav-list a:hover,
+  .mobile-nav-list a.active {
+    background: var(--amber-comb);
+    border-color: var(--h600);
   }
 
   /* ══════════════════════
@@ -1773,26 +1853,11 @@
   @media (max-width: 768px) {
     .site-header {
       padding: 0 20px;
-      height: auto;
-      flex-direction: column;
-      align-items: stretch;
-      gap: 0;
+      height: 60px;
     }
-    .header-logo {
-      font-size: 1.3rem;
-      padding: 12px 0 10px;
-      justify-content: center;
-      border-bottom: 1px solid rgba(46,21,0,0.10);
-    }
-    .header-nav {
-      position: static;
-      transform: none;
-      justify-content: center;
-      padding: 8px 0 10px;
-      gap: 6px;
-      flex-wrap: nowrap;
-    }
-    .header-nav a { font-size: 0.78rem; padding: 6px 14px; letter-spacing: 0.5px; }
+    .header-nav { display: none; }
+    .hamburger { display: flex; }
+    .mobile-nav-overlay { display: block; }
 
     /* Hero — tablet */
     .hero { height: clamp(220px, 65vw, 420px); }
@@ -1853,9 +1918,9 @@
   }
 
   @media (max-width: 480px) {
-    .site-header { padding: 0 16px; }
-    .header-logo { font-size: 1.2rem; padding: 10px 0 9px; }
-    .header-nav a { font-size: 0.78rem; padding: 5px 11px; }
+    .site-header { padding: 0 16px; height: 56px; }
+    .header-logo { font-size: 1.2rem; }
+    .mobile-nav-overlay { inset: 56px 0 0; }
 
     /* Hero — phone */
     .hero { height: clamp(100px, 68vw, 200px); }
@@ -1899,16 +1964,57 @@
     .footer-grid { grid-template-columns: 1fr; gap: 28px; }
     .footer-grid > div:first-child { grid-column: auto; }
   }
+
+  /* ════════════════════════════════════════
+     MOBILE NAVIGATION OVERRIDE (NO HAMBURGER)
+     ════════════════════════════════════════ */
+  @media (max-width: 768px) {
+    .site-header {
+      padding: 10px 16px !important;
+      height: auto !important;
+      flex-direction: column !important;
+      gap: 10px !important;
+      justify-content: center !important;
+      align-items: center !important;
+    }
+    .header-logo {
+      font-size: 1.4rem !important;
+    }
+    .header-nav {
+      position: static !important;
+      transform: none !important;
+      display: flex !important;
+      flex-direction: row !important;
+      flex-wrap: nowrap !important;
+      justify-content: center !important;
+      align-items: center !important;
+      gap: 6px !important;
+      width: 100% !important;
+      padding: 0 !important;
+    }
+    .header-nav a {
+      font-size: 0.78rem !important;
+      padding: 6px 14px !important;
+      border-width: 1.5px !important;
+    }
+    .hamburger {
+      display: none !important;
+    }
+    .mobile-nav-overlay {
+      display: none !important;
+    }
+  }
 </style>
 </head>
 <body>
 
 <header class="site-header" id="siteHeader">
+ 
   <ul class="header-nav">
-    <li><a href="#" class="active">Home</a></li>
+    <li><a href="index.html" class="active">Home</a></li>
     <li><a href="index1.html">Menu</a></li>
     <li><a href="index2.html">Franchise</a></li>
-    <li><a href="#contact">Contact</a></li>
+    <li><a href="contact.html">Contact</a></li>
   </ul>
 </header>
 
@@ -1918,18 +2024,8 @@
     <div class="hero-slide active">
       <img src="hro_banner.png" alt="Mithas ice cream – Premium traditional Indian ice cream">
     </div>
-
-    <div class="hero-slide">
-      <img src="0I9A2277.jpg.jpeg" alt="Mithas Orange Popsicle – Fresh orange flavor ice cream">
-    </div>
- 
-    <div class="hero-slide">
-      <img src="0I9A2291.jpg.jpeg" alt="Mithas Strawberry Delight – Fresh strawberry ice cream">
-    </div>
-    <div class="hero-slide">
-      <img src="0I9A2314.jpg.jpeg" alt="Mithas Classic Chocobar – Premium chocolate ice cream">
-    </div>
-
+  
+  
   </div>
 
   <!-- Gradient overlay for legibility -->
@@ -1942,11 +2038,8 @@
   <!-- Dot indicators -->
   <div class="hero-slider-dots" id="heroSliderDots"></div>
 
-  <!-- CTA / swipe hint -->
-  <div class="hero-cta-wrap">
-    <p class="hero-cta-hint">Scroll to discover</p>
-    <p class="hero-swipe-hint">Swipe to explore</p>
-  </div>
+
+
 </div>
 
 <div class="marquee-strip">
@@ -2084,18 +2177,7 @@
         </div>
       </div>
 
-      <div class="ad-card reveal">
-        <video controls autoplay muted loop playsinline>
-          <source src="https://res.cloudinary.com/djmgorf8l/video/upload/v1783342486/MITHAS_AD_02_FI_V1_1_di2ueo.mp4" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
-        <div class="ad-card-info">
-          <p class="ad-card-tag">Campaign 02</p>
-          <h3 class="ad-card-title">Traditional Taste</h3>
-          <p class="ad-card-desc">Authentic flavors crafted with love and the purest ingredients.</p>
-        </div>
-      </div>
-
+ 
       <div class="ad-card reveal">
         <video controls autoplay muted loop playsinline>
           <source src="https://res.cloudinary.com/djmgorf8l/video/upload/v1783280100/mithas_gittl2.mp4" type="video/mp4">
@@ -2198,7 +2280,7 @@
   </div>
 </section>
 
-<footer id="contact">
+<footer>
   <div class="footer-grid">
     <div>
       <div class="footer-brand">Mithas™</div>
@@ -2208,10 +2290,10 @@
     <div>
       <div class="footer-col-title">Company</div>
       <ul class="footer-links">
-        <li><a href="#">Our Journey</a></li>
-        <li><a href="#">Sustainability</a></li>
-        <li><a href="#">Careers</a></li>
-        <li><a href="#">Press</a></li>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index1.html">Menu</a></li>
+        <li><a href="index2.html">Franchise</a></li>
+        <li><a href="contact.html">Contact</a></li>
       </ul>
     </div>
     <div>
@@ -2219,8 +2301,8 @@
       <ul class="footer-links">
         <li><a href="#">Instagram</a></li>
         <li><a href="#">Facebook</a></li>
-        <li><a href="#">Contact Us</a></li>
-        <li><a href="#">Distributor Enquiry</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+        <li><a href="contact.html?franchise=1">Franchise Enquiry</a></li>
       </ul>
     </div>
   </div>
@@ -2321,22 +2403,6 @@
     });
   }, { threshold: 0.1 });
   document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-
-  // ════════════════════════════════════════
-  // ACTIVE NAV LINK ON SCROLL
-  // ════════════════════════════════════════
-  const sections = document.querySelectorAll('section[id], div[id], footer[id]');
-  const navLinks = document.querySelectorAll('.header-nav a');
-  const navObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        navLinks.forEach(l => l.classList.remove('active'));
-        const active = document.querySelector(`.header-nav a[href="#${entry.target.id}"]`);
-        if (active) active.classList.add('active');
-      }
-    });
-  }, { rootMargin: '-40% 0px -55% 0px' });
-  sections.forEach(s => navObserver.observe(s));
 </script>
 
 </body>
