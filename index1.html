@@ -45,7 +45,7 @@
       height: 64px;
       position: sticky;
       top: 0;
-      z-index: 100;
+      z-index: 1000;
       border-bottom: 1px solid rgba(46,21,0,0.12);
       transition: box-shadow 0.3s;
     }
@@ -123,6 +123,72 @@
       border-color: var(--h600);
       box-shadow: 0 0 0 3px rgba(255,208,96,0.30), 0 4px 16px rgba(46,21,0,0.22);
     }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 28px; height: 20px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 0;
+      z-index: 1001;
+      flex-shrink: 0;
+    }
+    .hamburger span {
+      display: block;
+      width: 100%; height: 2.5px;
+      background: var(--h900);
+      border-radius: 99px;
+      transition: all 0.3s ease;
+      transform-origin: center;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(8.75px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .hamburger.open span:nth-child(3) { transform: translateY(-8.75px) rotate(-45deg); }
+
+    /* Mobile nav overlay */
+    .mobile-nav-overlay {
+      display: none;
+      position: fixed;
+      inset: 64px 0 0;
+      background: rgba(46,21,0,0.45);
+      backdrop-filter: blur(4px);
+      z-index: 999;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+    }
+    .mobile-nav-overlay.open { opacity: 1; pointer-events: auto; }
+    .mobile-nav-drawer {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      background: var(--h400);
+      border-bottom: 1px solid rgba(46,21,0,0.15);
+      padding: 20px 24px 28px;
+      transform: translateY(-100%);
+      transition: transform 0.35s cubic-bezier(0.25,0.46,0.45,0.94);
+    }
+    .mobile-nav-overlay.open .mobile-nav-drawer { transform: translateY(0); }
+    .mobile-nav-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .mobile-nav-list a {
+      display: block;
+      color: var(--h900);
+      text-decoration: none;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      padding: 12px 20px;
+      border-radius: 12px;
+      border: 2px solid rgba(46,21,0,0.12);
+      background: rgba(255,255,255,0.35);
+      transition: all 0.2s ease;
+    }
+    .mobile-nav-list a:hover,
+    .mobile-nav-list a.active { background: var(--amber-comb); border-color: var(--h600); }
 
     /* ══════════════════════
        FULL-BLEED MENU IMAGE
@@ -252,33 +318,10 @@
        RESPONSIVE — Mobile
        ══════════════════════ */
     @media (max-width: 768px) {
-      /* Header stacks into two rows */
-      .site-header {
-        padding: 0 20px;
-        height: auto;
-        flex-direction: column;
-        align-items: stretch;
-        gap: 0;
-      }
-      .header-logo {
-        font-size: 1.3rem;
-        padding: 12px 0 10px;
-        justify-content: center;
-        border-bottom: 1px solid rgba(46,21,0,0.10);
-      }
-      .header-nav {
-        position: static;
-        transform: none;
-        justify-content: center;
-        padding: 8px 0 10px;
-        gap: 6px;
-      }
-      .header-nav a {
-        font-size: 0.78rem;
-        padding: 6px 14px;
-        letter-spacing: 0.5px;
-      }
-
+      .site-header { padding: 0 20px; height: 60px; }
+      .header-nav { display: none; }
+      .hamburger { display: flex; }
+      .mobile-nav-overlay { display: block; }
       footer { padding: 40px 20px 24px; }
       .footer-grid { grid-template-columns: 1fr; gap: 28px; }
       .footer-grid > div:first-child { grid-column: auto; }
@@ -286,11 +329,51 @@
     }
 
     @media (max-width: 480px) {
-      .site-header { padding: 0 16px; }
-      .header-logo { font-size: 1.2rem; padding: 10px 0 9px; }
+      .site-header { padding: 0 16px; height: 56px; }
+      .mobile-nav-overlay { inset: 56px 0 0; }
+      .header-logo { font-size: 1.2rem; }
       .header-logo-mark { width: 26px; height: 26px; font-size: 0.85rem; border-radius: 6px; }
-      .header-nav a { font-size: 0.78rem; padding: 5px 11px; }
       footer { padding: 36px 16px 20px; }
+    }
+
+    /* ════════════════════════════════════════
+       MOBILE NAVIGATION OVERRIDE (NO HAMBURGER)
+       ════════════════════════════════════════ */
+    @media (max-width: 768px) {
+      .site-header {
+        padding: 10px 16px !important;
+        height: auto !important;
+        flex-direction: column !important;
+        gap: 10px !important;
+        justify-content: center !important;
+        align-items: center !important;
+      }
+      .header-logo {
+        font-size: 1.4rem !important;
+      }
+      .header-nav {
+        position: static !important;
+        transform: none !important;
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: nowrap !important;
+        justify-content: center !important;
+        align-items: center !important;
+        gap: 6px !important;
+        width: 100% !important;
+        padding: 0 !important;
+      }
+      .header-nav a {
+        font-size: 0.78rem !important;
+        padding: 6px 14px !important;
+        border-width: 1.5px !important;
+      }
+      .hamburger {
+        display: none !important;
+      }
+      .mobile-nav-overlay {
+        display: none !important;
+      }
     }
   </style>
 </head>
@@ -300,11 +383,14 @@
      HEADER
      ══════════════════════════ -->
 <header class="site-header" id="siteHeader">
+  <a href="index.html" class="header-logo">
  
+  </a>
   <ul class="header-nav">
     <li><a href="index.html">Home</a></li>
     <li><a href="index1.html" class="active">Menu</a></li>
-    <li><a href="index.html#contact">Contact</a></li>
+    <li><a href="index2.html">Franchise</a></li>
+    <li><a href="contact.html">Contact</a></li>
   </ul>
 </header>
 
@@ -327,7 +413,7 @@
 <!-- ══════════════════════════
      FOOTER
      ══════════════════════════ -->
-<footer id="contact">
+<footer>
   <div class="footer-grid">
     <div>
       <div class="footer-brand">Mithas™</div>
@@ -335,12 +421,12 @@
       <div class="footer-desc">Premium Indian ice cream made with real ingredients, no artificial colours, and a whole lot of love since 2016.</div>
     </div>
     <div>
-      <div class="footer-col-title">Company</div>
+      <div class="footer-col-title">Pages</div>
       <ul class="footer-links">
-        <li><a href="index.html#journey">Our Journey</a></li>
-        <li><a href="#">Sustainability</a></li>
-        <li><a href="#">Careers</a></li>
-        <li><a href="#">Press</a></li>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index1.html">Menu</a></li>
+        <li><a href="index2.html">Franchise</a></li>
+        <li><a href="contact.html">Contact</a></li>
       </ul>
     </div>
     <div>
@@ -348,8 +434,8 @@
       <ul class="footer-links">
         <li><a href="#">Instagram</a></li>
         <li><a href="#">Facebook</a></li>
-        <li><a href="#">Contact Us</a></li>
-        <li><a href="#">Distributor Enquiry</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+        <li><a href="contact.html?franchise=1">Franchise Enquiry</a></li>
       </ul>
     </div>
   </div>
