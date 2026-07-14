@@ -985,7 +985,6 @@
     .form-grid { grid-template-columns: 1fr; }
     .form-group.full { grid-column: auto; }
     .franchise-fields.visible { display: flex; flex-direction: column; gap: 18px; }
-    .franchise-section-label::after { display: none; }
   }
 
   @media (max-width: 768px) {
@@ -1160,7 +1159,10 @@
 
 <!-- ══ HEADER ══ -->
 <header class="site-header" id="siteHeader">
-  
+  <a href="index.html" class="header-logo">
+    <div class="header-logo-mark">M</div>
+    Mithas™
+  </a>
   <ul class="header-nav">
     <li><a href="index.html">Home</a></li>
     <li><a href="index1.html">Menu</a></li>
@@ -1169,7 +1171,34 @@
   </ul>
 </header>
 
+<section class="page-hero">
+  <p class="page-hero-eyebrow">Get In Touch</p>
+  <h1 class="page-hero-title">Contact <em>Mithas</em></h1>
+  <p class="page-hero-sub">We'd love to hear from you. Whether it's a general enquiry or a franchise interest, our team is here to help.</p>
+</section>
 
+<section class="contact-section">
+  <div class="contact-outer">
+    <div class="contact-grid">
+      <div class="info-col">
+        <div class="info-card reveal">
+          <div class="info-card-icon">📞</div>
+          <p class="info-card-label">Call Us</p>
+          <h3 class="info-card-title">Customer Care</h3>
+          <p class="info-card-text">
+            General: <a href="tel:+919876543210">+91 98765 43210</a><br>
+            Franchise: <a href="tel:+919876543211">+91 98765 43211</a>
+          </p>
+        </div>
+        <div class="info-card reveal">
+          <div class="info-card-icon">✉️</div>
+          <p class="info-card-label">Email Us</p>
+          <h3 class="info-card-title">Direct Inquiries</h3>
+          <p class="info-card-text">
+            <a href="mailto:info@mithas.net.in">info@mithas.net.in</a>
+          </p>
+        </div>
+      </div>
 
       <!-- RIGHT: Contact Form -->
       <div class="form-card reveal" id="formCard">
@@ -1205,7 +1234,7 @@
             </div>
           </div>
 
-          <form id="contactForm" novalidate>
+          <form id="contactForm" action="https://formspree.io/f/mzdnbabw" method="POST" novalidate>
             <input type="hidden" id="enquiryTypeHidden" name="enquiry_type" value="general">
 
             <div class="form-grid">
@@ -1351,7 +1380,7 @@
           <div class="address-item-text">
             <div class="address-item-label">Email</div>
             <div class="address-item-value">
-              <a href="mailto:info@mithasicecream.in">info@mithasicecream.in</a>
+              <a href="mailto:info@mithas.net.in">info@mithas.net.in</a>
             </div>
           </div>
         </div>
@@ -1413,7 +1442,6 @@
 </footer>
 
 <script>
-
   // ════════════════════════════════════════
   // ENQUIRY TYPE SELECTOR
   // ════════════════════════════════════════
@@ -1461,7 +1489,7 @@
   }
 
   // ════════════════════════════════════════
-  // FORM SUBMISSION
+  // FORM SUBMISSION (FORMSPREE INTEGRATION)
   // ════════════════════════════════════════
   const contactForm = document.getElementById('contactForm');
   const formContent = document.getElementById('formContent');
@@ -1487,15 +1515,37 @@
       return;
     }
 
-    // Simulate submission
+    // Actual submission to Formspree
     submitBtn.textContent = 'Sending…';
     submitBtn.disabled = true;
 
-    setTimeout(() => {
-      formContent.style.display = 'none';
-      formSuccess.style.display = 'block';
+    const formData = new FormData(contactForm);
+    
+    fetch(contactForm.action, {
+      method: 'POST',
+      body: formData,
+      headers: {
+        'Accept': 'application/json'
+      }
+    }).then(response => {
+      if (response.ok) {
+        formContent.style.display = 'none';
+        formSuccess.style.display = 'block';
+      } else {
+        response.json().then(data => {
+          if (Object.hasOwn(data, 'errors')) {
+            alert(data["errors"].map(error => error["message"]).join(", "));
+          } else {
+            alert("Oops! There was a problem submitting your form");
+          }
+        })
+      }
+    }).catch(error => {
+      alert("Oops! There was a problem submitting your form");
+    }).finally(() => {
+      submitBtn.textContent = 'Send Message';
       submitBtn.disabled = false;
-    }, 1400);
+    });
   });
 
   // Back button
