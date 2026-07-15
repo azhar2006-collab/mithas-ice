@@ -34,7 +34,7 @@
     }
 
     /* ══════════════════════
-       HEADER — matches homepage style
+       HEADER
        ══════════════════════ */
     .site-header {
       background: var(--h400);
@@ -73,7 +73,6 @@
       flex-shrink: 0;
     }
 
-    /* Centre nav */
     .header-nav {
       position: absolute;
       left: 50%;
@@ -124,7 +123,6 @@
       box-shadow: 0 0 0 3px rgba(255,208,96,0.30), 0 4px 16px rgba(46,21,0,0.22);
     }
 
-    /* Hamburger */
     .hamburger {
       display: none;
       flex-direction: column;
@@ -149,7 +147,6 @@
     .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
     .hamburger.open span:nth-child(3) { transform: translateY(-8.75px) rotate(-45deg); }
 
-    /* Mobile nav overlay */
     .mobile-nav-overlay {
       display: none;
       position: fixed;
@@ -191,32 +188,128 @@
     .mobile-nav-list a.active { background: var(--amber-comb); border-color: var(--h600); }
 
     /* ══════════════════════
-       FULL-BLEED MENU IMAGE
+       GRADIENT BRIDGE
        ══════════════════════ */
-
-    /* Thin gradient bridge between header and image */
     .menu-bridge {
       height: 6px;
       background: linear-gradient(180deg, var(--h400) 0%, var(--h800) 100%);
     }
 
-    /* The image is the page — no padding, no card, no border */
-    .menu-canvas {
-      display: block;
-      width: 100%;
-      line-height: 0; /* remove inline gap */
+    /* ══════════════════════
+       RETAIL MENU TITLE BAND
+       ══════════════════════ */
+    .menu-title-band {
       background: var(--h900);
+      padding: 40px 24px 28px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      position: relative;
+      overflow: hidden;
     }
 
-    .menu-canvas img {
-      display: block;
-      width: 100%;
-      height: auto;
-      /* Seamlessly extend background if image has its own bg colour */
-      background: var(--h900);
+    /* Honeycomb watermark */
+    .menu-title-band::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      opacity: 0.04;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='100'%3E%3Cpolygon points='28,2 54,16 54,44 28,58 2,44 2,16' fill='none' stroke='%23FFD060' stroke-width='1.5'/%3E%3Cpolygon points='28,58 54,72 54,100 28,114 2,100 2,72' fill='none' stroke='%23FFD060' stroke-width='1.5'/%3E%3C/svg%3E");
+      pointer-events: none;
     }
 
-    /* Subtle shimmer accent line between header and image — feels designed, not dropped-in */
+    .menu-title-eyebrow {
+      font-family: "DM Sans", sans-serif;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 3.5px;
+      text-transform: uppercase;
+      color: var(--h500);
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .menu-title-eyebrow::before,
+    .menu-title-eyebrow::after {
+      content: '';
+      width: 36px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--h600));
+    }
+    .menu-title-eyebrow::after {
+      background: linear-gradient(90deg, var(--h600), transparent);
+    }
+
+    .menu-title-heading {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 800;
+      color: var(--amber-comb);
+      letter-spacing: -0.5px;
+      line-height: 1.1;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Gold pill badge */
+    .menu-title-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: rgba(255,208,96,0.10);
+      border: 1px solid rgba(255,208,96,0.25);
+      border-radius: 99px;
+      padding: 6px 18px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--amber-comb);
+      position: relative;
+      z-index: 1;
+    }
+    .menu-title-badge-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--h500);
+      flex-shrink: 0;
+      animation: pulseDot 2.4s ease-in-out infinite;
+    }
+    @keyframes pulseDot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: 0.45; transform: scale(0.7); }
+    }
+
+    /* Shimmer rule below heading */
+    .menu-title-rule {
+      width: min(320px, 70%);
+      height: 2px;
+      border-radius: 99px;
+      background: linear-gradient(90deg,
+        transparent 0%,
+        var(--h700) 20%,
+        var(--amber-comb) 50%,
+        var(--h700) 80%,
+        transparent 100%
+      );
+      background-size: 200% 100%;
+      animation: ruleShimmer 4s linear infinite;
+      position: relative;
+      z-index: 1;
+    }
+    @keyframes ruleShimmer {
+      0%   { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+
+    /* ══════════════════════
+       FULL-BLEED MENU IMAGE
+       ══════════════════════ */
     .menu-top-rule {
       height: 3px;
       background: linear-gradient(90deg,
@@ -229,9 +322,18 @@
       background-size: 200% 100%;
       animation: ruleShimmer 4s linear infinite;
     }
-    @keyframes ruleShimmer {
-      0%   { background-position: 200% 0; }
-      100% { background-position: -200% 0; }
+
+    .menu-canvas {
+      display: block;
+      width: 100%;
+      line-height: 0;
+      background: var(--h900);
+    }
+    .menu-canvas img {
+      display: block;
+      width: 100%;
+      height: auto;
+      background: var(--h900);
     }
 
     /* ══════════════════════
@@ -318,7 +420,7 @@
        RESPONSIVE — Mobile
        ══════════════════════ */
     @media (max-width: 768px) {
-      .site-header { padding: 0 20px; height: 60px; }
+      .site-header { padding: 0 20px; height: auto; }
       .header-nav { display: none; }
       .hamburger { display: flex; }
       .mobile-nav-overlay { display: block; }
@@ -326,11 +428,12 @@
       .footer-grid { grid-template-columns: 1fr; gap: 28px; }
       .footer-grid > div:first-child { grid-column: auto; }
       .footer-bottom { flex-direction: column; gap: 10px; text-align: center; padding-top: 18px; }
+      .menu-title-band { padding: 28px 16px 20px; }
+      .menu-title-heading { font-size: clamp(1.6rem, 6vw, 2.4rem); }
     }
 
     @media (max-width: 480px) {
-      .site-header { padding: 0 16px; height: 56px; }
-      .mobile-nav-overlay { inset: 56px 0 0; }
+      .site-header { padding: 0 16px; }
       .header-logo { font-size: 1.2rem; }
       .header-logo-mark { width: 26px; height: 26px; font-size: 0.85rem; border-radius: 6px; }
       footer { padding: 36px 16px 20px; }
@@ -384,25 +487,24 @@
      ══════════════════════════ -->
 <header class="site-header" id="siteHeader">
   <a href="index.html" class="header-logo">
- 
   </a>
   <ul class="header-nav">
     <li><a href="index.html">Home</a></li>
-    <li><a href="index1.html" class="active">Menu</a></li>
+    <li><a href="index1.html" class="active">Retail Menu</a></li>
     <li><a href="index2.html">Franchise</a></li>
     <li><a href="contact.html">Contact</a></li>
   </ul>
 </header>
 
-<!-- Gradient bridge so header colour bleeds into the dark image background -->
+<!-- Gradient bridge -->
 <div class="menu-bridge"></div>
-<div class="menu-top-rule"></div>
+
 
 <!-- ══════════════════════════
      FULL-BLEED MENU IMAGE
      ══════════════════════════ -->
 <div class="menu-canvas">
-  <img src="menu.png" alt="Mithas – Full Flavour Catalogue">
+  <img src="retail.png" alt="Mithas – Full Flavour Catalogue">
 </div>
 
 <!-- Small availability note -->
@@ -416,7 +518,7 @@
 <footer>
   <div class="footer-grid">
     <div>
-      <div class="footer-brand">Mithas™</div>
+      <div class="footer-brand">Mithas®</div>
       <div class="footer-tagline">More Than Ice Cream</div>
       <div class="footer-desc">Premium Indian ice cream made with real ingredients, no artificial colours, and a whole lot of love since 2016.</div>
     </div>
@@ -424,7 +526,7 @@
       <div class="footer-col-title">Pages</div>
       <ul class="footer-links">
         <li><a href="index.html">Home</a></li>
-        <li><a href="index1.html">Menu</a></li>
+        <li><a href="index1.html">Retail Menu</a></li>
         <li><a href="index2.html">Franchise</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
