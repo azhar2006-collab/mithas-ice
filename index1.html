@@ -61,6 +61,8 @@
       letter-spacing: -0.5px;
       text-decoration: none;
       gap: 9px;
+      flex-shrink: 0;
+      z-index: 1;
     }
     .header-logo-mark {
       width: 32px; height: 32px;
@@ -97,6 +99,7 @@
       transition: all 0.25s cubic-bezier(0.25,0.46,0.45,0.94);
       position: relative;
       overflow: hidden;
+      white-space: nowrap;
     }
     .header-nav a::before {
       content: '';
@@ -121,6 +124,13 @@
       background: linear-gradient(135deg, var(--amber-comb) 0%, var(--h300) 100%);
       border-color: var(--h600);
       box-shadow: 0 0 0 3px rgba(255,208,96,0.30), 0 4px 16px rgba(46,21,0,0.22);
+    }
+
+    /* spacer to balance the logo on the right so nav stays truly centred */
+    .header-spacer {
+      flex-shrink: 0;
+      width: 120px; /* approx width of logo */
+      z-index: 1;
     }
 
     .hamburger {
@@ -420,29 +430,6 @@
        RESPONSIVE — Mobile
        ══════════════════════ */
     @media (max-width: 768px) {
-      .site-header { padding: 0 20px; height: auto; }
-      .header-nav { display: none; }
-      .hamburger { display: flex; }
-      .mobile-nav-overlay { display: block; }
-      footer { padding: 40px 20px 24px; }
-      .footer-grid { grid-template-columns: 1fr; gap: 28px; }
-      .footer-grid > div:first-child { grid-column: auto; }
-      .footer-bottom { flex-direction: column; gap: 10px; text-align: center; padding-top: 18px; }
-      .menu-title-band { padding: 28px 16px 20px; }
-      .menu-title-heading { font-size: clamp(1.6rem, 6vw, 2.4rem); }
-    }
-
-    @media (max-width: 480px) {
-      .site-header { padding: 0 16px; }
-      .header-logo { font-size: 1.2rem; }
-      .header-logo-mark { width: 26px; height: 26px; font-size: 0.85rem; border-radius: 6px; }
-      footer { padding: 36px 16px 20px; }
-    }
-
-    /* ════════════════════════════════════════
-       MOBILE NAVIGATION OVERRIDE (NO HAMBURGER)
-       ════════════════════════════════════════ */
-    @media (max-width: 768px) {
       .site-header {
         padding: 10px 16px !important;
         height: auto !important;
@@ -453,6 +440,9 @@
       }
       .header-logo {
         font-size: 1.4rem !important;
+      }
+      .header-spacer {
+        display: none;
       }
       .header-nav {
         position: static !important;
@@ -477,6 +467,19 @@
       .mobile-nav-overlay {
         display: none !important;
       }
+      footer { padding: 40px 20px 24px; }
+      .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+      .footer-grid > div:first-child { grid-column: auto; }
+      .footer-bottom { flex-direction: column; gap: 10px; text-align: center; padding-top: 18px; }
+      .menu-title-band { padding: 28px 16px 20px; }
+      .menu-title-heading { font-size: clamp(1.6rem, 6vw, 2.4rem); }
+    }
+
+    @media (max-width: 480px) {
+      .site-header { padding: 0 16px; }
+      .header-logo { font-size: 1.2rem; }
+      .header-logo-mark { width: 26px; height: 26px; font-size: 0.85rem; border-radius: 6px; }
+      footer { padding: 36px 16px 20px; }
     }
   </style>
 </head>
@@ -486,14 +489,16 @@
      HEADER
      ══════════════════════════ -->
 <header class="site-header" id="siteHeader">
-  <a href="index.html" class="header-logo">
-  </a>
+
   <ul class="header-nav">
     <li><a href="index.html">Home</a></li>
     <li><a href="index1.html" class="active">Retail Menu</a></li>
     <li><a href="index2.html">Franchise</a></li>
     <li><a href="contact.html">Contact</a></li>
   </ul>
+
+  <!-- balancing spacer so nav stays truly centred -->
+  <div class="header-spacer" aria-hidden="true"></div>
 </header>
 
 <!-- Gradient bridge -->
@@ -526,7 +531,7 @@
       <div class="footer-col-title">Pages</div>
       <ul class="footer-links">
         <li><a href="index.html">Home</a></li>
-        <li><a href="index1.html">Retail Menu</a></li>
+        <li><a href="index1.html">Menu</a></li>
         <li><a href="index2.html">Franchise</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
